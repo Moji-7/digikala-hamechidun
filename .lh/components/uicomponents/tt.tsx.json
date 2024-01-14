@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/uicomponents/tt.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1704789208035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704789280181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import React from 'react';\r\n interface ListItemComponentProps {\r\n-    item: OrdersProductsCategoriesInfo['orderItemGrouping'][0];\r\n+    item: category_grouped;\r\n     index: number;\r\n  // Replace with the type of your theme object\r\n   }\r\n import { Card, ListItem, Divider, useTheme } from '@rneui/themed';\r\n+import { category_grouped } from '../entity/OrdersProductsCategoriesInfo ';\r\n const ttx: React.FC<ListItemComponentProps> = ({ item, index }) => {\r\n     return (\r\n       <ListItem key={index} bottomDivider>\r\n         <ListItem.Content>\r\n"
+                },
+                {
+                    "date": 1704789391392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n  // Replace with the type of your theme object\r\n   }\r\n import { Card, ListItem, Divider, useTheme } from '@rneui/themed';\r\n import { category_grouped } from '../entity/OrdersProductsCategoriesInfo ';\r\n-const ttx: React.FC<ListItemComponentProps> = ({ item, index }) => {\r\n+const ListCategoryGrouped: React.FC<ListItemComponentProps> = ({ item, index }) => {\r\n     return (\r\n       <ListItem key={index} bottomDivider>\r\n         <ListItem.Content>\r\n           <ListItem.Title >{item.title}</ListItem.Title>\r\n@@ -18,5 +18,5 @@\n       </ListItem>\r\n     );\r\n   };\r\n   \r\n-  export default ttx;\n\\ No newline at end of file\n+  export default ListCategoryGrouped;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1704789208035,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\ninterface ListItemComponentProps {\r\n    item: OrdersProductsCategoriesInfo['orderItemGrouping'][0];\r\n    index: number;\r\n // Replace with the type of your theme object\r\n  }\r\nimport { Card, ListItem, Divider, useTheme } from '@rneui/themed';\r\nconst ttx: React.FC<ListItemComponentProps> = ({ item, index }) => {\r\n    return (\r\n      <ListItem key={index} bottomDivider>\r\n        <ListItem.Content>\r\n          <ListItem.Title >{item.title}</ListItem.Title>\r\n          <ListItem.Subtitle >\r\n            Count: {item.count} | Max Price: {item.maxPrice} | Avg Price: {item.avgPrice} | Total Price: {item.totalPrice} | Avg Discount: {item.avgDiscount}\r\n          </ListItem.Subtitle>\r\n        </ListItem.Content>\r\n      </ListItem>\r\n    );\r\n  };\r\n  \r\n  export default ttx;"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/hooks/usePopulateOrdersSummary.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1704782781121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1704782781120,
+            "name": "Commit-0",
+            "content": "import { useQuery } from '@tanstack/react-query';\r\n\r\nfunction usePopulateOrdersSummary() {\r\n    const { data, error, isLoading, isError } = useQuery({\r\n        queryKey: ['populateOrdersSummary'], // The query key\r\n        queryFn: async () => { \r\n            try {\r\n                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_summary\");\r\n                if (!response.ok) {\r\n                    throw { status: response.status, message: response.statusText };\r\n                }\r\n                const data = await response.json();\r\n                return data;\r\n            } catch (error) {\r\n                // Throw the error object\r\n                throw error;\r\n            }\r\n        },\r\n        // Optionally, use the enabled option to control when to fetch the data\r\n        // enabled: queryKey !== null && queryKey !== undefined,\r\n        // Optionally, use the staleTime option to specify how long the data will be considered fresh\r\n        // staleTime: 1000 * 60 * 5, // 5 minutes\r\n    });\r\n    return { data, error, isLoading, isError };\r\n}\r\nexport default usePopulateOrdersSummary;\r\n"
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "sourceFile": "components/entity/SearchQueries.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1704876871876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704876920329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n \r\n export interface SearchParamsOrderItem {\r\n     categoryType: string,\r\n-    allOrderItems: boolean\r\n+    allOrderItems: boolean,\r\n+    sortColumn: 'quantity',\r\n+    sortType: 'DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704877636113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n \r\n export interface SearchParamsOrderItem {\r\n     categoryType: string,\r\n     allOrderItems: boolean,\r\n+    product_title_fa: string;\r\n+    quantity: string;\r\n+    seller_title: string;\r\n     sortColumn: 'quantity',\r\n     sortType: 'DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878128091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \r\n export interface SearchParamsOrderItem {\r\n     categoryType: string,\r\n-    allOrderItems: boolean,\r\n-    product_title_fa: string;\r\n-    quantity: string;\r\n+    allOrderItems?: boolean,\r\n+    product_title_fa?: string;\r\n+    quantity?: string;\r\n     seller_title: string;\r\n     sortColumn: 'quantity',\r\n     sortType: 'DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878187463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \r\n export interface SearchParamsOrderItem {\r\n-    categoryType: string,\r\n+    categoryType?: string,\r\n     allOrderItems?: boolean,\r\n     product_title_fa?: string;\r\n     quantity?: string;\r\n-    seller_title: string;\r\n+    seller_title?: string;\r\n     sortColumn: 'quantity',\r\n     sortType: 'DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878566452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \r\n-export interface SearchParamsOrderItem {\r\n+export type SearchParamsOrderItem {\r\n     categoryType?: string,\r\n     allOrderItems?: boolean,\r\n     product_title_fa?: string;\r\n     quantity?: string;\r\n     seller_title?: string;\r\n-    sortColumn: 'quantity',\r\n-    sortType: 'DESC',\r\n+    sortColumn:string= 'quantity',\r\n+    sortType:string='DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878589464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n     allOrderItems?: boolean,\r\n     product_title_fa?: string;\r\n     quantity?: string;\r\n     seller_title?: string;\r\n-    sortColumn:string= 'quantity',\r\n-    sortType:string='DESC',\r\n+    sortColumn?:string= 'quantity',\r\n+    sortType?:string='DESC',\r\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878800645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,29 @@\n+interface SearchParamsOrderItem {\r\n+  // Define the properties and their types\r\n+  categoryType: string;\r\n+  allOrderItems: boolean;\r\n+  product_title_fa: string;\r\n+  quantity: string;\r\n+  seller_title: string;\r\n+  sortColumn: string;\r\n+  sortType: string;\r\n+}\r\n\\ No newline at end of file\n \r\n-export type SearchParamsOrderItem {\r\n-    categoryType?: string,\r\n-    allOrderItems?: boolean,\r\n-    product_title_fa?: string;\r\n-    quantity?: string;\r\n-    seller_title?: string;\r\n-    sortColumn?:string= 'quantity',\r\n-    sortType?:string='DESC',\r\n-  }\n+// Define a function that takes an optional parameter object and returns an object with default values\r\n+function createSearchParamsOrderItem(\r\n+  options?: Partial<SearchParamsOrderItem>\r\n+): SearchParamsOrderItem {\r\n+  // Define the default values\r\n+  const defaults: SearchParamsOrderItem = {\r\n+    categoryType: '',\r\n+    allOrderItems: false,\r\n+    product_title_fa: '',\r\n+    quantity: '',\r\n+    seller_title: '',\r\n+    sortColumn: 'quantity',\r\n+    sortType: 'DESC',\r\n+  };\r\n+\r\n+  // Merge the default values with the user-provided values and return the result\r\n+  return { ...defaults, ...options };\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704878842711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-interface SearchParamsOrderItem {\r\n+export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n   categoryType: string;\r\n   allOrderItems: boolean;\r\n   product_title_fa: string;\r\n@@ -9,9 +9,9 @@\n   sortType: string;\r\n }\r\n \r\n // Define a function that takes an optional parameter object and returns an object with default values\r\n-function createSearchParamsOrderItem(\r\n+export function createSearchParamsOrderItem(\r\n   options?: Partial<SearchParamsOrderItem>\r\n ): SearchParamsOrderItem {\r\n   // Define the default values\r\n   const defaults: SearchParamsOrderItem = {\r\n"
+                },
+                {
+                    "date": 1704879398282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n-  categoryType: string;\r\n-  allOrderItems: boolean;\r\n-  product_title_fa: string;\r\n-  quantity: string;\r\n-  seller_title: string;\r\n+  categoryType?: string;\r\n+  allOrderItems?: boolean;\r\n+  product_title_fa?: string;\r\n+  quantity?: string;\r\n+  seller_title?: string;\r\n   sortColumn: string;\r\n   sortType: string;\r\n }\r\n \r\n@@ -14,13 +14,9 @@\n   options?: Partial<SearchParamsOrderItem>\r\n ): SearchParamsOrderItem {\r\n   // Define the default values\r\n   const defaults: SearchParamsOrderItem = {\r\n-    categoryType: '',\r\n-    allOrderItems: false,\r\n-    product_title_fa: '',\r\n-    quantity: '',\r\n-    seller_title: '',\r\n+   \r\n     sortColumn: 'quantity',\r\n     sortType: 'DESC',\r\n   };\r\n \r\n"
+                },
+                {
+                    "date": 1704879533379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   // Define the properties and their types\r\n   categoryType?: string;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n-  quantity?: string;\r\n+  quantity?: number;\r\n   seller_title?: string;\r\n   sortColumn: string;\r\n   sortType: string;\r\n }\r\n"
+                },
+                {
+                    "date": 1704879960259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n   categoryType?: string;\r\n+  item_category2?: string;\r\n+  item_category3?: string;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n   quantity?: number;\r\n   seller_title?: string;\r\n"
+                },
+                {
+                    "date": 1704881092175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,24 @@\n   sortColumn: string;\r\n   sortType: string;\r\n }\r\n \r\n+// Define the type for the query params without the null values\r\n+type QueryParamsWithoutNull = Omit<\r\n+SearchParamsOrderItem,\r\n+  'item_category2' | 'item_category3'\r\n+>;\r\n+\r\n // Define a function that takes an optional parameter object and returns an object with default values\r\n export function createSearchParamsOrderItem(\r\n   options?: Partial<SearchParamsOrderItem>\r\n ): SearchParamsOrderItem {\r\n   // Define the default values\r\n   const defaults: SearchParamsOrderItem = {\r\n-   \r\n     sortColumn: 'quantity',\r\n\\ No newline at end of file\n     sortType: 'DESC',\r\n   };\r\n \r\n   // Merge the default values with the user-provided values and return the result\r\n   return { ...defaults, ...options };\r\n-}\n+}\r\n+\r\n"
+                },
+                {
+                    "date": 1704881712009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n   const defaults: SearchParamsOrderItem = {\r\n     sortColumn: 'quantity',\r\n     sortType: 'DESC',\r\n   };\r\n-\r\n   // Merge the default values with the user-provided values and return the result\r\n   return { ...defaults, ...options };\r\n }\r\n+\r\n"
+                },
+                {
+                    "date": 1704886044098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   quantity?: number;\r\n   seller_title?: string;\r\n   sortColumn: string;\r\n   sortType: string;\r\n+  selling_price?:number\r\n }\r\n \r\n // Define the type for the query params without the null values\r\n type QueryParamsWithoutNull = Omit<\r\n"
+                }
+            ],
+            "date": 1704876871876,
+            "name": "Commit-0",
+            "content": "\r\nexport interface SearchParamsOrderItem {\r\n    categoryType: string,\r\n    allOrderItems: boolean\r\n  }"
+        }
+    ]
+}

@@ -1,0 +1,102 @@
+{
+    "sourceFile": "App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1704275601397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704276065199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { NavigationContainer } from '@react-navigation/native';\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n+import ihamechidun from './components/ihamechidun';\n \n \n \n const Stack = createStackNavigator();\n"
+                },
+                {
+                    "date": 1704279738248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,15 @@\n const Stack = createStackNavigator();\n \n export default function App() {\n   return (\n+    <QueryClientProvider client={queryClient} contextSharing={true}>\n     <NavigationContainer>\n     <Stack.Navigator>\n       <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n     </Stack.Navigator>\n   </NavigationContainer>\n+  </QueryClientProvider>\n   );\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1704279755684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,15 @@\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n import ihamechidun from './components/ihamechidun';\n+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';\n \n \n \n const Stack = createStackNavigator();\n+// Create a query client\n+const queryClient = new QueryClient();\n \n export default function App() {\n   return (\n     <QueryClientProvider client={queryClient} contextSharing={true}>\n"
+                },
+                {
+                    "date": 1704279791249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const queryClient = new QueryClient();\n \n export default function App() {\n   return (\n-    <QueryClientProvider client={queryClient} contextSharing={true}>\n+    <QueryClientProvider client={queryClient} >\n     <NavigationContainer>\n     <Stack.Navigator>\n       <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n     </Stack.Navigator>\n"
+                },
+                {
+                    "date": 1704280009103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const queryClient = new QueryClient();\n \n export default function App() {\n   return (\n-    <QueryClientProvider client={queryClient} >\n+    <QueryClientProvider client={queryClient} contextSharing={true}>\n     <NavigationContainer>\n     <Stack.Navigator>\n       <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n     </Stack.Navigator>\n"
+                },
+                {
+                    "date": 1704280814353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,12 @@\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n import ihamechidun from './components/ihamechidun';\n-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';\n-\n-\n-\n+import {\n+  QueryClient,\n+  QueryClientProvider,\n+} from '@tanstack/react-query'\n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n \n"
+                },
+                {
+                    "date": 1704280825566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const queryClient = new QueryClient();\n \n export default function App() {\n   return (\n-    <QueryClientProvider client={queryClient} contextSharing={true}>\n+    <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n       <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n     </Stack.Navigator>\n"
+                },
+                {
+                    "date": 1704281509041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n import ihamechidun from './components/ihamechidun';\n+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n+\n import {\n   QueryClient,\n   QueryClientProvider,\n } from '@tanstack/react-query'\n"
+                },
+                {
+                    "date": 1704283382673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { NavigationContainer } from '@react-navigation/native';\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n-import ihamechidun from './components/ihamechidun';\n+import ihamechidun from './components/OrdersSummary';\n import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n \n import {\n   QueryClient,\n"
+                },
+                {
+                    "date": 1704283396178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { NavigationContainer } from '@react-navigation/native';\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n-import ihamechidun from './components/OrdersSummary';\n+import OrdersSummary from './components/OrdersSummary';\n import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n \n import {\n   QueryClient,\n@@ -17,9 +17,9 @@\n   return (\n     <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n-      <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n+      <Stack.Screen name=\"OrdersSummary\" component={OrdersSummary} />\n     </Stack.Navigator>\n   </NavigationContainer>\n   </QueryClientProvider>\n   );\n"
+                },
+                {
+                    "date": 1704283538515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import { NavigationContainer } from '@react-navigation/native';\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n-import OrdersSummary from './components/OrdersSummary';\n+import populate from './components/populate';\n import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n \n import {\n   QueryClient,\n   QueryClientProvider,\n } from '@tanstack/react-query'\n+\n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n \n@@ -17,9 +18,9 @@\n   return (\n     <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n-      <Stack.Screen name=\"OrdersSummary\" component={OrdersSummary} />\n+      <Stack.Screen name=\"populate\" component={populate} />\n     </Stack.Navigator>\n   </NavigationContainer>\n   </QueryClientProvider>\n   );\n"
+                },
+                {
+                    "date": 1704776188143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n   return (\n     <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n+      {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n       <Stack.Screen name=\"populate\" component={populate} />\n     </Stack.Navigator>\n   </NavigationContainer>\n   </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1704777239080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { createStackNavigator } from '@react-navigation/stack';\n import { StatusBar } from 'expo-status-bar';\n import { StyleSheet, Text, View } from 'react-native';\n import populate from './components/populate';\n+import populatetest from './components/populatetest';\n import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n \n import {\n   QueryClient,\n@@ -19,9 +20,9 @@\n     <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n       {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n-      <Stack.Screen name=\"populate\" component={populate} />\n+      <Stack.Screen name=\"populateفثسف\" component={populate} />\n     </Stack.Navigator>\n   </NavigationContainer>\n   </QueryClientProvider>\n   );\n"
+                },
+                {
+                    "date": 1704779930088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n     <QueryClientProvider client={queryClient}>\n     <NavigationContainer>\n     <Stack.Navigator>\n       {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n-      <Stack.Screen name=\"populateفثسف\" component={populate} />\n+      {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n+      <Stack.Screen name=\"populatetest\" component={populatetest} />\n     </Stack.Navigator>\n   </NavigationContainer>\n   </QueryClientProvider>\n   );\n"
+                },
+                {
+                    "date": 1704780558176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,36 @@\n+// Import the necessary modules\n import { NavigationContainer } from '@react-navigation/native';\n import { createStackNavigator } from '@react-navigation/stack';\n-import { StatusBar } from 'expo-status-bar';\n+\n import { StyleSheet, Text, View } from 'react-native';\n-import populate from './components/populate';\n+\n import populatetest from './components/populatetest';\n-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'\n \n import {\n   QueryClient,\n   QueryClientProvider,\n } from '@tanstack/react-query'\n \n+// Import the ThemeProvider component and the default theme from @rneui/themed\n+import { ThemeProvider, defaultTheme } from '@rneui/themed';\n+\n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n \n export default function App() {\n   return (\n-    <QueryClientProvider client={queryClient}>\n-    <NavigationContainer>\n-    <Stack.Navigator>\n-      {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n-      {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n-      <Stack.Screen name=\"populatetest\" component={populatetest} />\n-    </Stack.Navigator>\n-  </NavigationContainer>\n-  </QueryClientProvider>\n+    // Use the ThemeProvider component to wrap your app and pass the default theme object\n+    <ThemeProvider theme={defaultTheme}>\n+      <QueryClientProvider client={queryClient}>\n+        <NavigationContainer>\n+          <Stack.Navigator>\n+            <Stack.Screen name=\"populatetest\" component={populatetest} />\n+          </Stack.Navigator>\n+        </NavigationContainer>\n+      </QueryClientProvider>\n+    </ThemeProvider>\n   );\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1704781507843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,31 @@\n-// Import the necessary modules\n-import { NavigationContainer } from '@react-navigation/native';\n-import { createStackNavigator } from '@react-navigation/stack';\n+// app.tsx\n+import { ThemeProvider, createTheme } from \"@rneui/themed\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n+import { createStackNavigator } from \"@react-navigation/stack\";\n \n-import { StyleSheet, Text, View } from 'react-native';\n+import { StyleSheet, Text, View } from \"react-native\";\n \n-import populatetest from './components/populatetest';\n+import populatetest from \"./components/populatetest\";\n \n import {\n   QueryClient,\n   QueryClientProvider,\n-} from '@tanstack/react-query'\n+} from \"@tanstack/react-query\";\n \n-// Import the ThemeProvider component and the default theme from @rneui/themed\n-import { ThemeProvider, defaultTheme } from '@rneui/themed';\n-\n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n \n export default function App() {\n+  // Use createTheme to generate a theme object with your custom colors\n+  const themeObj = createTheme({\n+    myColors: useDarkMode() ? dark : light,\n+  });\n+\n   return (\n-    // Use the ThemeProvider component to wrap your app and pass the default theme object\n-    <ThemeProvider theme={defaultTheme}>\n+    // Use the ThemeProvider component to wrap your app and pass the theme object\n+    <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n@@ -35,9 +38,9 @@\n \n const styles = StyleSheet.create({\n   container: {\n     flex: 1,\n-    backgroundColor: '#fff',\n-    alignItems: 'center',\n-    justifyContent: 'center',\n+    backgroundColor: \"#fff\",\n+    alignItems: \"center\",\n+    justifyContent: \"center\",\n   },\n });\n"
+                },
+                {
+                    "date": 1704782172260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { createStackNavigator } from \"@react-navigation/stack\";\n \n import { StyleSheet, Text, View } from \"react-native\";\n \n+\n import populatetest from \"./components/populatetest\";\n \n import {\n   QueryClient,\n@@ -17,10 +18,24 @@\n const queryClient = new QueryClient();\n \n export default function App() {\n   // Use createTheme to generate a theme object with your custom colors\n+  // Use the useDarkMode hook to get the current mode\n+  const isDarkMode = true;\n+  // Define the dark and light objects with your custom color values\n+  const dark = {\n+    primary: \"#ffffff\",\n+    secondary: \"#000000\",\n+    // ... other colors\n+  };\n+  const light = {\n+    primary: \"#000000\",\n+    secondary: \"#ffffff\",\n+    // ... other colors\n+  };\n+  // Use the isDarkMode value to choose the appropriate color object\n   const themeObj = createTheme({\n-    myColors: useDarkMode() ? dark : light,\n+    myColors: isDarkMode ? dark : light,\n   });\n \n   return (\n     // Use the ThemeProvider component to wrap your app and pass the theme object\n"
+                },
+                {
+                    "date": 1704783396541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n import {\n   QueryClient,\n   QueryClientProvider,\n } from \"@tanstack/react-query\";\n+import populate from \"./components/populate\";\n \n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n@@ -42,8 +43,9 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n+            <Stack.Screen name=\"populate\" component={populate} />\n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1704783439441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n-            <Stack.Screen name=\"populate\" component={populate} />\n+            {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1704793125212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,10 +43,11 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n-            {/* <Stack.Screen name=\"populate\" component={populate} /> */}\n+            \n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n+            <Stack.Screen name=\"detail\" component={populate} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1704794195887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n   QueryClient,\n   QueryClientProvider,\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n+import Orderitem from \"./components/Orderitem\";\n \n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n@@ -45,9 +46,9 @@\n         <NavigationContainer>\n           <Stack.Navigator>\n             \n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"detail\" component={populate} />\n+            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                }
+            ],
+            "date": 1704275601396,
+            "name": "Commit-0",
+            "content": "import { NavigationContainer } from '@react-navigation/native';\nimport { createStackNavigator } from '@react-navigation/stack';\nimport { StatusBar } from 'expo-status-bar';\nimport { StyleSheet, Text, View } from 'react-native';\n\n\n\nconst Stack = createStackNavigator();\n\nexport default function App() {\n  return (\n    <NavigationContainer>\n    <Stack.Navigator>\n      <Stack.Screen name=\"ihamechidun\" component={ihamechidun} />\n    </Stack.Navigator>\n  </NavigationContainer>\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff',\n    alignItems: 'center',\n    justifyContent: 'center',\n  },\n});\n"
+        }
+    ]
+}

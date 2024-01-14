@@ -1,0 +1,46 @@
+{
+    "sourceFile": "components/entity/OrdersProductsCategoriesInfo .ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1704779617258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704789208037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,20 @@\n-// Define the interface for the data object that represents the data from the API\r\n-export interface OrdersProductsCategoriesInfo {\r\n-    // Define the properties for the order item grouping array\r\n-    orderItemGrouping: {\r\n-        itemCategory2: string;\r\n-        itemCategory3: string;\r\n-        count: string;\r\n-        maxPrice: string;\r\n-        avgPrice: number;\r\n-        totalPrice: number;\r\n-        avgDiscount: string;\r\n-    }[];\r\n-    // Define the properties for the orders grouping object\r\n-    ordersGrouping: {\r\n-        [key: string]: {\r\n-            count: number;\r\n-            maxPrice: number;\r\n-            avgPrice: number;\r\n-            totalPrice: number;\r\n-            avgDiscount: number;\r\n-        };\r\n-    };\r\n+export interface category_grouped {\r\n+    title: string;\r\n+    count: string;\r\n+    maxPrice: string;\r\n+    avgPrice: number;\r\n+    totalPrice: number;\r\n+    avgDiscount: string;\r\n+  }\r\n+  \r\n+    // // Define the properties for the orders grouping object\r\n+    // ordersGrouping: {\r\n+    //     [key: string]: {\r\n+    //         count: number;\r\n+    //         maxPrice: number;\r\n+    //         avgPrice: number;\r\n+    //         totalPrice: number;\r\n+    //         avgDiscount: number;\r\n+    //     };\r\n+    // };\r\n }\r\n"
+                },
+                {
+                    "date": 1704875446213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export interface category_grouped {\r\n+export interface CategoryGrouped {\r\n     title: string;\r\n     count: string;\r\n     maxPrice: string;\r\n     avgPrice: number;\r\n"
+                },
+                {
+                    "date": 1704952083792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n export interface CategoryGrouped {\r\n+    name: string;\r\n     title: string;\r\n+    parent: string;\r\n     count: string;\r\n     maxPrice: string;\r\n     avgPrice: number;\r\n     totalPrice: number;\r\n"
+                },
+                {
+                    "date": 1704953609141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n     maxPrice: string;\r\n     avgPrice: number;\r\n     totalPrice: number;\r\n     avgDiscount: string;\r\n+    childs: [];\r\n   }\r\n   \r\n     // // Define the properties for the orders grouping object\r\n     // ordersGrouping: {\r\n"
+                },
+                {
+                    "date": 1704953822595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,15 @@\n     totalPrice: number;\r\n     avgDiscount: string;\r\n     childs: [];\r\n   }\r\n+  export interface CategoryTitles {\r\n+    name: string;\r\n+    title: string;\r\n+    parent: string;\r\n+    count: number;\r\n+    total_price: number;\r\n+  }\r\n   \r\n     // // Define the properties for the orders grouping object\r\n     // ordersGrouping: {\r\n     //     [key: string]: {\r\n"
+                },
+                {
+                    "date": 1704953866739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     totalPrice: number;\r\n     avgDiscount: string;\r\n     childs: [];\r\n   }\r\n-  export interface CategoryTitles {\r\n+  export interface ICategoryTitles {\r\n     name: string;\r\n     title: string;\r\n     parent: string;\r\n     count: number;\r\n"
+                },
+                {
+                    "date": 1704955828810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     maxPrice: string;\r\n     avgPrice: number;\r\n     totalPrice: number;\r\n     avgDiscount: string;\r\n-    childs: [];\r\n+    childs: ICategoryTitles;\r\n   }\r\n   export interface ICategoryTitles {\r\n     name: string;\r\n     title: string;\r\n"
+                }
+            ],
+            "date": 1704779617258,
+            "name": "Commit-0",
+            "content": "// Define the interface for the data object that represents the data from the API\r\nexport interface OrdersProductsCategoriesInfo {\r\n    // Define the properties for the order item grouping array\r\n    orderItemGrouping: {\r\n        itemCategory2: string;\r\n        itemCategory3: string;\r\n        count: string;\r\n        maxPrice: string;\r\n        avgPrice: number;\r\n        totalPrice: number;\r\n        avgDiscount: string;\r\n    }[];\r\n    // Define the properties for the orders grouping object\r\n    ordersGrouping: {\r\n        [key: string]: {\r\n            count: number;\r\n            maxPrice: number;\r\n            avgPrice: number;\r\n            totalPrice: number;\r\n            avgDiscount: number;\r\n        };\r\n    };\r\n}\r\n"
+        }
+    ]
+}

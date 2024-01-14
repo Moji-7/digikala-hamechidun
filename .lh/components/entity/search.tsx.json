@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/entity/search.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1704876840119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1704876840119,
+            "name": "Commit-0",
+            "content": "\r\nexport interface SearchParams {\r\n    categoryType: string,\r\n    allOrderItems: boolean\r\n  }"
+        }
+    ]
+}

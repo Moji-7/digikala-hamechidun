@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/populatetest.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1704777239069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704779838910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,18 +6,17 @@\n import OrdersSummary from './OrdersSummary';\r\n import OrdersSellersMost from './OrdersSellersMost';\r\n import OrdersProductsMost from './OrdersProductsMost';\r\n import OrderProductPriceExpensive from './OrderProductPriceExpensive';\r\n+import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';\r\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n \r\n \r\n   return (\r\n     <div>\r\n       {/* Render your child component and pass the query states as props */}\r\n-      <OrdersSummary />\r\n-      populate_orders_products_categories_info\r\n-      orderItem\r\n+     <OrdersProductsCategoriesInfo />\r\n     </div>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1704779845474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,7 @@\n // Parent component\r\n import { useQuery } from '@tanstack/react-query';\r\n \r\n-\r\n-// Import child components\r\n-import OrdersSummary from './OrdersSummary';\r\n-import OrdersSellersMost from './OrdersSellersMost';\r\n-import OrdersProductsMost from './OrdersProductsMost';\r\n-import OrderProductPriceExpensive from './OrderProductPriceExpensive';\r\n import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';\r\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n \r\n"
+                },
+                {
+                    "date": 1704792883504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,12 @@\n // Parent component\r\n-import { useQuery } from '@tanstack/react-query';\r\n \r\n import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';\r\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n-\r\n-\r\n   return (\r\n     <div>\r\n-      {/* Render your child component and pass the query states as props */}\r\n-     <OrdersProductsCategoriesInfo />\r\n+      <OrdersProductsCategoriesInfo />\r\n     </div>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1704777239069,
+            "name": "Commit-0",
+            "content": "// Parent component\r\nimport { useQuery } from '@tanstack/react-query';\r\n\r\n\r\n// Import child components\r\nimport OrdersSummary from './OrdersSummary';\r\nimport OrdersSellersMost from './OrdersSellersMost';\r\nimport OrdersProductsMost from './OrdersProductsMost';\r\nimport OrderProductPriceExpensive from './OrderProductPriceExpensive';\r\nconst populatetest = () => {\r\n  // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n\r\n\r\n  return (\r\n    <div>\r\n      {/* Render your child component and pass the query states as props */}\r\n      <OrdersSummary />\r\n      populate_orders_products_categories_info\r\n      orderItem\r\n    </div>\r\n  );\r\n};\r\nexport default populatetest;"
+        }
+    ]
+}

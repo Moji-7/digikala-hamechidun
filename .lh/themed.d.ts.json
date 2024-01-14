@@ -1,0 +1,18 @@
+{
+    "sourceFile": "themed.d.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1704781507910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1704781507910,
+            "name": "Commit-0",
+            "content": "import \"@rneui/themed\";\r\nimport { ColorShape } from \"../lib/theme/colors/theme.type\";\r\n\r\ndeclare module \"@rneui/themed\" {\r\n  export interface CreateThemeOptions {\r\n    myColors: ColorShape;\r\n  }\r\n}"
+        }
+    ]
+}

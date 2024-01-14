@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/usePopulateOrdersSellersMost.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1704287555252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1704287602771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const { data, error, isLoading, isError } = useQuery({\r\n         queryKey: ['populateOrdersSummary'], // The query key\r\n         queryFn: async () => { // The query function with the async keyword\r\n             try {\r\n-                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_summary\");\r\n+                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_products_mosty\");\r\n                 if (!response.ok) {\r\n                     throw { status: response.status, message: response.statusText };\r\n                 }\r\n                 const data = await response.json();\r\n"
+                },
+                {
+                    "date": 1704287621388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const { data, error, isLoading, isError } = useQuery({\r\n         queryKey: ['populateOrdersSummary'], // The query key\r\n         queryFn: async () => { // The query function with the async keyword\r\n             try {\r\n-                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_products_mosty\");\r\n+                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_sellers_most\");\r\n                 if (!response.ok) {\r\n                     throw { status: response.status, message: response.statusText };\r\n                 }\r\n                 const data = await response.json();\r\n"
+                },
+                {
+                    "date": 1704287657776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useQuery } from '@tanstack/react-query';\r\n \r\n function usePopulateOrdersSellersMost() {\r\n     const { data, error, isLoading, isError } = useQuery({\r\n-        queryKey: ['populateOrdersSummary'], // The query key\r\n+        queryKey: ['populateOrdersSellersMost'], // The query key\r\n         queryFn: async () => { // The query function with the async keyword\r\n             try {\r\n                 const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_sellers_most\");\r\n                 if (!response.ok) {\r\n"
+                }
+            ],
+            "date": 1704287555252,
+            "name": "Commit-0",
+            "content": "\r\n\r\n\r\nimport { useQuery } from '@tanstack/react-query';\r\n\r\nfunction usePopulateOrdersSellersMost() {\r\n    const { data, error, isLoading, isError } = useQuery({\r\n        queryKey: ['populateOrdersSummary'], // The query key\r\n        queryFn: async () => { // The query function with the async keyword\r\n            try {\r\n                const response = await fetch(\"http://localhost:3222/hamechidun/populate_orders_summary\");\r\n                if (!response.ok) {\r\n                    throw { status: response.status, message: response.statusText };\r\n                }\r\n                const data = await response.json();\r\n                return data;\r\n            } catch (error) {\r\n                // Throw the error object\r\n                throw error;\r\n            }\r\n        },\r\n        // Optionally, use the enabled option to control when to fetch the data\r\n        // enabled: queryKey !== null && queryKey !== undefined,\r\n        // Optionally, use the staleTime option to specify how long the data will be considered fresh\r\n        // staleTime: 1000 * 60 * 5, // 5 minutes\r\n    });\r\n    return { data, error, isLoading, isError };\r\n}\r\nexport default usePopulateOrdersSellersMost;\r\n"
+        }
+    ]
+}
