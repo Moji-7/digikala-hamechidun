@@ -2,43 +2,24 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import ListCategoryGrouped from './uicomponents/ListCategoryGrouped';
-import { useCat } from './hooks/usecat';
+import ListCategoryGrouped from '../uicomponents/ListCategoryGrouped';
+import { useProductPrice } from '../hooks/product/useProductPrice';
 import { Card, useTheme } from '@rneui/themed';
-import OrderItemOne from './uicomponents/OrderItemOne';
-import { SearchParamsOrderItem } from './entity/SearchQueries';
-// import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';
-import OrdersProductsCategoriesInfo2 from './OrdersProductsCategoriesInfo2';
-import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';
+import OrderItemOne from '../uicomponents/OrderItemOne';
+import { SearchParamsOrderItem, SearchParamsProductPrice } from '../entity/SearchQueries';
 
-
-interface SearchParamsOrderItemProps {
-    searchParamsOrderItem: SearchParamsOrderItem;
+interface SearchParamsProductPriceProps {
+    searchParamsProductPrice: SearchParamsProductPrice;
 }
-const OrderItem: React.FC<SearchParamsOrderItemProps> = ({ searchParamsOrderItem }) => {
+const ProductPrice: React.FC<SearchParamsProductPriceProps> = ({ searchParamsProductPrice }) => {
     // Use the useTheme hook to get the theme object
     const { theme } = useTheme();
-
-    const params = searchParamsOrderItem as SearchParamsOrderItem;;
-    // useLayoutEffect(() => {
-    //     console.log(params);
-    // }, [params]);
-   // console.log(params)
-    const { data, error, isLoading, isError } = useCat(params);
+    const params = searchParamsProductPrice as SearchParamsProductPrice;;
+    const { data, error, isLoading, isError } = useProductPrice(params);
 
     return (
 
         <View style={styles.container}>
-            <Card>
-
-
-                {/* {data.orderGroupedCategory_3.map((item, index) => (
-                    <ListCategoryGrouped key={index} categoryType='item_category3' categoryGrouped={item} index={index} />
-                ))} */}
-                {/* <ListCategoryGrouped key={index} categoryType='item_category2' categoryGrouped={categoryGrouped} index={index} /> */}
-            </Card>
-
-
             {isLoading && (
                 <Text style={[styles.loading, { color: theme.colors.primary }]}>
                     Loading...
@@ -50,20 +31,17 @@ const OrderItem: React.FC<SearchParamsOrderItemProps> = ({ searchParamsOrderItem
                 </Text>
             )}
 
-
             {
 
                 data && (
                     <Card>
-
                         <Text style={[styles.dataTitle, { color: theme.colors.text }]}>Category 3 🦚🦚</Text>
-
                         <Card.Title style={{ color: theme.colors.text }}> Order Item (details) 🛒🐾</Card.Title>
                         <Card.Divider />
                         {data.map((item, index) => (
-                            <>
-                                <OrderItemOne key={index} orderItem={item} />
-                            </>
+                            <Card key={item.id}>
+                                {item.selling_price}
+                            </Card>
                         ))}
                     </Card>
                 )}
@@ -101,4 +79,4 @@ const styles = StyleSheet.create({
 });
 
 // Export the component
-export default OrderItem;
+export default ProductPrice;

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1704876871876,
@@ -64,6 +64,26 @@
                 {
                     "date": 1704886044098,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   quantity?: number;\r\n   seller_title?: string;\r\n   sortColumn: string;\r\n   sortType: string;\r\n+  selling_price?:number\r\n }\r\n \r\n // Define the type for the query params without the null values\r\n type QueryParamsWithoutNull = Omit<\r\n"
+                },
+                {
+                    "date": 1705228266270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,4 +30,8 @@\n   // Merge the default values with the user-provided values and return the result\r\n   return { ...defaults, ...options };\r\n }\r\n \r\n+export interface CategorySearchParams {\r\n+  item_category2?: string;\r\n+  item_category3?: string;\r\n+}\r\n"
+                },
+                {
+                    "date": 1705391644793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n   categoryType?: string;\r\n-  item_category2?: string;\r\n-  item_category3?: string;\r\n+  // item_category2?: string;\r\n+  // item_category3?: string;\r\n+  categorySearchParams:CategorySearchParams;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n   quantity?: number;\r\n   seller_title?: string;\r\n"
+                },
+                {
+                    "date": 1705391657672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   // Define the properties and their types\r\n   categoryType?: string;\r\n   // item_category2?: string;\r\n   // item_category3?: string;\r\n-  categorySearchParams:CategorySearchParams;\r\n+  categorySearchParams?:CategorySearchParams;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n   quantity?: number;\r\n   seller_title?: string;\r\n"
+                },
+                {
+                    "date": 1705397877619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n   categoryType?: string;\r\n-  // item_category2?: string;\r\n+   item_category2?: string;\r\n   // item_category3?: string;\r\n   categorySearchParams?:CategorySearchParams;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n"
+                },
+                {
+                    "date": 1705746368670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n export interface SearchParamsOrderItem {\r\n   // Define the properties and their types\r\n   categoryType?: string;\r\n    item_category2?: string;\r\n-  // item_category3?: string;\r\n+   item_category3?: string;\r\n   categorySearchParams?:CategorySearchParams;\r\n   allOrderItems?: boolean;\r\n   product_title_fa?: string;\r\n   quantity?: number;\r\n"
                 }
             ],
             "date": 1704876871876,

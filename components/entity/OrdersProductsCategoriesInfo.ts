@@ -7,14 +7,20 @@ export interface CategoryGrouped {
     avgPrice: number;
     totalPrice: number;
     avgDiscount: string;
-    childs: ICategoryTitles;
+    childs: ICategoryChilds[];
   }
-  export interface ICategoryTitles {
+  export interface ICategoryChilds {
     name: string;
     title: string;
     parent: string;
     count: number;
     total_price: number;
+  }
+
+  export interface CategoryGroupedLevels {
+    parent: string;
+    filterOrderGroupedCategory_2: CategoryGrouped[];
+    filterOrderGroupedCategory_3: CategoryGrouped[];
   }
   
     // // Define the properties for the orders grouping object

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1704777239069,
@@ -20,6 +20,50 @@
                 {
                     "date": 1704792883504,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,12 @@\n // Parent component\r\n-import { useQuery } from '@tanstack/react-query';\r\n \r\n import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';\r\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n-\r\n-\r\n   return (\r\n     <div>\r\n-      {/* Render your child component and pass the query states as props */}\r\n-     <OrdersProductsCategoriesInfo />\r\n+      <OrdersProductsCategoriesInfo />\r\n     </div>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705229120243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n import OrdersProductsCategoriesInfo from './OrdersProductsCategoriesInfo';\r\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n-    <div>\r\n+    <>\r\n       <OrdersProductsCategoriesInfo />\r\n-    </div>\r\n+    </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705233719387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo />\r\n+      {/* <OrdersProductsCategoriesInfo /> */}\r\n     </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705233729627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      {/* <OrdersProductsCategoriesInfo /> */}\r\n+      <OrdersProductsCategoriesInfo />\r\n     </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705389902092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo />\r\n+      <OrdersProductsCategoriesInfo ordersProductsCategories={{ item_category2: null, item_category3: null }} />\r\n+\r\n     </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705390197909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo ordersProductsCategories={{ item_category2: null, item_category3: null }} />\r\n+      <OrdersProductsCategoriesInfo ordersProductsCategories={{ item_category2: undefined, item_category3: undefined }} />\r\n \r\n     </>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1705390362776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo ordersProductsCategories={{ item_category2: undefined, item_category3: undefined }} />\r\n+      <OrdersProductsCategoriesInfo ordersProductsCategories={{ }} />\r\n \r\n     </>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1705391946068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo ordersProductsCategories={{ }} />\r\n+      <OrdersProductsCategoriesInfo ={{ }} />\r\n \r\n     </>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1705391960677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo ={{ }} />\r\n+      <OrdersProductsCategoriesInfo categoriesValue={{ }} />\r\n \r\n     </>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1705726879854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n       <OrdersProductsCategoriesInfo categoriesValue={{ }} />\r\n-\r\n+hi\r\n     </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705727010643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-      <OrdersProductsCategoriesInfo categoriesValue={{ }} />\r\n+   \r\n hi\r\n     </>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1705727388268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n const populatetest = () => {\r\n   // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n   return (\r\n     <>\r\n-   \r\n-hi\r\n+      <OrdersProductsCategoriesInfo categoriesValue={{ }} />\r\n+\r\n     </>\r\n   );\r\n };\r\n export default populatetest;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1704777239069,

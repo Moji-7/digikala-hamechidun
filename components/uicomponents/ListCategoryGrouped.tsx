@@ -1,96 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 interface ListItemComponentProps {
-  categoryType: string
-  categoryGrouped: CategoryGrouped;
-  index: number;
+  categoryData: any;
+  handleClick: (
+    event: React.MouseEvent,
+    categoryData: any
+  ) => void;
 }
 import { View, Text, StyleSheet } from 'react-native';
 
 import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
-import { CategoryGrouped } from '../entity/OrdersProductsCategoriesInfo ';
+import { CategoryGrouped } from '../entity/OrdersProductsCategoriesInfo';
 import { useNavigation } from "@react-navigation/native";
-import { SearchParamsOrderItem, createSearchParamsOrderItem } from '../entity/SearchQueries';
-import CategoryTitles from './CategoryTitles';
+import { CategorySearchParams, SearchParamsOrderItem, createSearchParamsOrderItem } from '../entity/SearchQueries';
+import CategoryChilds from './CategoryChilds';
 
 
-const ListCategoryGrouped: React.FC<ListItemComponentProps> = ({ categoryType, categoryGrouped, index }) => {
-
-  const navigation = useNavigation();
-
-  // Define a generic type that represents the property name and value
-  type UpdateParams = {
-    prop: keyof SearchParamsOrderItem;
-    value: SearchParamsOrderItem[keyof SearchParamsOrderItem];
-  };
-
-  const [searchParamsInstance, setSearchParamsInstance] = useState(
-    createSearchParamsOrderItem({
-      categoryType: categoryType,
-      allOrderItems: true,
-    })
-  );
-  useEffect(() => {
-    // Check if the categoryType prop is not null or undefined
-    if (categoryType != null) {
-      // Set the searchParamsInstance[categoryType] property to the categoryGrouped.title value
-      setSearchParamsInstance((prevState) => ({
-        ...prevState,
-        [categoryType]: categoryGrouped.title,
-      }));
-    }
-  }, [categoryType]);
-
-  // Define a function that handles the click event on both buttons
-  const handleClick = (updateParams: UpdateParams) => {
-    // Update the searchParamsInstance state variable with the property name and value
-    setSearchParamsInstance((prevState) => ({
-      ...prevState,
-      [updateParams.prop]: updateParams.value,
-    }));
-
-  };
-  // when the searchParamsInstance state changes
-  useEffect(() => {
-    navigation.navigate('orderitem', searchParamsInstance);
-  }, [searchParamsInstance]); // Pass the searchParamsInstance state as a dependency
-
+const ListCategoryGrouped: React.FC<ListItemComponentProps> = ({ categoryData, handleClick }) => {
 
   return (
     <>
 
-      <ListItem key={index} bottomDivider>
+      <ListItem bottomDivider>
         <ListItem.Content>
           <ListItem.Title >
-            <Button
-              title={`🥵 ${categoryGrouped.title} (${categoryGrouped.count})`}
-              onPress={handleClick}
+            <Button key={categoryData.title}
+              title={`🥵 ${categoryData.title} (${categoryData.count})`}
+              onPress={(event) => handleClick(categoryData)}
             />
+           
           </ListItem.Title>
           <ListItem.Subtitle >
-          
             <Card>
-  
-              <Card.Title>Avg Price: {categoryGrouped.avgPrice}</Card.Title>
-              <Card.Title>Total Price: {categoryGrouped.totalPrice}</Card.Title>
-              <Card.Title>Avg Discount: {categoryGrouped.avgDiscount}</Card.Title>
+              <Card.Title>Avg Price: {categoryData.avgPrice}</Card.Title>
+              <Card.Title>Total Price: {categoryData.totalPrice}</Card.Title>
+              <Card.Title>Avg Discount: {categoryData.avgDiscount}</Card.Title>
             </Card>
           </ListItem.Subtitle>
           <ListItem.Subtitle >
           </ListItem.Subtitle>
           <ListItem.Subtitle>
             <Button
-              title={`Max Paid 🤐: ${categoryGrouped.maxPrice}`}
-              onPress={() => handleClick({ prop: 'selling_price', value: categoryGrouped.maxPrice })}
+              title={`Max Paid 🤐: ${categoryData.maxPrice}`}
+              onPress={() => handleClick({ prop: 'selling_price', value: categoryData.maxPrice })}
             />
           </ListItem.Subtitle>
-          {/* <ListItem.Subtitle>
-            <Button
-              title={`Max Repeat Repeat 🤐: ${categoryGrouped.maxPrice}`}
-              onPress={() => handleClick({ prop: 'selling_price', value: categoryGrouped.maxPrice })}
-            />
-          </ListItem.Subtitle> */}
           <ListItem.Subtitle>
-            <CategoryTitles categoryTitles={categoryGrouped.childs} />
+          <CategoryChilds categoryChilds={categoryData.childs} handleClick={handleClick} />
           </ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>

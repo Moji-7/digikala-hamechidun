@@ -1,62 +1,96 @@
 // Import the necessary modules
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Card, ListItem, Divider, useTheme } from '@rneui/themed';
-
+import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
+import useSearchOrderItemParams from './hooks/useSearchOrderItemParams';
 import usePopulateOrdersProductsCategoriesInfo from './hooks/usePopulateOrdersProductsCategoriesInfo';
 import ListCategoryGrouped from './uicomponents/ListCategoryGrouped';
+import { CategorySearchParams, SearchParamsOrderItem, createSearchParamsOrderItem } from './entity/SearchQueries';
+import OrderItem from './Orderitem';
 
-// Define the component for rendering the UI of calling the custom hook
-const OrdersProductsCategoriesInfo = () => {
+import { CategoryGrouped } from './entity/OrdersProductsCategoriesInfo';
+interface OrdersProductsCategoriesProps {
+    categoryParams: CategorySearchParams;
+}
+
+// Move the navigation and UpdateParams declarations to the parent component
+
+
+const OrdersProductsCategoriesInfo: React.FC<OrdersProductsCategoriesProps> = ({ categoryParams }) => {
     // Use the useTheme hook to get the theme object from RNEUI
     const { theme } = useTheme();
-    // Use the custom hook to get the data, error, isLoading, and isError properties from the query
-    const { data, error, isLoading, isError } = usePopulateOrdersProductsCategoriesInfo();
-    // Use the useTheme hook to get the theme object from RNEUI
-    // Return a JSX element that renders the UI based on the query state and data
+
+    const [orderGroupedCategory_2, setOrderGroupedCategory_2] = useState<CategoryGrouped[]>([]);
+    const [orderGroupedCategory_3, setOrderGroupedCategory_3] = useState<CategoryGrouped[]>([]);
+    const [categoryClicked, setCategoryClicked] = useState(false)
+    const { searchOrderItemParams, setSearchOrderItemParams } = useSearchOrderItemParams();
+    const { data, error, isLoading, isError,getasCache } = usePopulateOrdersProductsCategoriesInfo(categoryParams);
+
+    useEffect(() => {
+        setOrderGroupedCategory_2(data?.orderGroupedCategory_2)
+        setOrderGroupedCategory_3(data?.orderGroupedCategory_3)
+    }, [data]);
+
+    // Define a function that handles the click event on both buttons
+    const handleClick = (
+        categoryData: CategoryGrouped
+    ) => {
+
+       const filtered= getasCache(categoryData,data)
+        setOrderGroupedCategory_2(filtered.filterOrderGroupedCategory_2)
+        setOrderGroupedCategory_3(filtered.filterOrderGroupedCategory_3)
+        setCategoryClicked(true)
+        // setSearchOrderItemParams(prevState => {
+        //     const { item_category3, ...rest } = prevState;
+        //     return {
+        //         ...(categoryData.name === "item_category2" ? rest : prevState),
+        //         categoryType: categoryData.name,
+        //         [categoryData.name]: categoryData.title
+        //     };
+        // });
+        setSearchOrderItemParams(
+            createSearchParamsOrderItem({
+                categoryType: categoryData.name,
+                [categoryData.name]: categoryData.title
+            })
+        );
+
+    };
+
     return (
         <View style={styles.container}>
-            {/* Show a loading text while the data is being fetched */}
             {isLoading && <Text style={[styles.loading, { color: theme.colors.primary }]}>Loading...</Text>}
-            {/* Show an error text if there is an error */}
             {isError && <Text style={[styles.error, { color: theme.colors.error }]}>Error: {error.message}</Text>}
-            {/* Show a card with the data if the data is available */}
-            {data && (
+            {orderGroupedCategory_2 && (
                 <>
-                    <ListItem bottomDivider>
-                        <ListItem.Content>
-                            <ListItem.Title style={{ color: theme.colors.text }}>
-                                Orders Categories Grouping (category 2 & 3) 🛒🐾
-                            </ListItem.Title>
-                            <ListItem.Subtitle  >
+                    {categoryClicked && <Button onPress={(event) => setOrderGroupedCategory_2(data?.orderGroupedCategory_2)} title={'Return'}></Button>}
+                    {orderGroupedCategory_2.map((item, index) => (
+                        <ListItem.Subtitle key={index} style={{ borderWidth: 1, borderColor: 'black' }}>
+                            <ListCategoryGrouped
+                                categoryData={item}
+                                handleClick={handleClick}
+                            />
+                        </ListItem.Subtitle>
+                    ))}
+                    {categoryClicked && (
+                        <>
+                            {orderGroupedCategory_3.map((item, index) => (
+                                <ListItem.Subtitle key={index} style={{ borderWidth: 1, borderColor: 'black' }}>
+                                    <ListCategoryGrouped
+                                        categoryData={item}
+                                        handleClick={handleClick}
+                                    />
+                                </ListItem.Subtitle>
+                            ))}
+                            <OrderItem searchParamsOrderItem={searchOrderItemParams} />
+                        </>
+                    )}
 
 
-                                {data.orderGroupedCategory_2.map((item, index) => (
-                                    <ListItem.Subtitle style={{ borderWidth: 1, borderColor: 'black' }}>
-                                        <ListCategoryGrouped key={index} categoryType='item_category2' categoryGrouped={item} index={index} />
-                                    </ListItem.Subtitle>
-                                ))}
-
-
-                            </ListItem.Subtitle>
-                        </ListItem.Content>
-                        <ListItem.Chevron />
-                    </ListItem>
-                    {/* <Card.Title style={{ color: theme.colors.text }}> Orders Categories Grouping (category 2 & 3) 🛒🐾</Card.Title>
-                    <Card.Divider /> */}
-                    {/* <View style={styles.dataContainer}>
-                        <Text style={[styles.dataTitle, { color: theme.colors.text }]}>Category 2 🐠🐠</Text>
-                        <Divider style={styles.dataDivider} />
-                       
-                        <Text style={[styles.dataTitle, { color: theme.colors.text }]}>Category 3 🦚🦚</Text>
-                        <Divider style={styles.dataDivider} />
-                        {data.orderGroupedCategory_3.map((item, index) => (
-                            <ListCategoryGrouped key={index} categoryType='item_category3' categoryGrouped={item} index={index} />
-                        ))}
-                    </View> */}
                 </>
 
             )}
+
         </View>
     );
 };

@@ -1,0 +1,38 @@
+{
+    "sourceFile": "components/Incredibles.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1705750629540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705750662182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,14 @@\n \r\n const Incredibles=()=>{\r\n \r\n \r\n-    return <>\r\n-    ali\r\n-    </>\r\n+    return (\r\n+        <View style={styles.container}>\r\n+        <Card>\r\n+        </Card>\r\n+</View>\r\n+    )\r\n }\r\n \r\n \r\n \r\n"
+                },
+                {
+                    "date": 1705750680180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n+import React, { useEffect, useLayoutEffect } from 'react';\r\n+import { View, Text, StyleSheet } from 'react-native';\r\n \r\n+import { Card, useTheme } from '@rneui/themed';\r\n \r\n const Incredibles=()=>{\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1705750693515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React, { useEffect, useLayoutEffect } from 'react';\r\n import { View, Text, StyleSheet } from 'react-native';\r\n \r\n+\r\n import { Card, useTheme } from '@rneui/themed';\r\n \r\n const Incredibles=()=>{\r\n \r\n@@ -14,6 +15,32 @@\n     )\r\n }\r\n \r\n \r\n-\r\n+const styles = StyleSheet.create({\r\n+    container: {\r\n+        flex: 1,\r\n+        alignItems: \"center\",\r\n+        justifyContent: \"center\",\r\n+    },\r\n+    loading: {\r\n+        fontSize: 20,\r\n+        fontWeight: \"bold\",\r\n+    },\r\n+    error: {\r\n+        fontSize: 20,\r\n+        fontWeight: \"bold\",\r\n+    },\r\n+    dataContainer: {\r\n+        margin: 10,\r\n+    },\r\n+    dataTitle: {\r\n+        fontSize: 18,\r\n+        fontWeight: \"bold\",\r\n+        marginVertical: 5,\r\n+    },\r\n+    dataSubtitle: {\r\n+        fontSize: 16,\r\n+        marginVertical: 5,\r\n+    },\r\n+});\r\n export default Incredibles\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705750705273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \r\n import { Card, useTheme } from '@rneui/themed';\r\n \r\n const Incredibles=()=>{\r\n+    const { theme } = useTheme();\r\n \r\n-\r\n     return (\r\n         <View style={styles.container}>\r\n         <Card>\r\n         </Card>\r\n"
+                },
+                {
+                    "date": 1705750718840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \r\n     return (\r\n         <View style={styles.container}>\r\n         <Card>\r\n+            ali\r\n         </Card>\r\n </View>\r\n     )\r\n }\r\n"
+                }
+            ],
+            "date": 1705750629540,
+            "name": "Commit-0",
+            "content": "\r\n\r\nconst Incredibles=()=>{\r\n\r\n\r\n    return <>\r\n    ali\r\n    </>\r\n}\r\n\r\n\r\n\r\nexport default Incredibles"
+        }
+    ]
+}

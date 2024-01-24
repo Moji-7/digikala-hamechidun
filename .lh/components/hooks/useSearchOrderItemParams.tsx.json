@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/hooks/useSearchOrderItemParams.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1705737461219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705737586781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,21 @@\n+import { useState } from \"react\";\r\n+import { SearchParamsOrderItem, createSearchParamsOrderItem } from \"../entity/SearchQueries\";\r\n+\r\n function useSearchOrderItemParams() {\r\n \r\n+    // Define a generic type that represents the property name and value\r\n+    type UpdateParams = {\r\n+        prop: keyof SearchParamsOrderItem;\r\n+        value: SearchParamsOrderItem[keyof SearchParamsOrderItem];\r\n+    };\r\n \r\n+    //Move the searchParamsInstance state and the handleClick function to the parent component\r\n+    const [searchOrderItemParams, setSearchOrderItemParams] = useState(\r\n+        createSearchParamsOrderItem({\r\n+            categoryType: \"\",\r\n+          //  categorySearchParams: {} as CategorySearchParams,\r\n+        })\r\n+    );\r\n+    return {searchOrderItemParams, setSearchOrderItemParams}\r\n+}\r\n     export default useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705737982787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useState } from \"react\";\r\n+import { useEffect, useState } from \"react\";\r\n import { SearchParamsOrderItem, createSearchParamsOrderItem } from \"../entity/SearchQueries\";\r\n \r\n function useSearchOrderItemParams() {\r\n \r\n@@ -15,7 +15,11 @@\n             categoryType: \"\",\r\n           //  categorySearchParams: {} as CategorySearchParams,\r\n         })\r\n     );\r\n+    useEffect(() => {\r\n+         console.log(searchOrderItemParams);\r\n+        //navigation.navigate(\"orderitem\", searchParamsInstance);\r\n+     }, [searchOrderItemParams]); // Pass the searchParamsInstance state as a dependency\r\n     return {searchOrderItemParams, setSearchOrderItemParams}\r\n }\r\n     export default useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705737988018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,14 @@\n     //Move the searchParamsInstance state and the handleClick function to the parent component\r\n     const [searchOrderItemParams, setSearchOrderItemParams] = useState(\r\n         createSearchParamsOrderItem({\r\n             categoryType: \"\",\r\n-          //  categorySearchParams: {} as CategorySearchParams,\r\n+            //  categorySearchParams: {} as CategorySearchParams,\r\n         })\r\n     );\r\n     useEffect(() => {\r\n-         console.log(searchOrderItemParams);\r\n+        console.log(searchOrderItemParams);\r\n         //navigation.navigate(\"orderitem\", searchParamsInstance);\r\n-     }, [searchOrderItemParams]); // Pass the searchParamsInstance state as a dependency\r\n-    return {searchOrderItemParams, setSearchOrderItemParams}\r\n\\ No newline at end of file\n+    }, [searchOrderItemParams]); // Pass the searchParamsInstance state as a dependency\r\n+    return { searchOrderItemParams, setSearchOrderItemParams }\r\n }\r\n-    export default useSearchOrderItemParams;\n+export default useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705739242532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n         })\r\n     );\r\n     useEffect(() => {\r\n         console.log(searchOrderItemParams);\r\n-        //navigation.navigate(\"orderitem\", searchParamsInstance);\r\n-    }, [searchOrderItemParams]); // Pass the searchParamsInstance state as a dependency\r\n+    }, [searchOrderItemParams]); \r\n     return { searchOrderItemParams, setSearchOrderItemParams }\r\n }\r\n export default useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705747982040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,5 @@\n         console.log(searchOrderItemParams);\r\n     }, [searchOrderItemParams]); \r\n     return { searchOrderItemParams, setSearchOrderItemParams }\r\n }\r\n-export default useSearchOrderItemParams;\n\\ No newline at end of file\n+export  useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705747989291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,5 @@\n         console.log(searchOrderItemParams);\r\n     }, [searchOrderItemParams]); \r\n     return { searchOrderItemParams, setSearchOrderItemParams }\r\n }\r\n-export  useSearchOrderItemParams;\n\\ No newline at end of file\n+export default useSearchOrderItemParams;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1705737461219,
+            "name": "Commit-0",
+            "content": "function useSearchOrderItemParams() {\r\n\r\n\r\n    export default useSearchOrderItemParams;"
+        }
+    ]
+}

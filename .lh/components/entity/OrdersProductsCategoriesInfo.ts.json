@@ -1,0 +1,34 @@
+{
+    "sourceFile": "components/entity/OrdersProductsCategoriesInfo.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1705483098401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705483208659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     maxPrice: string;\r\n     avgPrice: number;\r\n     totalPrice: number;\r\n     avgDiscount: string;\r\n-    childs: ICategoryChilds;\r\n+    childs: ICategoryChilds[];\r\n   }\r\n   export interface ICategoryChilds {\r\n     name: string;\r\n     title: string;\r\n"
+                },
+                {
+                    "date": 1705748077424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     parent: string;\r\n     count: number;\r\n     total_price: number;\r\n   }\r\n+\r\n   \r\n     // // Define the properties for the orders grouping object\r\n     // ordersGrouping: {\r\n     //     [key: string]: {\r\n"
+                },
+                {
+                    "date": 1705748517016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,13 @@\n     count: number;\r\n     total_price: number;\r\n   }\r\n \r\n+  interface CategoryGroupedLevels {\r\n+    parent: any;\r\n+    filterOrderGroupedCategory_2: CategoryGrouped[];\r\n+    filterOrderGroupedCategory_3: CategoryGrouped[];\r\n+  }\r\n   \r\n     // // Define the properties for the orders grouping object\r\n     // ordersGrouping: {\r\n     //     [key: string]: {\r\n"
+                },
+                {
+                    "date": 1705748561088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,10 @@\n     count: number;\r\n     total_price: number;\r\n   }\r\n \r\n-  interface CategoryGroupedLevels {\r\n-    parent: any;\r\n+  export interface CategoryGroupedLevels {\r\n+    parent: string;\r\n     filterOrderGroupedCategory_2: CategoryGrouped[];\r\n     filterOrderGroupedCategory_3: CategoryGrouped[];\r\n   }\r\n   \r\n"
+                }
+            ],
+            "date": 1705483098401,
+            "name": "Commit-0",
+            "content": "export interface CategoryGrouped {\r\n    name: string;\r\n    title: string;\r\n    parent: string;\r\n    count: string;\r\n    maxPrice: string;\r\n    avgPrice: number;\r\n    totalPrice: number;\r\n    avgDiscount: string;\r\n    childs: ICategoryChilds;\r\n  }\r\n  export interface ICategoryChilds {\r\n    name: string;\r\n    title: string;\r\n    parent: string;\r\n    count: number;\r\n    total_price: number;\r\n  }\r\n  \r\n    // // Define the properties for the orders grouping object\r\n    // ordersGrouping: {\r\n    //     [key: string]: {\r\n    //         count: number;\r\n    //         maxPrice: number;\r\n    //         avgPrice: number;\r\n    //         totalPrice: number;\r\n    //         avgDiscount: number;\r\n    //     };\r\n    // };\r\n}\r\n"
+        }
+    ]
+}

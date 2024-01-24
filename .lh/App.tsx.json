@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 21,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1704275601397,
@@ -92,6 +92,22 @@
                 {
                     "date": 1704794195887,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n   QueryClient,\n   QueryClientProvider,\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n+import Orderitem from \"./components/Orderitem\";\n \n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n@@ -45,9 +46,9 @@\n         <NavigationContainer>\n           <Stack.Navigator>\n             \n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"detail\" component={populate} />\n+            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1705233753489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,11 +44,10 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n-            \n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n+            {/* <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1705233778419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            {/* <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n+            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1705750407400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n         <NavigationContainer>\n           <Stack.Navigator>\n             <Stack.Screen name=\"populatetest\" component={populatetest} />\n             <Stack.Screen name=\"orderitem\" component={Orderitem} />\n+            <Stack.Screen name=\"incredibles\" component={Incredibles} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1705750728310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   QueryClientProvider,\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n+import Incredibles from \"./components/Incredibles\";\n \n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n@@ -44,10 +45,10 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n-            <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n+            {/* <Stack.Screen name=\"populatetest\" component={populatetest} />\n+            <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n             <Stack.Screen name=\"incredibles\" component={Incredibles} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n"
                 }
             ],
             "date": 1704275601396,

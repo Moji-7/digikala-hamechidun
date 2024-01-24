@@ -14,6 +14,8 @@ import {
 } from "@tanstack/react-query";
 import populate from "./components/populate";
 import Orderitem from "./components/Orderitem";
+import Incredibles from "./components/Incredibles";
+import IncrediblesWithProducts from "./components/IncredibleswithProducts";
 
 const Stack = createStackNavigator();
 // Create a query client
@@ -45,9 +47,10 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
           <Stack.Navigator>
-            
-            <Stack.Screen name="populatetest" component={populatetest} />
-            <Stack.Screen name="orderitem" component={Orderitem} />
+            {/* <Stack.Screen name="populatetest" component={populatetest} />
+            <Stack.Screen name="orderitem" component={Orderitem} /> */}
+            {/* <Stack.Screen name="incredibles" component={Incredibles} /> */}
+            <Stack.Screen name="incrediblesWithProducts" component={IncrediblesWithProducts} />
           </Stack.Navigator>
         </NavigationContainer>
       </QueryClientProvider>

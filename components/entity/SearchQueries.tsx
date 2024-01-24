@@ -1,8 +1,9 @@
 export interface SearchParamsOrderItem {
   // Define the properties and their types
   categoryType?: string;
-  item_category2?: string;
-  item_category3?: string;
+   item_category2?: string;
+   item_category3?: string;
+  categorySearchParams?:CategorySearchParams;
   allOrderItems?: boolean;
   product_title_fa?: string;
   quantity?: number;
@@ -31,3 +32,12 @@ export function createSearchParamsOrderItem(
   return { ...defaults, ...options };
 }
 
+export interface CategorySearchParams {
+  item_category2?: string;
+  item_category3?: string;
+}
+
+export interface SearchParamsProductPrice {
+  // Define the properties and their types
+  product_id?: number;
+}
