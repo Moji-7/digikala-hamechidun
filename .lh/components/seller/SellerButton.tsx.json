@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/seller/SellerButton.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1707112613083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707112776102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { View, Text, StyleSheet,Linking } from 'react-native';\r\n \r\n import { Button, Card, ListItem, useTheme } from '@rneui/themed';\r\n interface Props {\r\n-    sellerInfo: string;\r\n+    sellerInfo: any;\r\n }\r\n const SellerButton: React.FC<Props> = ({ sellerInfo }) => {\r\n     \r\n     const handleLinkPress = (url) => {\r\n"
+                }
+            ],
+            "date": 1707112613083,
+            "name": "Commit-0",
+            "content": "\r\nimport React, { useEffect, useLayoutEffect } from 'react';\r\nimport { View, Text, StyleSheet,Linking } from 'react-native';\r\n\r\nimport { Button, Card, ListItem, useTheme } from '@rneui/themed';\r\ninterface Props {\r\n    sellerInfo: string;\r\n}\r\nconst SellerButton: React.FC<Props> = ({ sellerInfo }) => {\r\n    \r\n    const handleLinkPress = (url) => {\r\n        Linking.openURL(url);\r\n    };\r\n\r\n    return (\r\n        <>\r\n            <Button style={{flex: 1, alignItems: 'center'}} \r\n            onPress={() =>  handleLinkPress('https://www.digikala.com/seller/' + sellerInfo.sellerId)}>{sellerInfo.sellerTitle}</Button>\r\n        </>\r\n\r\n    );\r\n};\r\n\r\n\r\nexport default SellerButton;"
+        }
+    ]
+}

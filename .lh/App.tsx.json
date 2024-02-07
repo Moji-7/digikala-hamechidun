@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 25,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1704275601397,
@@ -108,6 +108,34 @@
                 {
                     "date": 1705750728310,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   QueryClientProvider,\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n+import Incredibles from \"./components/Incredibles\";\n \n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n@@ -44,10 +45,10 @@\n     <ThemeProvider theme={themeObj}>\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n-            <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"orderitem\" component={Orderitem} />\n+            {/* <Stack.Screen name=\"populatetest\" component={populatetest} />\n+            <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n             <Stack.Screen name=\"incredibles\" component={Incredibles} />\n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n"
+                },
+                {
+                    "date": 1707122681101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n import Incredibles from \"./components/Incredibles\";\n \n+import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\n+\n const Stack = createStackNavigator();\n // Create a query client\n const queryClient = new QueryClient();\n \n@@ -46,10 +48,12 @@\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n             {/* <Stack.Screen name=\"populatetest\" component={populatetest} />\n-            <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n-            <Stack.Screen name=\"incredibles\" component={Incredibles} />\n+       \n+            {/* <Stack.Screen name=\"incredibles\" component={Incredibles} /> */}\n+            <Stack.Screen name=\"incrediblesWithProducts\" component={IncrediblesWithOtherSellers} />\n+                 <Stack.Screen name=\"orderitem\" component={Orderitem} /> \n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1707122693183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,12 +48,11 @@\n       <QueryClientProvider client={queryClient}>\n         <NavigationContainer>\n           <Stack.Navigator>\n             {/* <Stack.Screen name=\"populatetest\" component={populatetest} />\n-       \n+            <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n             {/* <Stack.Screen name=\"incredibles\" component={Incredibles} /> */}\n             <Stack.Screen name=\"incrediblesWithProducts\" component={IncrediblesWithOtherSellers} />\n-                 <Stack.Screen name=\"orderitem\" component={Orderitem} /> \n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1707123000929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n import Incredibles from \"./components/Incredibles\";\n+import Comm from \"./components/Comments\";\n \n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\n \n const Stack = createStackNavigator();\n"
+                },
+                {
+                    "date": 1707123010319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n import Incredibles from \"./components/Incredibles\";\n-import Comm from \"./components/Comments\";\n+import Comments from \"./components/comments\";\n \n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\n \n const Stack = createStackNavigator();\n"
+                },
+                {
+                    "date": 1707123032838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,9 @@\n             {/* <Stack.Screen name=\"populatetest\" component={populatetest} />\n             <Stack.Screen name=\"orderitem\" component={Orderitem} /> */}\n             {/* <Stack.Screen name=\"incredibles\" component={Incredibles} /> */}\n             <Stack.Screen name=\"incrediblesWithProducts\" component={IncrediblesWithOtherSellers} />\n+            <Stack.Screen name=\"comments\" component={Comments} /> \n           </Stack.Navigator>\n         </NavigationContainer>\n       </QueryClientProvider>\n     </ThemeProvider>\n"
+                },
+                {
+                    "date": 1707126257987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n import Incredibles from \"./components/Incredibles\";\n-import Comments from \"./components/comments\";\n+import Comments from \"./components/Commentss\";\n \n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\n \n const Stack = createStackNavigator();\n"
+                },
+                {
+                    "date": 1707126264263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n } from \"@tanstack/react-query\";\n import populate from \"./components/populate\";\n import Orderitem from \"./components/Orderitem\";\n import Incredibles from \"./components/Incredibles\";\n-import Comments from \"./components/Commentss\";\n+import Comments from \"./components/Comments\";\n \n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\n \n const Stack = createStackNavigator();\n"
                 }
             ],
             "date": 1704275601396,

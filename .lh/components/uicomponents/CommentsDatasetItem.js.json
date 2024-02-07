@@ -1,0 +1,34 @@
+{
+    "sourceFile": "components/uicomponents/CommentsDatasetItem.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1707134771324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707134778363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\r\n import { View, Text, StyleSheet, Linking } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n \r\n-const DatasetItem = ({ dataset }) => {\r\n+const CommentsDatasetItem = ({ dataset }) => {\r\n   return (\r\n     <View>\r\n       <Card>\r\n         <View>\r\n@@ -24,5 +24,5 @@\n     </View>\r\n   );\r\n };\r\n \r\n-export default DatasetItem;\n\\ No newline at end of file\n+export default CommentsDatasetItem;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1707134874700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n         <View>\r\n           <Text>{dataset.id}</Text>\r\n           <Text>{dataset.product_id}</Text>\r\n           <Text>Likes Grouped:</Text>\r\n-          <View>\r\n+          {/* <View>\r\n             <Text>{dataset.data.LikesGrouped.Sum.ZeroLikes}</Text>\r\n             <Text>{dataset.data.LikesGrouped.Sum.NonZeroLikes}</Text>\r\n             <Text>{dataset.data.LikesGrouped.Count.ZeroLikes}</Text>\r\n             <Text>{dataset.data.LikesGrouped.Count.NonZeroLikes}</Text>\r\n           </View>\r\n           <Text>Average Rating: {dataset.data.average_rating}</Text>\r\n           <Text>Max Likes in the Dataset: {dataset.data.MaxLikesInTheDataset}</Text>\r\n-          <Text>Total Number of Likes in the Dataset: {dataset.data.TotalNumberOfLikesInTheDataset}</Text>\r\n+          <Text>Total Number of Likes in the Dataset: {dataset.data.TotalNumberOfLikesInTheDataset}</Text> */}\r\n         </View>\r\n       </Card>\r\n     </View>\r\n   );\r\n"
+                },
+                {
+                    "date": 1707135559579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import React from 'react';\r\n import { View, Text, StyleSheet, Linking } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n \r\n-const CommentsDatasetItem = ({ dataset }) => {\r\n+  const CommentsDatasetItem: React.FC<CommentDataset> = ({ productPriceInfo, isIncredible, increidiblePrice }) => {\r\n   return (\r\n+    let d:CommentDataset\r\n     <View>\r\n       <Card>\r\n         <View>\r\n           <Text>{dataset.id}</Text>\r\n"
+                },
+                {
+                    "date": 1707135623550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\r\n import { View, Text, StyleSheet, Linking } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n-\r\n-  const CommentsDatasetItem: React.FC<CommentDataset> = ({ productPriceInfo, isIncredible, increidiblePrice }) => {\r\n+import {CommentDataset}  from '../entity/commentsDto.tsx'\r\n+  const CommentsDatasetItem: React.FC<').CommentDataset> = ({ productPriceInfo, isIncredible, increidiblePrice }) => {\r\n   return (\r\n     let d:CommentDataset\r\n     <View>\r\n       <Card>\r\n"
+                }
+            ],
+            "date": 1707134771324,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport { View, Text, StyleSheet, Linking } from 'react-native';\r\nimport { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n\r\nconst DatasetItem = ({ dataset }) => {\r\n  return (\r\n    <View>\r\n      <Card>\r\n        <View>\r\n          <Text>{dataset.id}</Text>\r\n          <Text>{dataset.product_id}</Text>\r\n          <Text>Likes Grouped:</Text>\r\n          <View>\r\n            <Text>{dataset.data.LikesGrouped.Sum.ZeroLikes}</Text>\r\n            <Text>{dataset.data.LikesGrouped.Sum.NonZeroLikes}</Text>\r\n            <Text>{dataset.data.LikesGrouped.Count.ZeroLikes}</Text>\r\n            <Text>{dataset.data.LikesGrouped.Count.NonZeroLikes}</Text>\r\n          </View>\r\n          <Text>Average Rating: {dataset.data.average_rating}</Text>\r\n          <Text>Max Likes in the Dataset: {dataset.data.MaxLikesInTheDataset}</Text>\r\n          <Text>Total Number of Likes in the Dataset: {dataset.data.TotalNumberOfLikesInTheDataset}</Text>\r\n        </View>\r\n      </Card>\r\n    </View>\r\n  );\r\n};\r\n\r\nexport default DatasetItem;"
+        }
+    ]
+}

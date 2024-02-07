@@ -15,7 +15,9 @@ import {
 import populate from "./components/populate";
 import Orderitem from "./components/Orderitem";
 import Incredibles from "./components/Incredibles";
-import IncrediblesWithProducts from "./components/IncredibleswithProducts";
+import Comments from "./components/Comments";
+
+import IncrediblesWithOtherSellers from "./components/IncrediblesWithOtherSellers";
 
 const Stack = createStackNavigator();
 // Create a query client
@@ -50,7 +52,8 @@ export default function App() {
             {/* <Stack.Screen name="populatetest" component={populatetest} />
             <Stack.Screen name="orderitem" component={Orderitem} /> */}
             {/* <Stack.Screen name="incredibles" component={Incredibles} /> */}
-            <Stack.Screen name="incrediblesWithProducts" component={IncrediblesWithProducts} />
+            <Stack.Screen name="incrediblesWithProducts" component={IncrediblesWithOtherSellers} />
+            <Stack.Screen name="comments" component={Comments} /> 
           </Stack.Navigator>
         </NavigationContainer>
       </QueryClientProvider>

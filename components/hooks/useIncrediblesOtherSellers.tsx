@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { SearchParamsOrderItem } from "../entity/SearchQueries";
 
-export const useIncrediblesWithProducts = (params: string) => {
+export const useIncrediblesWithOtherSellers = (params: string) => {
     // Use the useQuery hook to fetch the data from the API
     const { data, error, isLoading, isError } = useQuery({
         // Specify the query key as the item.title
-        queryKey: ['useIncrediblesWithProducts', params],
+        queryKey: ['useIncrediblesOtherSellers', params],
         // Specify the query function as an async arrow function that uses fetch to make the request
         queryFn: async () => {
             // Try to fetch the data from the API
@@ -14,7 +14,7 @@ export const useIncrediblesWithProducts = (params: string) => {
                 //const queryString = objectToQueryString(params);
                 const searchParams = new URLSearchParams(params);
                 //?productId=197421?
-                const url = "http://localhost:3222/hamechidun/with-products"// + searchParams;
+                const url = "http://localhost:3222/hamechidun/otherSellers"// + searchParams;
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {

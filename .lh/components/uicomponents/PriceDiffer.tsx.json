@@ -1,0 +1,66 @@
+{
+    "sourceFile": "components/uicomponents/PriceDiffer.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1707112915089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707112943230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n         {priceA - priceB}\r\n       </Text>\r\n-      <Text>Percentage Difference: {percentageDifference}%</Text>\r\n+      <Text>Percentage Difference: {calculatePercentageDifference(priceA,priceB)}%</Text>\r\n     </>\r\n \r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1707112990409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const PriceDifferShow: React.FC<PriceDifferShowInfo> = ({ priceA, priceB }) => {\r\n \r\n   const theme = useTheme();\r\n   const calculatePercentageDifference = (a: number, b: number) => {\r\n-    return ((b - a) / a) * 100;\r\n+    return Math.round((b - a) / a) * 100;\r\n   };\r\n   return (\r\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n"
+                },
+                {
+                    "date": 1707113012724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const PriceDifferShow: React.FC<PriceDifferShowInfo> = ({ priceA, priceB }) => {\r\n \r\n   const theme = useTheme();\r\n   const calculatePercentageDifference = (a: number, b: number) => {\r\n-    return Math.round((b - a) / a) * 100;\r\n+    return Math.round(((b - a) / a) * 100);\r\n   };\r\n   return (\r\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n"
+                },
+                {
+                    "date": 1707114948034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   };\r\n   return (\r\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n-        {priceA - priceB}\r\n+        {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n       </Text>\r\n       <Text>Percentage Difference: {calculatePercentageDifference(priceA,priceB)}%</Text>\r\n     </>\r\n \r\n"
+                },
+                {
+                    "date": 1707115348998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n         {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n       </Text>\r\n-      <Text>Percentage Difference: {calculatePercentageDifference(priceA,priceB)}%</Text>\r\n+\r\n     </>\r\n \r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1707115772807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   const calculatePercentageDifference = (a: number, b: number) => {\r\n     return Math.round(((b - a) / a) * 100);\r\n   };\r\n   return (\r\n-    <>\r\n+    < style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n         {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n       </Text>\r\n \r\n"
+                },
+                {
+                    "date": 1707115802667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,13 @@\n   const calculatePercentageDifference = (a: number, b: number) => {\r\n     return Math.round(((b - a) / a) * 100);\r\n   };\r\n   return (\r\n-    < style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>\r\n+    <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n         {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n       </Text>\r\n-\r\n+      <Text>Percentage Difference: {calculatePercentageDifference(priceA,priceB)}%</Text>\r\n     </>\r\n \r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1707115814660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n     <>\r\n       <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n         {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n       </Text>\r\n-      <Text>Percentage Difference: {calculatePercentageDifference(priceA,priceB)}%</Text>\r\n     </>\r\n \r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1707116046164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,16 +17,17 @@\n     return Math.round(((b - a) / a) * 100);\r\n   };\r\n   return (\r\n     <>\r\n-      <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n-        {priceA - priceB}({calculatePercentageDifference(priceA,priceB)}%)\r\n-      </Text>\r\n+   <Text style={[styles.centered, priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero]}>\r\n+      {priceA - priceB}({calculatePercentageDifference(priceA, priceB)})%\r\n+    </Text>\r\n     </>\r\n \r\n   );\r\n };\r\n const styles = StyleSheet.create({\r\n+  centered: {flex: 1, justifyContent: 'center', alignItems: 'center'},\r\n   positive: {\r\n     color: 'green',\r\n   },\r\n   negative: {\r\n"
+                },
+                {
+                    "date": 1707116076369,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,17 +17,21 @@\n     return Math.round(((b - a) / a) * 100);\r\n   };\r\n   return (\r\n     <>\r\n-   <Text style={[styles.centered, priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero]}>\r\n-      {priceA - priceB}({calculatePercentageDifference(priceA, priceB)})%\r\n-    </Text>\r\n+      <Text style={[styles.centered, priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero]}>\r\n+        {priceA - priceB}({calculatePercentageDifference(priceA, priceB)})%\r\n+      </Text>\r\n     </>\r\n \r\n   );\r\n };\r\n const styles = StyleSheet.create({\r\n-  centered: {flex: 1, justifyContent: 'center', alignItems: 'center'},\r\n+  centered: { flex: 1, \r\n+    justifyContent: 'center', \r\n+  alignItems: 'center',\r\n+  backgroundColor:red;\r\n+ },\r\n   positive: {\r\n     color: 'green',\r\n   },\r\n   negative: {\r\n"
+                },
+                {
+                    "date": 1707116083148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n const styles = StyleSheet.create({\r\n   centered: { flex: 1, \r\n     justifyContent: 'center', \r\n   alignItems: 'center',\r\n-  backgroundColor:red;\r\n+  backgroundColor:'red';\r\n  },\r\n   positive: {\r\n     color: 'green',\r\n   },\r\n"
+                },
+                {
+                    "date": 1707116117513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,10 @@\n   );\r\n };\r\n const styles = StyleSheet.create({\r\n   centered: { flex: 1, \r\n-    justifyContent: 'center', \r\n-  alignItems: 'center',\r\n-  backgroundColor:'red';\r\n- },\r\n+textAlign: 'center',\r\n+  },\r\n   positive: {\r\n     color: 'green',\r\n   },\r\n   negative: {\r\n"
+                }
+            ],
+            "date": 1707112915089,
+            "name": "Commit-0",
+            "content": "\r\n// Import the necessary modules\r\nimport React, { useEffect, useLayoutEffect } from 'react';\r\nimport { View, Text, StyleSheet } from 'react-native';\r\n\r\nimport { Button, Card, ListItem, useTheme } from '@rneui/themed';\r\n\r\n\r\ninterface PriceDifferShowInfo {\r\n  priceA: number;\r\n  priceB: number;\r\n}\r\nconst PriceDifferShow: React.FC<PriceDifferShowInfo> = ({ priceA, priceB }) => {\r\n\r\n  const theme = useTheme();\r\n  const calculatePercentageDifference = (a: number, b: number) => {\r\n    return ((b - a) / a) * 100;\r\n  };\r\n  return (\r\n    <>\r\n      <Text style={priceA - priceB > 0 ? styles.positive : priceA - priceB < 0 ? styles.negative : styles.zero}>\r\n        {priceA - priceB}\r\n      </Text>\r\n      <Text>Percentage Difference: {percentageDifference}%</Text>\r\n    </>\r\n\r\n  );\r\n};\r\nconst styles = StyleSheet.create({\r\n  positive: {\r\n    color: 'green',\r\n  },\r\n  negative: {\r\n    color: 'red',\r\n  },\r\n  zero: {\r\n    color: 'black',\r\n  },\r\n});\r\nexport default PriceDifferShow;"
+        }
+    ]
+}

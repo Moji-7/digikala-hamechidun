@@ -1,0 +1,34 @@
+{
+    "sourceFile": "components/entity/commentsDto.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1707135413143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1707135423893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-interface Data {\r\n+export interface Data {\r\n     rate_avg: string;\r\n     likes_max: string;\r\n     likes_count: string;\r\n     likes_grouped: {\r\n"
+                },
+                {
+                    "date": 1707135440707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export interface Data {\r\n+export interface CommentDataset {\r\n     rate_avg: string;\r\n     likes_max: string;\r\n     likes_count: string;\r\n     likes_grouped: {\r\n"
+                },
+                {
+                    "date": 1707135767265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,21 @@\n-export interface CommentDataset {\r\n-    rate_avg: string;\r\n-    likes_max: string;\r\n-    likes_count: string;\r\n-    likes_grouped: {\r\n-      sum: {\r\n-        likes_zero: number;\r\n-        likes_nonZero: number;\r\n+type ApiResult = {\r\n+    id: number;\r\n+    product_id: number;\r\n+    data: {\r\n+      rate_avg: string;\r\n+      likes_max: string;\r\n+      likes_count: string;\r\n\\ No newline at end of file\n+      likes_grouped: {\r\n+        sum: {\r\n+          likes_zero: number;\r\n+          likes_nonZero: number;\r\n+        };\r\n+        count: {\r\n+          likes_zero: number;\r\n+          likes_nonZero: number;\r\n+        };\r\n       };\r\n-      count: {\r\n-        likes_zero: number;\r\n-        likes_nonZero: number;\r\n-      };\r\n     };\r\n-  }\n+    created_at: string;\r\n+  };\r\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1707135799916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,20 @@\n-type ApiResult = {\r\n+export type CommentDataset = {\r\n     id: number;\r\n     product_id: number;\r\n     data: {\r\n-      rate_avg: string;\r\n-      likes_max: string;\r\n-      likes_count: string;\r\n-      likes_grouped: {\r\n-        sum: {\r\n-          likes_zero: number;\r\n-          likes_nonZero: number;\r\n+        rate_avg: string;\r\n+        likes_max: string;\r\n+        likes_count: string;\r\n+        likes_grouped: {\r\n+            sum: {\r\n+                likes_zero: number;\r\n+                likes_nonZero: number;\r\n+            };\r\n+            count: {\r\n\\ No newline at end of file\n+                likes_zero: number;\r\n+                likes_nonZero: number;\r\n+            };\r\n         };\r\n-        count: {\r\n-          likes_zero: number;\r\n-          likes_nonZero: number;\r\n-        };\r\n-      };\r\n     };\r\n     created_at: string;\r\n-  };\r\n-  \n+};\r\n"
+                }
+            ],
+            "date": 1707135413143,
+            "name": "Commit-0",
+            "content": "interface Data {\r\n    rate_avg: string;\r\n    likes_max: string;\r\n    likes_count: string;\r\n    likes_grouped: {\r\n      sum: {\r\n        likes_zero: number;\r\n        likes_nonZero: number;\r\n      };\r\n      count: {\r\n        likes_zero: number;\r\n        likes_nonZero: number;\r\n      };\r\n    };\r\n  }"
+        }
+    ]
+}
