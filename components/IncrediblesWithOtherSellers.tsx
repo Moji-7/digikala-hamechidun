@@ -12,6 +12,8 @@ import ProductPriceInfo from './product/ProductPriceInfo';
 import SellerButton from './seller/SellerButton';
 import HamechdunNavigator from './HamechdunNavigator';
 
+export const HamechidunContext = createContext<any>(null);
+
 const IncrediblesWithOtherSellers = () => {
     const { theme } = useTheme();
     const { data, error, isLoading, isError } = useIncrediblesWithOtherSellers("Params");
@@ -20,8 +22,10 @@ const IncrediblesWithOtherSellers = () => {
         // Open the URL in a browser when the link is pressed
         Linking.openURL(url);
     };
-// Create a context for the item prop
-//export const ItemContext = createContext<any>(null);
+    // Create a context for the item prop
+
+
+
     return (
         <View style={styles.container}>
             {isLoading && <Text style={[styles.loading, { color: theme.colors.primary }]}>Loading...</Text>}
@@ -45,10 +49,10 @@ const IncrediblesWithOtherSellers = () => {
                                     {item.incredible.inc_minPriceInLastMonth}
                                 </ListItem.Title>
                                 <Card.Divider />
-                                <ProductSellersInfo sellers={item.otherSellers} increidiblePrice={item.incredible.inc_price} />
-                                {/* <ItemContext.Provider value={{ item }}> */}
-                                <HamechdunNavigator />
-                                {/* </ItemContext.Provider> */}
+                                {/* <ProductSellersInfo sellers={item.otherSellers} increidiblePrice={item.incredible.inc_price} /> */}
+                                <HamechidunContext.Provider value={{productId:item.incredible.product_id}}>
+                                    <HamechdunNavigator key={index} />
+                                </HamechidunContext.Provider>
                             </Card>
                         </>
                     ))}

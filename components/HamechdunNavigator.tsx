@@ -4,47 +4,48 @@ import React, { useState, useCallback, useMemo, useContext } from 'react';
 import { View, Text, StyleSheet, Linking } from 'react-native';
 
 import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
-import Commentss from './Commentss';
+import Comments from './Comments';
 import Incredibles from './Incredibles';
+import { HamechidunContext } from './IncrediblesWithOtherSellers';
+
 
 // Define the components you want to render
 const Component1 = () => {
+    const { productId } = useContext(HamechidunContext);
     return (
+
         <View style={{ flex: 1, backgroundColor: 'red' }}>
-            <Commentss />
+            {/* productId={productId} */}
+            <Comments productId={productId} />
         </View>
     );
 };
 
 const Component2 = () => {
+    const { productId } = useContext(HamechidunContext);
     return (
         <View style={{ flex: 1, backgroundColor: 'green' }}>
-            <Incredibles />
+            salam
+            {/* <Incredibles productId={productId} /> */}
         </View>
     );
 };
 
 const Component3 = () => {
+    const { productId } = useContext(HamechidunContext);
     return (
         <View style={{ flex: 1, backgroundColor: 'blue' }}>
-            <Text>This is Component 3</Text>
+            {/* <CommentsAi productId={productId} /> */}
         </View>
     );
 };
 
 // Define the HamechdunNavigator component
 const HamechdunNavigator = () => {
-    //const { item } = useContext(ItemContext);
+
 
     // Define a state variable to store the component name
-    const [component, setComponent] = useState("Component1");
-
-    // Define a function to handle the button press
-    const handlePress = useCallback((name) => {
-        setComponent(name);
-    }, []);
-
-
+    const [component, setComponent] = useState(null);
 
     interface DataSet {
         title: string;
@@ -52,16 +53,24 @@ const HamechdunNavigator = () => {
     }
     const navigator_components: DataSet[] = [
         { title: 'Details info', name: 'Component2' },
+        { title: 'other Sellers', name: 'Component2' },
         { title: 'Comments DataSet', name: 'Component1' },
-        { title: 'Comments AI', name: 'Component3' }
+        { title: 'Comments AI', name: 'Component3' },
+        { title: 'other product Dataset', name: 'Component2' },
+        { title: 'other product AI', name: 'Component2' },
+        { title: 'tTorob info', name: 'Component2' },
+
+
     ];
+
+    const handlePress = useCallback((name) => {
+        setComponent(name);
+    }, []);
+
     // Define an array of the component names
     const components = useMemo(() =>
         navigator_components
         , []);
-
-    // Use React.createElement to create the component based on the state
-    const renderedComponent = React.createElement(eval(component));
 
     return (
         <View style={{ flex: 1 }}>
@@ -75,7 +84,7 @@ const HamechdunNavigator = () => {
                     ))}
                 </ListItem.Title>
             </Card>
-            {renderedComponent}
+            {component && React.createElement(eval(component))}
         </View>
     );
 };

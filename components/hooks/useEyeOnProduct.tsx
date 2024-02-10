@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
+import { SearchParamsOrderItem } from "../entity/SearchQueries";
 
-
-export const useHamechidunComments = (productId: number) => {
+export const useIncredibles = (params: string) => {
     // Use the useQuery hook to fetch the data from the API
     const { data, error, isLoading, isError } = useQuery({
         // Specify the query key as the item.title
-        queryKey: ['useHamechidunComments', productId],
+        queryKey: ['useIncredibles', params],
         // Specify the query function as an async arrow function that uses fetch to make the request
         queryFn: async () => {
             // Try to fetch the data from the API
             try {
 
                 //const queryString = objectToQueryString(params);
-                //const searchParams = new URLSearchParams(productId.toString());
-                //?productId=197421?
-                const url = "http://localhost:3222/hamechidun/commentsdataset?productId=" + productId;
+                const searchParams = new URLSearchParams(params);
+                const url = "http://localhost:3222/Eye/pro?" + searchParams;
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {
