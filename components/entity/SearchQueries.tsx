@@ -41,3 +41,11 @@ export interface SearchParamsProductPrice {
   // Define the properties and their types
   product_id?: number;
 }
+
+
+
+export type SearchProductQuery = {
+  inputValue: string;
+  page: number;
+};
+
