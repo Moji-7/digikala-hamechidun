@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { Card, ListItem, Button, Icon, Divider } from "@rneui/themed";
 
-import usePopulateOrdersSummary from "./usepopulateOrdersSummary";
+import usePopulateOrdersSummary from "./hooks/usePopulateOrdersSummary";
 
 // Define a custom hook to fetch the data from the API
 

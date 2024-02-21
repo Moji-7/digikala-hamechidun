@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/reduxApi/digikalaSelectedProducts.reducer.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708325336686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708325355021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,30 +11,30 @@\n   name: \"digikalaSelectedProducts\",\r\n   initialState,\r\n   reducers: {\r\n     addItem: (state, action) => {\r\n-      state.digikalaProducts?.find(product => product.id === action.payload.id) || state.digikalaProducts.push(action.payload);\r\n+      state.digikalaSelectedProducts?.find(product => product.id === action.payload.id) || state.digikalaSelectedProducts.push(action.payload);\r\n     },\r\n     removeItem: (state, action) => {\r\n-      state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n+      state.digikalaSelectedProducts = state.digikalaSelectedProducts.filter((item) => item.id !== action.payload);\r\n     },\r\n     removeAllItem: (state, action) => {\r\n-      state.digikalaProducts = [];\r\n+      state.digikalaSelectedProducts = [];\r\n     },\r\n \r\n \r\n     submitItems: (state, action) => {\r\n       const [submitItems] = useSubmitItemsMutation();\r\n-      submitItems(state.digikalaProducts);\r\n+      submitItems(state.digikalaSelectedProducts);\r\n       \r\n     },\r\n     \r\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.digikalaProducts = [];\r\n+        state.digikalaSelectedProducts = [];\r\n       }\r\n     );\r\n   },\r\n \r\n"
+                }
+            ],
+            "date": 1708325336686,
+            "name": "Commit-0",
+            "content": "import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\nimport { useSubmitItemsMutation } from \"./api\";\r\nimport { api} from './api';\r\n// Define the initial state\r\nconst initialState = {\r\n  digikalaSelectedProducts: [],\r\n};\r\n\r\n// Create the slice\r\nconst digikalaSelectedProductsSlice = createSlice({\r\n  name: \"digikalaSelectedProducts\",\r\n  initialState,\r\n  reducers: {\r\n    addItem: (state, action) => {\r\n      state.digikalaProducts?.find(product => product.id === action.payload.id) || state.digikalaProducts.push(action.payload);\r\n    },\r\n    removeItem: (state, action) => {\r\n      state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n    },\r\n    removeAllItem: (state, action) => {\r\n      state.digikalaProducts = [];\r\n    },\r\n\r\n\r\n    submitItems: (state, action) => {\r\n      const [submitItems] = useSubmitItemsMutation();\r\n      submitItems(state.digikalaProducts);\r\n      \r\n    },\r\n    \r\n  },\r\n  extraReducers: (builder) => {\r\n    builder.addMatcher(\r\n      api.endpoints.submitItems.matchFulfilled,\r\n      (state, action) => {\r\n        state.digikalaProducts = [];\r\n      }\r\n    );\r\n  },\r\n\r\n});\r\n\r\nexport const { addItem, removeItem,removeAllItem  } = digikalaSelectedProductsSlice.actions;\r\nexport default digikalaSelectedProductsSlice.reducer;\r\n"
+        }
+    ]
+}

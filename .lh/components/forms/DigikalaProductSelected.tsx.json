@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/forms/DigikalaProductSelected.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1708240343336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708246764187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n import EyeProductAddButton from './EyeProductAddButton';\r\n import { useDispatch, useSelector } from 'react-redux';\r\n-import { removeItem } from '../reduxApi/eyeProductsSelected.reducer';\r\n+import { removeItem } from '../reduxApi/digikalaProducts.reducer';\r\n // ... (ProductSearch component)\r\n \r\n interface Props {\r\n   inputs: any[];\r\n"
+                },
+                {
+                    "date": 1708325302178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n import EyeProductAddButton from './EyeProductAddButton';\r\n import { useDispatch, useSelector } from 'react-redux';\r\n-import { removeItem } from '../reduxApi/digikalaProducts.reducer';\r\n+import { removeItem } from '../reduxApi/digikalaSelectedProducts.reducer';\r\n // ... (ProductSearch component)\r\n \r\n interface Props {\r\n   inputs: any[];\r\n"
+                },
+                {
+                    "date": 1708325481132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n   // Use the useDispatch hook to get a reference to the dispatch function\r\n const dispatch = useDispatch();\r\n // Use the useSelector hook to access the items state\r\n-const digikalaSelectedProduct = useSelector((state) => state.digikalaProducts.digikalaProducts);\r\n+const digikalaSelectedProduct = useSelector((state) => state.digikalaSelectedProducts.digikalaSelectedProducts);\r\n \r\n \r\n \r\n // Define a function to handle removing an item\r\n"
+                }
+            ],
+            "date": 1708240343335,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from 'react';\r\nimport { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';\r\nimport { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\nimport EyeProductAddButton from './EyeProductAddButton';\r\nimport { useDispatch, useSelector } from 'react-redux';\r\nimport { removeItem } from '../reduxApi/eyeProductsSelected.reducer';\r\n// ... (ProductSearch component)\r\n\r\ninterface Props {\r\n  inputs: any[];\r\n}\r\n\r\n\r\n\r\n\r\n\r\nconst DigikalaProductSelected: React.FC<any> = () => {\r\n\r\n  // Use the useDispatch hook to get a reference to the dispatch function\r\nconst dispatch = useDispatch();\r\n// Use the useSelector hook to access the items state\r\nconst digikalaSelectedProduct = useSelector((state) => state.digikalaProducts.digikalaProducts);\r\n\r\n\r\n\r\n// Define a function to handle removing an item\r\nconst handleRemoveItem = (id) => {\r\n  // Dispatch the removeItem action with the id as the payload\r\n  dispatch(removeItem(id));\r\n};\r\n\r\n\r\n  return (\r\n    <>\r\n      {digikalaSelectedProduct.length > 0 && ( // Render when products exist\r\n        <>\r\n          <Text>🤑🐾 Selected Products: 🤑🐾  </Text>\r\n           {/* <EyeProductAddButton /> */}\r\n          {digikalaSelectedProduct.map((product, index) => (\r\n\r\n            <ListItem key={product.id}>\r\n              <ListItem.Content>\r\n                <ListItem.Title>{product.title_fa}</ListItem.Title>\r\n                <ListItem.Subtitle>{product.default_variant.seller.title} |\r\n                  {/* {product.default_variant.price.selling_price} |\r\n                  {product.default_variant.price.rrp_price} |\r\n                  {product.default_variant.price.discount_percent}% */}\r\n                </ListItem.Subtitle>\r\n                <ListItem.Subtitle>\r\n                  <Button onPress={() => handleRemoveItem(product.id)} title='remove' />\r\n                </ListItem.Subtitle>\r\n              </ListItem.Content>\r\n            </ListItem>\r\n\r\n          ))}\r\n\r\n        </>\r\n      )}\r\n      {digikalaSelectedProduct.length === 0 && <Text>No products selected yet.</Text>}\r\n    </>\r\n  );\r\n}\r\n\r\nexport default DigikalaProductSelected;\r\n"
+        }
+    ]
+}

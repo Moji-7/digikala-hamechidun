@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderE
 import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
 import EyeProductAddButton from './EyeProductAddButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem } from '../reduxApi/eyeProductsSelected.reducer';
+import { removeItem } from '../reduxApi/digikalaSelectedProducts.reducer';
 // ... (ProductSearch component)
 
 interface Props {
@@ -19,7 +19,7 @@ const DigikalaProductSelected: React.FC<any> = () => {
   // Use the useDispatch hook to get a reference to the dispatch function
 const dispatch = useDispatch();
 // Use the useSelector hook to access the items state
-const digikalaSelectedProduct = useSelector((state) => state.digikalaProducts.digikalaProducts);
+const digikalaSelectedProduct = useSelector((state) => state.digikalaSelectedProducts.digikalaSelectedProducts);
 
 
 
@@ -42,9 +42,9 @@ const handleRemoveItem = (id) => {
               <ListItem.Content>
                 <ListItem.Title>{product.title_fa}</ListItem.Title>
                 <ListItem.Subtitle>{product.default_variant.seller.title} |
-                  {product.default_variant.price.selling_price} |
+                  {/* {product.default_variant.price.selling_price} |
                   {product.default_variant.price.rrp_price} |
-                  {product.default_variant.price.discount_percent}%
+                  {product.default_variant.price.discount_percent}% */}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle>
                   <Button onPress={() => handleRemoveItem(product.id)} title='remove' />

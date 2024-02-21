@@ -1,0 +1,86 @@
+{
+    "sourceFile": "components/reduxApi/digikalaProducts.reducer.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1708248081265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708249377082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n \r\n     submitItems: (state, action) => {\r\n       // Call the hook for the mutation endpoint\r\n       const [submitItems] = useSubmitItemsMutation();\r\n+      \r\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n"
+                },
+                {
+                    "date": 1708249652342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n+  \r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708253418843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,14 +22,12 @@\n \r\n     submitItems: (state, action) => {\r\n       // Call the hook for the mutation endpoint\r\n       const [submitItems] = useSubmitItemsMutation();\r\n-      \r\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n-  \r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708253829609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,19 @@\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n+  extraReducers: (builder) => {\r\n+    builder\r\n+      .addCase(submitItems.fulfilled, (state) => {\r\n+        // Dispatch the action to trigger `addSaveProduct`\r\n+        dispatch(addSaveProduct(state.digikalaProducts));\r\n+      });\r\n+  };\r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n+function dispatch(arg0: any) {\r\n+  throw new Error(\"Function not implemented.\");\r\n+}\r\n+\r\n"
+                },
+                {
+                    "date": 1708253854499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\n import { useSubmitItemsMutation } from \"./api\";\r\n+import eyeProductsSlice from './eyeProducts.reducer'; // Import your eyeProducts slice\r\n \r\n // Define the initial state\r\n const initialState = {\r\n   digikalaProducts: [],\r\n@@ -30,9 +31,9 @@\n   extraReducers: (builder) => {\r\n     builder\r\n       .addCase(submitItems.fulfilled, (state) => {\r\n         // Dispatch the action to trigger `addSaveProduct`\r\n-        dispatch(addSaveProduct(state.digikalaProducts));\r\n+        dispatch(eyeProductsSlice.actions.addSaveProduct(state.digikalaProducts));\r\n       });\r\n   };\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1708253894301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       .addCase(submitItems.fulfilled, (state) => {\r\n         // Dispatch the action to trigger `addSaveProduct`\r\n         dispatch(eyeProductsSlice.actions.addSaveProduct(state.digikalaProducts));\r\n       });\r\n-  };\r\n+  }\r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708253935220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,8 @@\n       const [submitItems] = useSubmitItemsMutation();\r\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n-  },\r\n-  extraReducers: (builder) => {\r\n-    builder\r\n-      .addCase(submitItems.fulfilled, (state) => {\r\n-        // Dispatch the action to trigger `addSaveProduct`\r\n-        dispatch(eyeProductsSlice.actions.addSaveProduct(state.digikalaProducts));\r\n-      });\r\n   }\r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708254214251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,19 @@\n       const [submitItems] = useSubmitItemsMutation();\r\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n-  }\r\n+  },\r\n+  extraReducers: builder => {\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+      if (action.payload && action.payload.success) {\r\n+        console.log('Submitted successfully! Now calling addSaveProduct...');\r\n+        // Call the passed-down dispatch function to invoke the addSaveProduct action\r\n+       // dispatch(addEyeProduct(/* insert payload */));\r\n+      } else {\r\n+        console.log('Something went wrong during submission.');\r\n+      }\r\n+    });\r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708254308446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,4 @@\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n-function dispatch(arg0: any) {\r\n-  throw new Error(\"Function not implemented.\");\r\n-}\r\n-\r\n"
+                },
+                {
+                    "date": 1708254335130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,18 +27,9 @@\n       // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n-  extraReducers: builder => {\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      if (action.payload && action.payload.success) {\r\n-        console.log('Submitted successfully! Now calling addSaveProduct...');\r\n-        // Call the passed-down dispatch function to invoke the addSaveProduct action\r\n-       // dispatch(addEyeProduct(/* insert payload */));\r\n-      } else {\r\n-        console.log('Something went wrong during submission.');\r\n-      }\r\n-    });\r\n+\r\n });\r\n \r\n export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708254580885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\n import { useSubmitItemsMutation } from \"./api\";\r\n-import eyeProductsSlice from './eyeProducts.reducer'; // Import your eyeProducts slice\r\n \r\n // Define the initial state\r\n const initialState = {\r\n   digikalaProducts: [],\r\n"
+                },
+                {
+                    "date": 1708256084184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,21 +10,17 @@\n const digikalaProductsSlice = createSlice({\r\n   name: \"digikalaProducts\",\r\n   initialState,\r\n   reducers: {\r\n-    // Define a reducer to add an item to the state\r\n     addItem: (state, action) => {\r\n       state.digikalaProducts?.find(product => product.id === action.payload.id) || state.digikalaProducts.push(action.payload);\r\n     },\r\n-    // Define a reducer to remove an item from the state\r\n     removeItem: (state, action) => {\r\n       state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n     },\r\n \r\n     submitItems: (state, action) => {\r\n-      // Call the hook for the mutation endpoint\r\n       const [submitItems] = useSubmitItemsMutation();\r\n-      // Trigger the mutation and pass the items as the payload\r\n       submitItems(state.digikalaProducts);\r\n     },\r\n   },\r\n \r\n"
+                },
+                {
+                    "date": 1708257155552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n \r\n     submitItems: (state, action) => {\r\n       const [submitItems] = useSubmitItemsMutation();\r\n       submitItems(state.digikalaProducts);\r\n+      \r\n     },\r\n   },\r\n \r\n });\r\n"
+                },
+                {
+                    "date": 1708322524538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,13 @@\n     },\r\n     removeItem: (state, action) => {\r\n       state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n     },\r\n+    removeAll: (state, action) => {\r\n+      state.digikalaProducts = [];\r\n+    },\r\n \r\n+\r\n     submitItems: (state, action) => {\r\n       const [submitItems] = useSubmitItemsMutation();\r\n       submitItems(state.digikalaProducts);\r\n       \r\n@@ -26,6 +30,6 @@\n   },\r\n \r\n });\r\n \r\n-export const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\n+export const { addItem, removeItem,removeAll  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708322550808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     },\r\n     removeItem: (state, action) => {\r\n       state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n     },\r\n-    removeAll: (state, action) => {\r\n+    removeAllItem: (state, action) => {\r\n       state.digikalaProducts = [];\r\n     },\r\n \r\n \r\n@@ -30,6 +30,6 @@\n   },\r\n \r\n });\r\n \r\n-export const { addItem, removeItem,removeAll  } = digikalaProductsSlice.actions;\r\n+export const { addItem, removeItem,removeAllItem  } = digikalaProductsSlice.actions;\r\n export default digikalaProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708322745930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,18 @@\n       const [submitItems] = useSubmitItemsMutation();\r\n       submitItems(state.digikalaProducts);\r\n       \r\n     },\r\n+    \r\n   },\r\n+  extraReducers: (builder) => {\r\n+    builder.addMatcher(\r\n+      apiC.endpoints.addItem.matchFulfilled,\r\n+      (state, action) => {\r\n+        console.log('Action received in Slice A: ', action);\r\n+      }\r\n+    );\r\n+  },\r\n \r\n });\r\n \r\n export const { addItem, removeItem,removeAllItem  } = digikalaProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708322791148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\n import { useSubmitItemsMutation } from \"./api\";\r\n-\r\n+import { api} from './api';\r\n // Define the initial state\r\n const initialState = {\r\n   digikalaProducts: [],\r\n };\r\n@@ -30,11 +30,11 @@\n     \r\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n-      apiC.endpoints.addItem.matchFulfilled,\r\n+      api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        console.log('Action received in Slice A: ', action);\r\n+        state.digikalaProducts = [];\r\n       }\r\n     );\r\n   },\r\n \r\n"
+                }
+            ],
+            "date": 1708248081265,
+            "name": "Commit-0",
+            "content": "import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\nimport { useSubmitItemsMutation } from \"./api\";\r\n\r\n// Define the initial state\r\nconst initialState = {\r\n  digikalaProducts: [],\r\n};\r\n\r\n// Create the slice\r\nconst digikalaProductsSlice = createSlice({\r\n  name: \"digikalaProducts\",\r\n  initialState,\r\n  reducers: {\r\n    // Define a reducer to add an item to the state\r\n    addItem: (state, action) => {\r\n      state.digikalaProducts?.find(product => product.id === action.payload.id) || state.digikalaProducts.push(action.payload);\r\n    },\r\n    // Define a reducer to remove an item from the state\r\n    removeItem: (state, action) => {\r\n      state.digikalaProducts = state.digikalaProducts.filter((item) => item.id !== action.payload);\r\n    },\r\n\r\n    submitItems: (state, action) => {\r\n      // Call the hook for the mutation endpoint\r\n      const [submitItems] = useSubmitItemsMutation();\r\n      // Trigger the mutation and pass the items as the payload\r\n      submitItems(state.digikalaProducts);\r\n    },\r\n  },\r\n});\r\n\r\nexport const { addItem, removeItem,submitItems  } = digikalaProductsSlice.actions;\r\nexport default digikalaProductsSlice.reducer;\r\n"
+        }
+    ]
+}

@@ -9,7 +9,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Alert } from 'react-native';
 
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, removeItem } from '../reduxApi/eyeProductsSelected.reducer';
+import { addItem, removeItem } from '../reduxApi/digikalaSelectedProducts.reducer';
 
 interface Props {
     digikalaProduct: any

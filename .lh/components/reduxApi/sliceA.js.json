@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/reduxApi/sliceA.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1708259665556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708260177725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { apiC } from './api';\r\n+import { apiC } from './api2';\r\n \r\n const initialState = {};\r\n \r\n const sliceA = createSlice({\r\n"
+                },
+                {
+                    "date": 1708315954280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n     builder.addMatcher(\r\n       apiC.endpoints.addItem.matchFulfilled,\r\n       (state, action) => {\r\n         console.log('Action received in Slice A: ', action);\r\n-        // Perform any additional logic if needed\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708322237635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,26 @@\n     );\r\n   },\r\n });\r\n \r\n-export default sliceA;\n\\ No newline at end of file\n+export default sliceA;\r\n+\r\n+import { createSlice } from \"@reduxjs/toolkit\";\r\n+import { submitItems } from \"./digikalaProducts.reducer\";\r\n+\r\n+const initialState = {\r\n+  saveProducts: [],\r\n+};\r\n+\r\n+const eyeProductsSlice = createSlice({\r\n+  name: \"eyeProducts\",\r\n+  initialState,\r\n+  reducers: {\r\n+    addSaveProduct: (state, action) => {\r\n+      state.saveProducts.push(action.payload);\r\n+    },\r\n+  }\r\n+});\r\n+\r\n+export const { addSaveProduct } = eyeProductsSlice.actions;\r\n+\r\n+export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708322253296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,24 +18,4 @@\n });\r\n \r\n export default sliceA;\r\n \r\n-import { createSlice } from \"@reduxjs/toolkit\";\r\n-import { submitItems } from \"./digikalaProducts.reducer\";\r\n-\r\n-const initialState = {\r\n-  saveProducts: [],\r\n-};\r\n-\r\n-const eyeProductsSlice = createSlice({\r\n-  name: \"eyeProducts\",\r\n-  initialState,\r\n-  reducers: {\r\n-    addSaveProduct: (state, action) => {\r\n-      state.saveProducts.push(action.payload);\r\n-    },\r\n-  }\r\n-});\r\n-\r\n-export const { addSaveProduct } = eyeProductsSlice.actions;\r\n-\r\n-export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708322745950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { apiC } from './api2';\r\n+import { api} from './api';\r\n \r\n const initialState = {};\r\n \r\n const sliceA = createSlice({\r\n@@ -8,9 +8,9 @@\n   initialState,\r\n   reducers: {},\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n-      apiC.endpoints.addItem.matchFulfilled,\r\n+      api.endpoints.addItem.matchFulfilled,\r\n       (state, action) => {\r\n         console.log('Action received in Slice A: ', action);\r\n       }\r\n     );\r\n"
+                },
+                {
+                    "date": 1708322767711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { api} from './api';\r\n+import { apiC } from './api2';\r\n \r\n const initialState = {};\r\n \r\n const sliceA = createSlice({\r\n@@ -8,14 +8,13 @@\n   initialState,\r\n   reducers: {},\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n-      api.endpoints.addItem.matchFulfilled,\r\n+      apiC.endpoints.addItem.matchFulfilled,\r\n       (state, action) => {\r\n         console.log('Action received in Slice A: ', action);\r\n       }\r\n     );\r\n   },\r\n });\r\n \r\n export default sliceA;\r\n-\r\n"
+                }
+            ],
+            "date": 1708259665556,
+            "name": "Commit-0",
+            "content": "import { createSlice } from '@reduxjs/toolkit';\r\nimport { apiC } from './api';\r\n\r\nconst initialState = {};\r\n\r\nconst sliceA = createSlice({\r\n  name: 'sliceA',\r\n  initialState,\r\n  reducers: {},\r\n  extraReducers: (builder) => {\r\n    builder.addMatcher(\r\n      apiC.endpoints.addItem.matchFulfilled,\r\n      (state, action) => {\r\n        console.log('Action received in Slice A: ', action);\r\n        // Perform any additional logic if needed\r\n      }\r\n    );\r\n  },\r\n});\r\n\r\nexport default sliceA;"
+        }
+    ]
+}

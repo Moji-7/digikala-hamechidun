@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1704273974698,
@@ -20,6 +20,10 @@
                 {
                     "date": 1704279601396,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,17 +8,23 @@\n     \"ios\": \"expo start --ios\",\n     \"web\": \"expo start --web\"\n   },\n   \"dependencies\": {\n+    \"@expo/webpack-config\": \"^19.0.0\",\n+    \"@react-navigation/native\": \"^6.1.9\",\n+    \"@react-navigation/stack\": \"^6.3.20\",\n+    \"@rneui/base\": \"^4.0.0-rc.8\",\n+    \"@rneui/themed\": \"^4.0.0-rc.8\",\n     \"expo\": \"~49.0.15\",\n     \"expo-status-bar\": \"~1.6.0\",\n     \"react\": \"18.2.0\",\n     \"react-dom\": \"18.2.0\",\n     \"react-native\": \"0.72.6\",\n-    \"@tanstack/react-query\": \"^5.17.0\",\n-    \"@rneui/base\": \"^4.0.0-rc.8\",\n-    \"@rneui/themed\": \"^4.0.0-rc.8\"\n-\n+    \"react-native-safe-area-context\": \"^4.8.2\",\n+    \"react-native-screens\": \"^3.29.0\",\n+    \"react-native-vector-icons\": \"^10.0.3\",\n+    \"react-native-web\": \"~0.19.6\",\n+    \"@tanstack/react-query\": \"^5.17.0\"\n   },\n   \"devDependencies\": {\n     \"@babel/core\": \"^7.20.0\",\n     \"@types/react\": \"~18.2.14\",\n"
+                },
+                {
+                    "date": 1708516118129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,22 +9,33 @@\n     \"web\": \"expo start --web\"\n   },\n   \"dependencies\": {\n     \"@expo/webpack-config\": \"^19.0.0\",\n+    \"@react-navigation/bottom-tabs\": \"^6.5.12\",\n+    \"@react-navigation/drawer\": \"^6.6.7\",\n     \"@react-navigation/native\": \"^6.1.9\",\n+    \"@react-navigation/native-stack\": \"^6.9.17\",\n     \"@react-navigation/stack\": \"^6.3.20\",\n+    \"@reduxjs/toolkit\": \"^2.2.0\",\n     \"@rneui/base\": \"^4.0.0-rc.8\",\n     \"@rneui/themed\": \"^4.0.0-rc.8\",\n+    \"@tanstack/react-query\": \"^5.17.0\",\n+    \"@tanstack/react-query-devtools\": \"^5.17.0\",\n     \"expo\": \"~49.0.15\",\n     \"expo-status-bar\": \"~1.6.0\",\n+    \"formik\": \"^2.4.5\",\n     \"react\": \"18.2.0\",\n     \"react-dom\": \"18.2.0\",\n     \"react-native\": \"0.72.6\",\n+    \"react-native-gesture-handler\": \"~2.12.0\",\n+    \"react-native-pagination\": \"^1.5.5\",\n+    \"react-native-reanimated\": \"~3.3.0\",\n     \"react-native-safe-area-context\": \"^4.8.2\",\n     \"react-native-screens\": \"^3.29.0\",\n+    \"react-native-snackbar\": \"^2.6.2\",\n     \"react-native-vector-icons\": \"^10.0.3\",\n     \"react-native-web\": \"~0.19.6\",\n-    \"@tanstack/react-query\": \"^5.17.0\"\n+    \"react-redux\": \"^9.1.0\"\n   },\n   \"devDependencies\": {\n     \"@babel/core\": \"^7.20.0\",\n     \"@types/react\": \"~18.2.14\",\n"
                 }
             ],
             "date": 1704273974698,

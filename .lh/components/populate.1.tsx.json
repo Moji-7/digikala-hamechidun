@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/populate.1.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1708506858125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1708506858125,
+            "name": "Commit-0",
+            "content": "export const populate = () => {\r\n  // Use useQuery instead of useQueries, and pass the custom hook as the query function\r\n  return (\r\n\r\n    <NavigationContainer>\r\n      <Tab.Navigator initialRouteName=\"Home\">\r\n        <Tab.Screen\r\n          name=\"Home\"\r\n          component={HomeScreen} />\r\n        <Tab.Screen\r\n          name=\"About\"\r\n          component={AboutScreen} />\r\n        <Tab.Screen\r\n          name=\"Contact\"\r\n          component={ContactScreen} />\r\n      </Tab.Navigator>\r\n    </NavigationContainer>\r\n    // <div>\r\n    //   {/* Render your child component and pass the query states as props */}\r\n    //   <OrdersSummary />\r\n    //   <OrdersSellersMost />\r\n    //   <OrdersProductsMost />\r\n    //   <OrderProductPriceExpensive />\r\n    // </div>\r\n  );\r\n};\r\n"
+        }
+    ]
+}

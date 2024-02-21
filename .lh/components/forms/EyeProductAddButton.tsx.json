@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/forms/EyeProductAddButton.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708246764183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708325303118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n import { Alert } from 'react-native';\r\n \r\n import { useSelector, useDispatch } from \"react-redux\";\r\n-import { addItem, removeItem } from '../reduxApi/digikalaProducts.reducer';\r\n+import { addItem, removeItem } from '../reduxApi/digikalaSelectedProducts.reducer';\r\n \r\n interface Props {\r\n     digikalaProduct: any\r\n }\r\n"
+                }
+            ],
+            "date": 1708246764183,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from 'react';\r\nimport { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';\r\nimport { Card, ListItem, Divider, useTheme, Button, Icon } from '@rneui/themed';\r\nimport { useEyeProduct } from '../hooks/useEyeOnProduct';\r\nimport { EyeProduct, EyeProductParams } from '../entity/Eye.dto';\r\nimport { useQueryClient } from '@tanstack/react-query';\r\n\r\n\r\nimport { Alert } from 'react-native';\r\n\r\nimport { useSelector, useDispatch } from \"react-redux\";\r\nimport { addItem, removeItem } from '../reduxApi/digikalaProducts.reducer';\r\n\r\ninterface Props {\r\n    digikalaProduct: any\r\n}\r\nconst EyeProductAddButton: React.FC<Props> = (digikalaProduct) => {\r\n\r\n    // Use the useDispatch hook to get a reference to the dispatch function\r\n    const dispatch = useDispatch();\r\n\r\n    const handleAddToCart = () => {\r\n        //   if (!digikalaSelectedProduct.some((item) => item.id === product.id))\r\n        //       setDigikalaSelectedProduct([...digikalaSelectedProduct, product]);\r\n        console.log(digikalaProduct.digikalaProduct)\r\n        dispatch(addItem(digikalaProduct.digikalaProduct));\r\n        //  console.log(`Adding product ${product.id} to cart`);\r\n\r\n    };\r\n\r\n    // Render the items list\r\n    return (\r\n        <>\r\n            <Icon\r\n                name=\"add-shopping-cart\"\r\n                type=\"ionicon\"\r\n                onPress={() => handleAddToCart()}\r\n            />\r\n        </>\r\n    );\r\n}\r\n\r\n\r\n//     const { theme } = useTheme();\r\n//     const queryClient = useQueryClient();\r\n\r\n//     const { data, error, isLoading, isError, deleteMutation, addMutation } = useEyeProduct(undefined, queryClient);\r\n\r\n//     const handleAdd = async () => {\r\n//         //const result = await addMutation.mutateAsync(formData);\r\n//         Alert.alert(\"Success\", \"The eye product was added successfully\", [\r\n//             { text: \"OK\", onPress: () => console.log(\"OK Pressed\") },\r\n//         ]);\r\n//         console.log('The eye product was added successfully', result);\r\n//     }\r\n//     return (\r\n//             <Button onPress={() => handleAdd()} key={'addEyeBtn'} title='Add to my Favorite'\r\n//                 // disabled={Object.keys(validationErrors || {}).length > 0}\r\n//             />\r\n//     );\r\n// };\r\n\r\n\r\n\r\nexport default EyeProductAddButton;\r\n"
+        }
+    ]
+}

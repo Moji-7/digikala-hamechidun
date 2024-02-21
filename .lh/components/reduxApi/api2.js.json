@@ -1,0 +1,58 @@
+{
+    "sourceFile": "components/reduxApi/api2.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1708259590582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708259759184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     getItems: builder.query({\r\n       query: () => 'items',\r\n       providesTags: (result) =>\r\n         result\r\n-          ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]]\r\n+          ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]\r\n           : [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n     addItem: builder.mutation({\r\n       query: (item) => ({ url: 'items', method: 'POST', body: item }),\r\n@@ -18,5 +18,5 @@\n     }),\r\n   }),\r\n });\r\n \r\n-export default apiC;\n\\ No newline at end of file\n+export default apiC;\r\n"
+                },
+                {
+                    "date": 1708260069354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';\r\n \r\n-const apiC = createApi({\r\n+export const apiC = createApi({\r\n   reducerPath: 'apiC',\r\n   tagTypes: ['Items'],\r\n   baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),\r\n   endpoints: (builder) => ({\r\n@@ -19,4 +19,5 @@\n   }),\r\n });\r\n \r\n export default apiC;\r\n+\r\n"
+                },
+                {
+                    "date": 1708260084799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,6 +18,5 @@\n     }),\r\n   }),\r\n });\r\n \r\n-export default apiC;\r\n \r\n"
+                },
+                {
+                    "date": 1708313501379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,7 @@\n       invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n   }),\r\n });\r\n+export const {  useSubmitItemsMutation2 } = apiC\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1708313581861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,7 @@\n       invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n   }),\r\n });\r\n-export const {  useSubmitItemsMutation2 } = apiC\r\n+export const {  useSubmitItemsMutationC } = apiC\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1708313640225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,7 @@\n       invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n   }),\r\n });\r\n-export const {  useSubmitItemsMutationC } = apiC\r\n+export const {  useAddItemMutation } = apiC\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1708314070707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n export const apiC = createApi({\r\n   reducerPath: 'apiC',\r\n   tagTypes: ['Items'],\r\n-  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),\r\n+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3222/eye/?page=1&length=10' }),\r\n   endpoints: (builder) => ({\r\n     getItems: builder.query({\r\n       query: () => 'items',\r\n       providesTags: (result) =>\r\n"
+                },
+                {
+                    "date": 1708314088429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,12 @@\n \r\n export const apiC = createApi({\r\n   reducerPath: 'apiC',\r\n   tagTypes: ['Items'],\r\n-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3222/eye/?page=1&length=10' }),\r\n+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3222/eye' }),\r\n   endpoints: (builder) => ({\r\n     getItems: builder.query({\r\n-      query: () => 'items',\r\n+      query: () => '/?page=1&length=10',\r\n       providesTags: (result) =>\r\n         result\r\n           ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]\r\n           : [{ type: 'Items', id: 'LIST' }],\r\n"
+                },
+                {
+                    "date": 1708314471186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n           ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]\r\n           : [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n     addItem: builder.mutation({\r\n-      query: (item) => ({ url: 'items', method: 'POST', body: item }),\r\n+      //query: (item) => ({ url: 'items', method: 'POST', body: item }),\r\n+      query: (item) => ({ url: '/?page=1&length=10', method: 'GET'}),\r\n       invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n   }),\r\n });\r\n"
+                },
+                {
+                    "date": 1708315954257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n           ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]\r\n           : [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n     addItem: builder.mutation({\r\n-      //query: (item) => ({ url: 'items', method: 'POST', body: item }),\r\n       query: (item) => ({ url: '/?page=1&length=10', method: 'GET'}),\r\n       invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n     }),\r\n   }),\r\n"
+                }
+            ],
+            "date": 1708259590582,
+            "name": "Commit-0",
+            "content": "import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';\r\n\r\nconst apiC = createApi({\r\n  reducerPath: 'apiC',\r\n  tagTypes: ['Items'],\r\n  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),\r\n  endpoints: (builder) => ({\r\n    getItems: builder.query({\r\n      query: () => 'items',\r\n      providesTags: (result) =>\r\n        result\r\n          ? [...result.map(({ id }) => ({ type: 'Items', id })), { type: 'Items', id: 'LIST' }]]\r\n          : [{ type: 'Items', id: 'LIST' }],\r\n    }),\r\n    addItem: builder.mutation({\r\n      query: (item) => ({ url: 'items', method: 'POST', body: item }),\r\n      invalidatesTags: [{ type: 'Items', id: 'LIST' }],\r\n    }),\r\n  }),\r\n});\r\n\r\nexport default apiC;"
+        }
+    ]
+}

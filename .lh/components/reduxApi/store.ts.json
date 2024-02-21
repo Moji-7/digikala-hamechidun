@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/reduxApi/store.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708246080024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708246764188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { configureStore } from \"@reduxjs/toolkit\";\r\n import { api } from \"./api\";\r\n \r\n-import itemsReducer from \"./eyeProductsSelected.reducer\";\r\n+import itemsReducer from \"./digikalaProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n // Create the store\r\n export const store = configureStore({\r\n   reducer: {\r\n"
+                }
+            ],
+            "date": 1708246080024,
+            "name": "Commit-0",
+            "content": "import { configureStore } from \"@reduxjs/toolkit\";\r\nimport { api } from \"./api\";\r\n\r\nimport itemsReducer from \"./eyeProductsSelected.reducer\";\r\nimport eyeProductsReducer from \"./eyeProducts.reducer\";\r\n// Create the store\r\nexport const store = configureStore({\r\n  reducer: {\r\n    digikalaProducts: itemsReducer,\r\n    api: api.reducer,\r\n    eyeProducts: eyeProductsReducer,\r\n  },\r\n  middleware: (getDefaultMiddleware) =>\r\n  getDefaultMiddleware().concat(api.middleware),\r\n});\r\n\r\n"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { SearchParamsOrderItem } from "../entity/SearchQueries";
-import { EyeProduct } from "../forms/EyeProduct.entity";
-import { EyeProductParams } from "../entity/Eye.dto";
+;
+import { EyeProduct, EyeProductParams } from "../entity/Eye.dto";
 
 export const useEyeProduct = (params?: EyeProductParams , queryClient: QueryClient) => {
 
@@ -36,7 +36,7 @@ export const useEyeProduct = (params?: EyeProductParams , queryClient: QueryClie
     });
     const deleteMutation = useMutation({
         mutationFn: async (productId: number) => {
-          const response = await fetch(`http://localhost:3222/eye/?productId=${productId}`, {
+          const response = await fetch(`http://localhost:3222/eye/${productId}`, {
             method: "DELETE",
           });
           if (!response.ok) {
@@ -44,10 +44,10 @@ export const useEyeProduct = (params?: EyeProductParams , queryClient: QueryClie
           }
           return response.json();
         },
-        onSettled: () => {
-            // Invalidate the query keys that depend on the eye product data
-            queryClient.invalidateQueries("useEyeProduct");
-          },
+        // onSettled: () => {
+        //     // Invalidate the query keys that depend on the eye product data
+        //     queryClient.invalidateQueries("useEyeProduct");
+        //   },
       });
        const addMutation = useMutation({
         mutationFn: async (eyeProduct: EyeProduct) => {

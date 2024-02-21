@@ -15,11 +15,10 @@ const OrderProductPriceExpensive = () => {
   const renderItem = ({ item }) => (
     <ListItem bottomDivider>
       <ListItem.Content>
-        <ListItem.Title>{item.title_fa}</ListItem.Title>
-        <ListItem.Subtitle>{item.rrp_price}</ListItem.Subtitle>
-        <ListItem.Subtitle>{item.quantity}</ListItem.Subtitle>
-        <ListItem.Subtitle>{item.selling_price}</ListItem.Subtitle>
-        <ListItem.Subtitle>{item.discount_percent}</ListItem.Subtitle>
+        <ListItem.Title>{item.title_fa} ( count:{item.quantity} )</ListItem.Title>
+        <ListItem.Subtitle>{item.rrp_price} ( {item.selling_price} | {item.discount_percent}% )
+        </ListItem.Subtitle>
+
       </ListItem.Content>
     </ListItem>
   );
@@ -51,7 +50,7 @@ const OrderProductPriceExpensive = () => {
 // Define some styles for the component
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/reduxApi/sliceB.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708259645826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708259658396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,16 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { apiC } from './api';\r\n \r\n-const initialState = {};\r\n+const initialState = { items: [] };\r\n \r\n-const sliceA = createSlice({\r\n-  name: 'sliceA',\r\n+const sliceB = createSlice({\r\n+  name: 'sliceB',\r\n   initialState,\r\n-  reducers: {},\r\n-  extraReducers: (builder) => {\r\n-    builder.addMatcher(\r\n-      apiC.endpoints.addItem.matchFulfilled,\r\n-      (state, action) => {\r\n-        console.log('Action received in Slice A: ', action);\r\n-        // Perform any additional logic if needed\r\n-      }\r\n-    );\r\n+  reducers: {\r\n\\ No newline at end of file\n+    addItem: (state, action) => {\r\n+      state.items.push(action.payload);\r\n+    },\r\n   },\r\n });\r\n \r\n-export default sliceA;\n+export const { addItem } = sliceB.actions;\r\n+export default sliceB;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1708259645826,
+            "name": "Commit-0",
+            "content": "import { createSlice } from '@reduxjs/toolkit';\r\nimport { apiC } from './api';\r\n\r\nconst initialState = {};\r\n\r\nconst sliceA = createSlice({\r\n  name: 'sliceA',\r\n  initialState,\r\n  reducers: {},\r\n  extraReducers: (builder) => {\r\n    builder.addMatcher(\r\n      apiC.endpoints.addItem.matchFulfilled,\r\n      (state, action) => {\r\n        console.log('Action received in Slice A: ', action);\r\n        // Perform any additional logic if needed\r\n      }\r\n    );\r\n  },\r\n});\r\n\r\nexport default sliceA;"
+        }
+    ]
+}

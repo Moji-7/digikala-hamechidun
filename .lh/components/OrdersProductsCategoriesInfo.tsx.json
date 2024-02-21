@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 231,
+            "activePatchIndex": 232,
             "patches": [
                 {
                     "date": 1704780167941,
@@ -932,6 +932,10 @@
                 {
                     "date": 1705748645508,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,11 +37,11 @@\n     const handleClick = (\r\n         categoryData: CategoryGrouped\r\n     ) => {\r\n \r\n-        getasCache(categoryData,data)\r\n-        setOrderGroupedCategory_2(filterOrderGroupedCategory_2)\r\n-        setOrderGroupedCategory_3(filterOrderGroupedCategory_3)\r\n+       const filtered= getasCache(categoryData,data)\r\n+        setOrderGroupedCategory_2(filtered.filterOrderGroupedCategory_2)\r\n+        setOrderGroupedCategory_3(filtered.filterOrderGroupedCategory_3)\r\n         setCategoryClicked(true)\r\n         // setSearchOrderItemParams(prevState => {\r\n         //     const { item_category3, ...rest } = prevState;\r\n         //     return {\r\n"
+                },
+                {
+                    "date": 1708513781847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,14 @@\n // Import the necessary modules\r\n import React, { useEffect, useState } from 'react';\r\n import { View, Text, StyleSheet } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n-\r\n+import useSearchOrderItemParams from './hooks/useSearchOrderItemParams';\r\n import usePopulateOrdersProductsCategoriesInfo from './hooks/usePopulateOrdersProductsCategoriesInfo';\r\n-import ListCategoryGrouped2 from './uicomponents/ListCategoryGrouped2';\r\n import ListCategoryGrouped from './uicomponents/ListCategoryGrouped';\r\n import { CategorySearchParams, SearchParamsOrderItem, createSearchParamsOrderItem } from './entity/SearchQueries';\r\n-import { useNavigation } from '@react-navigation/native';\r\n import OrderItem from './Orderitem';\r\n-import useSearchOrderItemParams from './hooks/useSearchOrderItemParams';\r\n+\r\n import { CategoryGrouped } from './entity/OrdersProductsCategoriesInfo';\r\n interface OrdersProductsCategoriesProps {\r\n     categoryParams: CategorySearchParams;\r\n }\r\n@@ -99,9 +97,9 @@\n \r\n // Define the styles for the component using StyleSheet\r\n const styles = StyleSheet.create({\r\n     container: {\r\n-        flex: 1,\r\n+        //flex: 1,\r\n         alignItems: \"center\",\r\n         justifyContent: \"center\",\r\n     },\r\n     loading: {\r\n"
                 }
             ],
             "date": 1704780167940,

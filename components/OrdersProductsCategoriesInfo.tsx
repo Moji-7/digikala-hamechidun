@@ -98,7 +98,7 @@ const OrdersProductsCategoriesInfo: React.FC<OrdersProductsCategoriesProps> = ({
 // Define the styles for the component using StyleSheet
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        //flex: 1,
         alignItems: "center",
         justifyContent: "center",
     },

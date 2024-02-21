@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/pipelines/RunPipeLineButton.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1708352377729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708352424036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,27 @@\n \r\n \r\n+import React, { useEffect, useState } from 'react';\r\n+import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent, ScrollView } from 'react-native';\r\n+import { Card, ListItem, Divider, useTheme, Button, Tab } from '@rneui/themed';\r\n+\r\n interface Props {\r\n     pipeLineIds: number[];\r\n }\r\n \r\n const RunPipelineButton: React.FC<Props> = ({ pipeLineIds }) => {\r\n \r\n     const { theme } = useTheme();\r\n \r\n+    return (\r\n+        <>\r\n+        </>\r\n \r\n\\ No newline at end of file\n-    const styles = StyleSheet.create({\r\n-        container: {\r\n-            flex: 1,\r\n-        },\r\n-    });\r\n-    \r\n-    export default RunPipelineButton;\n+    );\r\n+};\r\n+const styles = StyleSheet.create({\r\n+    container: {\r\n+        flex: 1,\r\n+    },\r\n+});\r\n+\r\n+export default RunPipelineButton;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708352636519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,16 @@\n \r\n const RunPipelineButton: React.FC<Props> = ({ pipeLineIds }) => {\r\n \r\n     const { theme } = useTheme();\r\n-\r\n+    const handlePipeline = async (e) => {\r\n+   \r\n+       \r\n+     }\r\n+   \r\n     return (\r\n         <>\r\n+          <Button onPress={(e) => handlePipeline(e,pipeLineIds)} title='remove' />\r\n         </>\r\n \r\n     );\r\n };\r\n"
+                },
+                {
+                    "date": 1708352678781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent, ScrollView } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button, Tab } from '@rneui/themed';\r\n \r\n interface Props {\r\n-    pipeLineIds: number[];\r\n+    pipeLineIds: PipelineIds;\r\n }\r\n \r\n const RunPipelineButton: React.FC<Props> = ({ pipeLineIds }) => {\r\n \r\n"
+                },
+                {
+                    "date": 1708352684963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \r\n import React, { useEffect, useState } from 'react';\r\n import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent, ScrollView } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button, Tab } from '@rneui/themed';\r\n+import { PipelineIds } from '../entity/pipelines';\r\n \r\n interface Props {\r\n     pipeLineIds: PipelineIds;\r\n }\r\n"
+                },
+                {
+                    "date": 1708352828616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,10 @@\n \r\n const RunPipelineButton: React.FC<Props> = ({ pipeLineIds }) => {\r\n \r\n     const { theme } = useTheme();\r\n-    const handlePipeline = async (e) => {\r\n+    const handlePipeline = async (e,pipeLineIds:PipelineIds) => {\r\n    \r\n-       \r\n      }\r\n    \r\n     return (\r\n         <>\r\n"
+                },
+                {
+                    "date": 1708355342739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n import React, { useEffect, useState } from 'react';\r\n import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent, ScrollView } from 'react-native';\r\n import { Card, ListItem, Divider, useTheme, Button, Tab } from '@rneui/themed';\r\n-import { PipelineIds } from '../entity/pipelines';\r\n+import { PipelineIds } from '../entity/pipelines.dto';\r\n \r\n interface Props {\r\n     pipeLineIds: PipelineIds;\r\n }\r\n"
+                }
+            ],
+            "date": 1708352377729,
+            "name": "Commit-0",
+            "content": "\r\n\r\ninterface Props {\r\n    pipeLineIds: number[];\r\n}\r\n\r\nconst RunPipelineButton: React.FC<Props> = ({ pipeLineIds }) => {\r\n\r\n    const { theme } = useTheme();\r\n\r\n\r\n    const styles = StyleSheet.create({\r\n        container: {\r\n            flex: 1,\r\n        },\r\n    });\r\n    \r\n    export default RunPipelineButton;"
+        }
+    ]
+}

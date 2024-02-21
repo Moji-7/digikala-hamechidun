@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1704287332388,
@@ -56,6 +56,26 @@
                 {
                     "date": 1704777239095,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { View, Text, StyleSheet, FlatList } from \"react-native\";\r\n import { Card, ListItem, Button, Icon, Divider } from \"@rneui/themed\";\r\n \r\n // Import the custom hook\r\n-import usePopulateOrderProductPriceExpensive from './usePopulateOrderProductPriceExpensive';\r\n+import usePopulateOrderProductPriceExpensive from './hooks/usePopulateOrderProductPriceExpensive';\r\n \r\n // Define a component to display the data\r\n const OrderProductPriceExpensive = () => {\r\n   // Use the custom hook to get the data\r\n"
+                },
+                {
+                    "date": 1708508555087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n \r\n // Define some styles for the component\r\n const styles = StyleSheet.create({\r\n   container: {\r\n-    flex: 1,\r\n+   // flex: 1,\r\n     alignItems: \"center\",\r\n     justifyContent: \"center\",\r\n   },\r\n   loading: {\r\n"
+                },
+                {
+                    "date": 1708508725353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,13 @@\n   // Define a function to render each item as a ListItem component\r\n   const renderItem = ({ item }) => (\r\n     <ListItem bottomDivider>\r\n       <ListItem.Content>\r\n-        <ListItem.Title>{item.title_fa}</ListItem.Title>\r\n-        <ListItem.Subtitle>{item.rrp_price}</ListItem.Subtitle>\r\n-        <ListItem.Subtitle>{item.quantity}</ListItem.Subtitle>\r\n-        <ListItem.Subtitle>{item.selling_price}</ListItem.Subtitle>\r\n-        <ListItem.Subtitle>{item.discount_percent}</ListItem.Subtitle>\r\n+        <ListItem.Title>{item.title_fa} (quantity:{item.quantity})</ListItem.Title>\r\n+        <ListItem.Subtitle>{item.rrp_price}\r\n+          ({item.selling_price}| {item.discount_percent}%)\r\n+        </ListItem.Subtitle>\r\n+\r\n       </ListItem.Content>\r\n     </ListItem>\r\n   );\r\n \r\n@@ -50,9 +50,9 @@\n \r\n // Define some styles for the component\r\n const styles = StyleSheet.create({\r\n   container: {\r\n-   // flex: 1,\r\n+    // flex: 1,\r\n     alignItems: \"center\",\r\n     justifyContent: \"center\",\r\n   },\r\n   loading: {\r\n"
+                },
+                {
+                    "date": 1708508755589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,9 @@\n   const renderItem = ({ item }) => (\r\n     <ListItem bottomDivider>\r\n       <ListItem.Content>\r\n         <ListItem.Title>{item.title_fa} (quantity:{item.quantity})</ListItem.Title>\r\n-        <ListItem.Subtitle>{item.rrp_price}\r\n-          ({item.selling_price}| {item.discount_percent}%)\r\n+        <ListItem.Subtitle>{item.rrp_price} ( {item.selling_price} | {item.discount_percent}% )\r\n         </ListItem.Subtitle>\r\n \r\n       </ListItem.Content>\r\n     </ListItem>\r\n"
+                },
+                {
+                    "date": 1708508822821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   // Define a function to render each item as a ListItem component\r\n   const renderItem = ({ item }) => (\r\n     <ListItem bottomDivider>\r\n       <ListItem.Content>\r\n-        <ListItem.Title>{item.title_fa} (quantity:{item.quantity})</ListItem.Title>\r\n+        <ListItem.Title>{item.title_fa} (count:{item.quantity})</ListItem.Title>\r\n         <ListItem.Subtitle>{item.rrp_price} ( {item.selling_price} | {item.discount_percent}% )\r\n         </ListItem.Subtitle>\r\n \r\n       </ListItem.Content>\r\n"
+                },
+                {
+                    "date": 1708508830973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   // Define a function to render each item as a ListItem component\r\n   const renderItem = ({ item }) => (\r\n     <ListItem bottomDivider>\r\n       <ListItem.Content>\r\n-        <ListItem.Title>{item.title_fa} (count:{item.quantity})</ListItem.Title>\r\n+        <ListItem.Title>{item.title_fa} ( count:{item.quantity} )</ListItem.Title>\r\n         <ListItem.Subtitle>{item.rrp_price} ( {item.selling_price} | {item.discount_percent}% )\r\n         </ListItem.Subtitle>\r\n \r\n       </ListItem.Content>\r\n"
                 }
             ],
             "date": 1704287332388,

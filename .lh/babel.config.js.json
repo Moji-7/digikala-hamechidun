@@ -1,0 +1,18 @@
+{
+    "sourceFile": "babel.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1708512674344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1708512674344,
+            "name": "Commit-0",
+            "content": "module.exports = function(api) {\n  api.cache(true);\n  return {\n    presets: ['babel-preset-expo'],\n    plugins: ['react-native-reanimated/plugin'],\n  };\n};\n"
+        }
+    ]
+}

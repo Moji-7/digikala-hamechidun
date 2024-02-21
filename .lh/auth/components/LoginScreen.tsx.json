@@ -1,0 +1,50 @@
+{
+    "sourceFile": "auth/components/LoginScreen.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1708515589426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708516184434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n // This is a simplified example of a login screen component\r\n import React from 'react';\r\n import { View, Text, TextInput, Button } from 'react-native';\r\n-import { useForm } from 'react-hook-form';\r\n+\r\n import { useNavigation } from '@react-navigation/native';\r\n \r\n const LoginScreen = () => {\r\n-  const { register, handleSubmit, setValue, errors } = useForm();\r\n+\r\n   const navigation = useNavigation(); // Get the navigation prop\r\n \r\n   const onSubmit = (data) => {\r\n     // Perform the login logic here\r\n@@ -46,9 +46,9 @@\n           ref={register({ name: 'password' }, { required: true })}\r\n         />\r\n         {errors.password && <Text>Password is required</Text>}\r\n       </View>\r\n-      <Button title=\"Login\" onPress={handleSubmit(onSubmit)} />\r\n+      <Button title=\"Login\" onPress={onSubmit} />\r\n     </View>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1708516201072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n           placeholder=\"Enter email\"\r\n           onChangeText={(text) => setValue('email', text)}\r\n           ref={register({ name: 'email' }, { required: true })}\r\n         />\r\n-        {errors.email && <Text>Email is required</Text>}\r\n+     \r\n       </View>\r\n       <View>\r\n         <Text>Password</Text>\r\n         <TextInput\r\n@@ -44,9 +44,9 @@\n           secureTextEntry={true}\r\n           onChangeText={(text) => setValue('password', text)}\r\n           ref={register({ name: 'password' }, { required: true })}\r\n         />\r\n-        {errors.password && <Text>Password is required</Text>}\r\n+      \r\n       </View>\r\n       <Button title=\"Login\" onPress={onSubmit} />\r\n     </View>\r\n   );\r\n"
+                },
+                {
+                    "date": 1708516252457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,23 +29,14 @@\n     <View>\r\n       <Text>Login Screen</Text>\r\n       <View>\r\n         <Text>Email</Text>\r\n-        <TextInput\r\n-          placeholder=\"Enter email\"\r\n-          onChangeText={(text) => setValue('email', text)}\r\n-          ref={register({ name: 'email' }, { required: true })}\r\n-        />\r\n+\r\n      \r\n       </View>\r\n       <View>\r\n         <Text>Password</Text>\r\n-        <TextInput\r\n-          placeholder=\"Enter password\"\r\n-          secureTextEntry={true}\r\n-          onChangeText={(text) => setValue('password', text)}\r\n-          ref={register({ name: 'password' }, { required: true })}\r\n-        />\r\n+\r\n       \r\n       </View>\r\n       <Button title=\"Login\" onPress={onSubmit} />\r\n     </View>\r\n"
+                },
+                {
+                    "date": 1708516286830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,20 +10,20 @@\n \r\n   const onSubmit = (data) => {\r\n     // Perform the login logic here\r\n     // For simplicity, we assume the user can login with admin/admin\r\n-    if (data.email === 'admin' && data.password === 'admin') {\r\n+    //if (data.email === 'admin' && data.password === 'admin') {\r\n       // Navigate to the first route in the drawer navigator\r\n       navigation.navigate('incredibles');\r\n       // Reset the navigation state\r\n       navigation.reset({\r\n         index: 0,\r\n         routes: [{ name: 'incredibles' }],\r\n       });\r\n-    } else {\r\n-      // Show an error message\r\n-      alert('Invalid email or password');\r\n-    }\r\n+    // } else {\r\n+    //   // Show an error message\r\n+    //   alert('Invalid email or password');\r\n+    // }\r\n   };\r\n \r\n   return (\r\n     <View>\r\n"
+                },
+                {
+                    "date": 1708516404641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,12 @@\n       navigation.reset({\r\n         index: 0,\r\n         routes: [{ name: 'incredibles' }],\r\n       });\r\n-    // } else {\r\n-    //   // Show an error message\r\n-    //   alert('Invalid email or password');\r\n-    // }\r\n+        // } else {\r\n+        //   // Show an error message\r\n+        //   alert('Invalid email or password');\r\n+        // }\r\n   };\r\n \r\n   return (\r\n     <View>\r\n"
+                },
+                {
+                    "date": 1708516603945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,12 @@\n     //if (data.email === 'admin' && data.password === 'admin') {\r\n       // Navigate to the first route in the drawer navigator\r\n       navigation.navigate('incredibles');\r\n       // Reset the navigation state\r\n-      navigation.reset({\r\n-        index: 0,\r\n-        routes: [{ name: 'incredibles' }],\r\n-      });\r\n+    //   navigation.reset({\r\n+    //     index: 0,\r\n+    //     routes: [{ name: 'incredibles' }],\r\n+    //   });\r\n         // } else {\r\n         //   // Show an error message\r\n         //   alert('Invalid email or password');\r\n         // }\r\n"
+                },
+                {
+                    "date": 1708517035002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,19 @@\n import { useNavigation } from '@react-navigation/native';\r\n \r\n const LoginScreen = () => {\r\n \r\n-  const navigation = useNavigation(); // Get the navigation prop\r\n+    const { navigate, reset } = useNavigation(); // Get the navigation props\r\n \r\n   const onSubmit = (data) => {\r\n     // Perform the login logic here\r\n     // For simplicity, we assume the user can login with admin/admin\r\n     //if (data.email === 'admin' && data.password === 'admin') {\r\n       // Navigate to the first route in the drawer navigator\r\n-      navigation.navigate('incredibles');\r\n+      navigate(\"incredibles\");\r\n       // Reset the navigation state\r\n+      reset([{ name: 'incredibles' }]);\r\n+      // Reset the navigation state\r\n     //   navigation.reset({\r\n     //     index: 0,\r\n     //     routes: [{ name: 'incredibles' }],\r\n     //   });\r\n"
+                },
+                {
+                    "date": 1708517068147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n     // Perform the login logic here\r\n     // For simplicity, we assume the user can login with admin/admin\r\n     //if (data.email === 'admin' && data.password === 'admin') {\r\n       // Navigate to the first route in the drawer navigator\r\n-      navigate(\"incredibles\");\r\n+      navigate(\"Incredibles\");\r\n       // Reset the navigation state\r\n-      reset([{ name: 'incredibles' }]);\r\n+      reset([{ name: 'Incredibles' }]);\r\n       // Reset the navigation state\r\n     //   navigation.reset({\r\n     //     index: 0,\r\n     //     routes: [{ name: 'incredibles' }],\r\n"
+                }
+            ],
+            "date": 1708515589426,
+            "name": "Commit-0",
+            "content": "// This is a simplified example of a login screen component\r\nimport React from 'react';\r\nimport { View, Text, TextInput, Button } from 'react-native';\r\nimport { useForm } from 'react-hook-form';\r\nimport { useNavigation } from '@react-navigation/native';\r\n\r\nconst LoginScreen = () => {\r\n  const { register, handleSubmit, setValue, errors } = useForm();\r\n  const navigation = useNavigation(); // Get the navigation prop\r\n\r\n  const onSubmit = (data) => {\r\n    // Perform the login logic here\r\n    // For simplicity, we assume the user can login with admin/admin\r\n    if (data.email === 'admin' && data.password === 'admin') {\r\n      // Navigate to the first route in the drawer navigator\r\n      navigation.navigate('incredibles');\r\n      // Reset the navigation state\r\n      navigation.reset({\r\n        index: 0,\r\n        routes: [{ name: 'incredibles' }],\r\n      });\r\n    } else {\r\n      // Show an error message\r\n      alert('Invalid email or password');\r\n    }\r\n  };\r\n\r\n  return (\r\n    <View>\r\n      <Text>Login Screen</Text>\r\n      <View>\r\n        <Text>Email</Text>\r\n        <TextInput\r\n          placeholder=\"Enter email\"\r\n          onChangeText={(text) => setValue('email', text)}\r\n          ref={register({ name: 'email' }, { required: true })}\r\n        />\r\n        {errors.email && <Text>Email is required</Text>}\r\n      </View>\r\n      <View>\r\n        <Text>Password</Text>\r\n        <TextInput\r\n          placeholder=\"Enter password\"\r\n          secureTextEntry={true}\r\n          onChangeText={(text) => setValue('password', text)}\r\n          ref={register({ name: 'password' }, { required: true })}\r\n        />\r\n        {errors.password && <Text>Password is required</Text>}\r\n      </View>\r\n      <Button title=\"Login\" onPress={handleSubmit(onSubmit)} />\r\n    </View>\r\n  );\r\n};\r\n\r\nexport default LoginScreen;\r\n"
+        }
+    ]
+}

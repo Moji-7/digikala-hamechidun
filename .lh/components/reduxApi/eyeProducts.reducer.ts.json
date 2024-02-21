@@ -1,0 +1,198 @@
+{
+    "sourceFile": "components/reduxApi/eyeProducts.reducer.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 45,
+            "patches": [
+                {
+                    "date": 1708242798112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708243050117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n // Create a separate eyeProducts slice for clarity\r\n+\r\n+import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\n const initialState = {\r\n     eyeProducts: [],\r\n   };\r\n   \r\n"
+                },
+                {
+                    "date": 1708245903300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,13 @@\n-// Create a separate eyeProducts slice for clarity\r\n+import { createSlice } from '@reduxjs/toolkit';\r\n \r\n-import { createAsyncThunk, createSlice } from \"@reduxjs/toolkit\";\r\n-const initialState = {\r\n-    eyeProducts: [],\r\n-  };\r\n-  \r\n-  const eyeProductsSlice = createSlice({\r\n-    name: 'eyeProducts',\r\n-    initialState,\r\n-    reducers: {}, // No explicit reducers as you only rely on refetching\r\n-    extraReducers: (builder) => {\r\n-      builder.addCase(fetchEyeProducts.fulfilled, (state, action) => {\r\n-        state.eyeProducts = action.payload.data; // Update based on response data\r\n-      });\r\n-    },\r\n\\ No newline at end of file\n-  });\n+const initialState = [];\r\n+\r\n+const eyeProductsSlice = createSlice({\r\n+  name: 'eyeProducts',\r\n+  initialState,\r\n+  reducers: {\r\n+    // Define reducers for managing the EyeProduct array (e.g., add, remove, update)\r\n+  },\r\n+});\r\n+\r\n+export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708245947378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n \r\n-const initialState = [];\r\n-\r\n+const initialState = {\r\n+    digikalaProducts: [],\r\n+  };\r\n const eyeProductsSlice = createSlice({\r\n   name: 'eyeProducts',\r\n   initialState,\r\n   reducers: {\r\n"
+                },
+                {
+                    "date": 1708246944498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n \r\n const initialState = {\r\n-    digikalaProducts: [],\r\n+    eyeProducts: [],\r\n   };\r\n const eyeProductsSlice = createSlice({\r\n   name: 'eyeProducts',\r\n   initialState,\r\n"
+                },
+                {
+                    "date": 1708247541216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,13 @@\n const eyeProductsSlice = createSlice({\r\n   name: 'eyeProducts',\r\n   initialState,\r\n   reducers: {\r\n-    // Define reducers for managing the EyeProduct array (e.g., add, remove, update)\r\n+    // Define any reducers you need for your new slice\r\n+    // For example, a reducer to add an eyeProduct to the state\r\n+    addEyeProduct: (state, action) => {\r\n+      state.eyeProducts.push(action.payload);\r\n+    },\r\n   },\r\n });\r\n \r\n export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708249461098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,8 @@\n     },\r\n   },\r\n });\r\n \r\n+export const {addEyeProduct  } = eyeProductsSlice.actions;\r\n+\r\n+\r\n export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708249602856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n+  \r\n });\r\n \r\n-export const {addEyeProduct  } = eyeProductsSlice.actions;\r\n+export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n-\r\n export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708249652348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,13 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  \r\n+  extraReducers: (builder) => {\r\n+    // Handle the submitItems.fulfilled action and update the state with the result\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+      state.digikalaProducts = action.payload;\r\n+    });\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708249931772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n+import { submitItems } from './';\r\n \r\n+\r\n const initialState = {\r\n     eyeProducts: [],\r\n   };\r\n const eyeProductsSlice = createSlice({\r\n@@ -15,9 +17,9 @@\n   },\r\n   extraReducers: (builder) => {\r\n     // Handle the submitItems.fulfilled action and update the state with the result\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      state.digikalaProducts = action.payload;\r\n+      state.eyeProducts = action.payload;\r\n     });\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708250153883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { submitItems } from './';\r\n+import { submitItems } from './digikalaProducts.reducer';\r\n \r\n \r\n+\r\n const initialState = {\r\n     eyeProducts: [],\r\n   };\r\n const eyeProductsSlice = createSlice({\r\n"
+                },
+                {
+                    "date": 1708250187235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     // Handle the submitItems.fulfilled action and update the state with the result\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n       state.eyeProducts = action.payload;\r\n     });\r\n+}\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708250209719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     },\r\n   },\r\n   extraReducers: (builder) => {\r\n     // Handle the submitItems.fulfilled action and update the state with the result\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+    builder.addCase(submitItems?.fulfilled, (state, action) => {\r\n       state.eyeProducts = action.payload;\r\n     });\r\n }\r\n });\r\n"
+                },
+                {
+                    "date": 1708250227868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,14 +15,9 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  extraReducers: (builder) => {\r\n-    // Handle the submitItems.fulfilled action and update the state with the result\r\n-    builder.addCase(submitItems?.fulfilled, (state, action) => {\r\n-      state.eyeProducts = action.payload;\r\n-    });\r\n-}\r\n+\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708253283746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,14 +9,18 @@\n const eyeProductsSlice = createSlice({\r\n   name: 'eyeProducts',\r\n   initialState,\r\n   reducers: {\r\n-    // Define any reducers you need for your new slice\r\n-    // For example, a reducer to add an eyeProduct to the state\r\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n+  extraReducers: (builder) => {\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+      // Call addSaveProduct here\r\n+      state.eyeProducts.push(action.payload);\r\n+    });\r\n+  },\r\n \r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708253576171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,14 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  extraReducers: (builder) => {\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      // Call addSaveProduct here\r\n-      state.eyeProducts.push(action.payload);\r\n-    });\r\n-  },\r\n+//   extraReducers: (builder) => {\r\n+//     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+//       // Call addSaveProduct here\r\n+//       state.eyeProducts.push(action.payload);\r\n+//     });\r\n+//   },\r\n \r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708254000603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { submitItems } from './digikalaProducts.reducer';\r\n+import { submitItems as submitDigikalaItems } from './digikalaProducts.reducer';\r\n \r\n \r\n-\r\n const initialState = {\r\n     eyeProducts: [],\r\n   };\r\n const eyeProductsSlice = createSlice({\r\n"
+                },
+                {
+                    "date": 1708254391592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,14 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n+  extraReducers: (builder) => {\r\n+    // Listen for the submitItems.fulfilled action and update the state with the payload\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+      state.saveProducts.push(action.payload);\r\n+    });\r\n+  }\r\n //   extraReducers: (builder) => {\r\n //     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n //       // Call addSaveProduct here\r\n //       state.eyeProducts.push(action.payload);\r\n"
+                },
+                {
+                    "date": 1708254398508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { createSlice } from '@reduxjs/toolkit';\r\n-import { submitItems as submitDigikalaItems } from './digikalaProducts.reducer';\r\n+import { submitItems } from './digikalaProducts.reducer';\r\n \r\n \r\n const initialState = {\r\n     eyeProducts: [],\r\n"
+                },
+                {
+                    "date": 1708254442045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   },\r\n   extraReducers: (builder) => {\r\n     // Listen for the submitItems.fulfilled action and update the state with the payload\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      state.saveProducts.push(action.payload);\r\n+      state.eyeProducts.push(action.payload);\r\n     });\r\n   }\r\n //   extraReducers: (builder) => {\r\n //     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n"
+                },
+                {
+                    "date": 1708254475447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     },\r\n   },\r\n   extraReducers: (builder) => {\r\n     // Listen for the submitItems.fulfilled action and update the state with the payload\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+    builder.addCase(submitItems?.fulfilled, (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     });\r\n   }\r\n //   extraReducers: (builder) => {\r\n"
+                },
+                {
+                    "date": 1708254608262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     },\r\n   },\r\n   extraReducers: (builder) => {\r\n     // Listen for the submitItems.fulfilled action and update the state with the payload\r\n-    builder.addCase(submitItems?.fulfilled, (state, action) => {\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     });\r\n   }\r\n //   extraReducers: (builder) => {\r\n"
+                },
+                {
+                    "date": 1708255819930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,20 +12,8 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  extraReducers: (builder) => {\r\n-    // Listen for the submitItems.fulfilled action and update the state with the payload\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      state.eyeProducts.push(action.payload);\r\n-    });\r\n-  }\r\n-//   extraReducers: (builder) => {\r\n-//     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-//       // Call addSaveProduct here\r\n-//       state.eyeProducts.push(action.payload);\r\n-//     });\r\n-//   },\r\n \r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708255866269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,13 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n+  extraReducers: (builder) => {\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+     // Call your reducer here\r\n+     state.saveProducts.push(action.payload);\r\n+    });\r\n \r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708255876077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n      // Call your reducer here\r\n-     state.saveProducts.push(action.payload);\r\n+     state.eyeProducts.push(action.payload);\r\n     });\r\n \r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1708255896211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n      // Call your reducer here\r\n      state.eyeProducts.push(action.payload);\r\n     });\r\n-\r\n+  }\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708256084180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n     },\r\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-     // Call your reducer here\r\n      state.eyeProducts.push(action.payload);\r\n     });\r\n   }\r\n });\r\n"
+                },
+                {
+                    "date": 1708256748473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     },\r\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-     state.eyeProducts.push(action.payload);\r\n+     state.eyeProducts.push('action.payload');\r\n     });\r\n   }\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1708257159737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,10 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  extraReducers: (builder) => {\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-     state.eyeProducts.push('action.payload');\r\n-    });\r\n-  }\r\n+  \r\n+\r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708257241222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n     addEyeProduct: (state, action) => {\r\n       state.eyeProducts.push(action.payload);\r\n     },\r\n   },\r\n-  \r\n \r\n });\r\n \r\n export const {addEyeProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708258173907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,26 @@\n-import { createSlice } from '@reduxjs/toolkit';\r\n-import { submitItems } from './digikalaProducts.reducer';\r\n+import { createSlice } from \"@reduxjs/toolkit\";\r\n+import { submitItems } from \"./digikalaProducts.reducer\";\r\n \r\n+const initialState = {\r\n+  saveProducts: [],\r\n+};\r\n \r\n-const initialState = {\r\n-    eyeProducts: [],\r\n-  };\r\n const eyeProductsSlice = createSlice({\r\n-  name: 'eyeProducts',\r\n+  name: \"eyeProducts\",\r\n   initialState,\r\n   reducers: {\r\n-    addEyeProduct: (state, action) => {\r\n-      state.eyeProducts.push(action.payload);\r\n+    addSaveProduct: (state, action) => {\r\n+      state.saveProducts.push(action.payload);\r\n     },\r\n   },\r\n-\r\n+  extraReducers: (builder) => {\r\n+    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n+      // Call the addSaveProduct reducer here\r\n+      state.saveProducts.push(action.payload);\r\n+    });\r\n+  },\r\n });\r\n \r\n-export const {addEyeProduct } = eyeProductsSlice.actions;\r\n+export const { addSaveProduct } = eyeProductsSlice.actions;\r\n \r\n export default eyeProductsSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708260267742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,8 @@\n     addSaveProduct: (state, action) => {\r\n       state.saveProducts.push(action.payload);\r\n     },\r\n   },\r\n-  extraReducers: (builder) => {\r\n-    builder.addCase(submitItems.fulfilled, (state, action) => {\r\n-      // Call the addSaveProduct reducer here\r\n-      state.saveProducts.push(action.payload);\r\n-    });\r\n-  },\r\n });\r\n \r\n export const { addSaveProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708322874785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { createSlice } from \"@reduxjs/toolkit\";\r\n import { submitItems } from \"./digikalaProducts.reducer\";\r\n+import { api } from \"./api\";\r\n \r\n const initialState = {\r\n   saveProducts: [],\r\n };\r\n@@ -12,8 +13,16 @@\n     addSaveProduct: (state, action) => {\r\n       state.saveProducts.push(action.payload);\r\n     },\r\n   },\r\n+  extraReducers: (builder) => {\r\n+    builder.addMatcher(\r\n+      api.endpoints.submitItems.matchFulfilled,\r\n+      (state, action) => {\r\n+        state.saveProducts =action.payload;\r\n+      }\r\n+    );\r\n+  },\r\n });\r\n \r\n export const { addSaveProduct } = eyeProductsSlice.actions;\r\n \r\n"
+                },
+                {
+                    "date": 1708322932482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { submitItems } from \"./digikalaProducts.reducer\";\r\n import { api } from \"./api\";\r\n \r\n const initialState = {\r\n-  saveProducts: [],\r\n+  eyeProducts: [],\r\n };\r\n \r\n const eyeProductsSlice = createSlice({\r\n   name: \"eyeProducts\",\r\n@@ -17,9 +17,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.saveProducts =action.payload;\r\n+        state.eyeProducts =action.payload;\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708322959209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import { createSlice } from \"@reduxjs/toolkit\";\r\n-import { submitItems } from \"./digikalaProducts.reducer\";\r\n import { api } from \"./api\";\r\n \r\n const initialState = {\r\n   eyeProducts: [],\r\n"
+                },
+                {
+                    "date": 1708327198257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.eyeProducts =action.payload;\r\n+        state.eyeProducts =action.payload.result;\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708327354435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,11 @@\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n-      (state, action) => {\r\n-        state.eyeProducts =action.payload.result;\r\n-      }\r\n+      (state,  { payload }) => {\r\n+        state.eyeProducts = { ...payload };\r\n+    }\r\n     );\r\n   },\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1708327426129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,11 @@\n   },\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n-      (state,  { payload }) => {\r\n-        state.eyeProducts = { ...payload };\r\n-    }\r\n+      (state, action) => {\r\n+        state.eyeProducts =action.meta.requestStatus;\r\n+      }\r\n     );\r\n   },\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1708327838383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.eyeProducts =action.meta.requestStatus;\r\n+        state.eyeProducts =action.payload;\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708345658123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.eyeProducts =action.payload;\r\n+        state.eyeProducts = { ...state.eyeProducts, ...action.payload };\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708346050918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.eyeProducts = { ...state.eyeProducts, ...action.payload };\r\n+        state.eyeProducts = { ...state.eyeProducts, action.payload };\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708346184666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   extraReducers: (builder) => {\r\n     builder.addMatcher(\r\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n-        state.eyeProducts = { ...state.eyeProducts, action.payload };\r\n+        state.eyeProducts =  [...state.eyeProducts, ...action.payload];\r\n       }\r\n     );\r\n   },\r\n });\r\n"
+                },
+                {
+                    "date": 1708348004358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,23 @@\n       api.endpoints.submitItems.matchFulfilled,\r\n       (state, action) => {\r\n         state.eyeProducts =  [...state.eyeProducts, ...action.payload];\r\n       }\r\n-    );\r\n+    ) .addMatcher(\r\n+        api.endpoints.deleteItem.matchFulfilled,\r\n+        (state, action) => {\r\n+            if (action.payload.success) {\r\n+                const deletedProductId = action.meta.arg; // Assuming you pass the productId as an argument to the mutation\r\n+                // Remove the deleted product from the state using filtering\r\n+                state.eyeProducts = state.eyeProducts.filter(\r\n+                  (product) => product.id !== deletedProductId\r\n+                );\r\n+              } else {\r\n+                // Handle deletion failure, e.g., display an error message\r\n+                console.error('Deletion failed:', action.error);\r\n+              }\r\n+            }\r\n+      );\r\n   },\r\n });\r\n \r\n export const { addSaveProduct } = eyeProductsSlice.actions;\r\n"
+                },
+                {
+                    "date": 1708348088229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n       }\r\n     ) .addMatcher(\r\n         api.endpoints.deleteItem.matchFulfilled,\r\n         (state, action) => {\r\n+            debugger;\r\n             if (action.payload.success) {\r\n                 const deletedProductId = action.meta.arg; // Assuming you pass the productId as an argument to the mutation\r\n                 // Remove the deleted product from the state using filtering\r\n                 state.eyeProducts = state.eyeProducts.filter(\r\n"
+                },
+                {
+                    "date": 1708348121511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         api.endpoints.deleteItem.matchFulfilled,\r\n         (state, action) => {\r\n             debugger;\r\n             if (action.payload.success) {\r\n-                const deletedProductId = action.meta.arg; // Assuming you pass the productId as an argument to the mutation\r\n+                const deletedProductId = action.meta.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n                 // Remove the deleted product from the state using filtering\r\n                 state.eyeProducts = state.eyeProducts.filter(\r\n                   (product) => product.id !== deletedProductId\r\n                 );\r\n"
+                },
+                {
+                    "date": 1708352098659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         api.endpoints.deleteItem.matchFulfilled,\r\n         (state, action) => {\r\n             debugger;\r\n             if (action.payload.success) {\r\n-                const deletedProductId = action.meta.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n+                const deletedProductId = action.meta.arg.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n                 // Remove the deleted product from the state using filtering\r\n                 state.eyeProducts = state.eyeProducts.filter(\r\n                   (product) => product.id !== deletedProductId\r\n                 );\r\n"
+                }
+            ],
+            "date": 1708242798112,
+            "name": "Commit-0",
+            "content": "// Create a separate eyeProducts slice for clarity\r\nconst initialState = {\r\n    eyeProducts: [],\r\n  };\r\n  \r\n  const eyeProductsSlice = createSlice({\r\n    name: 'eyeProducts',\r\n    initialState,\r\n    reducers: {}, // No explicit reducers as you only rely on refetching\r\n    extraReducers: (builder) => {\r\n      builder.addCase(fetchEyeProducts.fulfilled, (state, action) => {\r\n        state.eyeProducts = action.payload.data; // Update based on response data\r\n      });\r\n    },\r\n  });"
+        }
+    ]
+}

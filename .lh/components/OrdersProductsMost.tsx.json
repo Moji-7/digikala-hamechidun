@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1704287332387,
@@ -40,6 +40,14 @@
                 {
                     "date": 1704777239096,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { View, Text, StyleSheet, FlatList } from \"react-native\";\r\n import { Card, ListItem, Button, Icon, Divider } from \"@rneui/themed\";\r\n \r\n \r\n-import usePopulateOrdersProductsMost from './usePopulateOrdersProductsMost';\r\n+import usePopulateOrdersProductsMost from './hooks/usePopulateOrdersProductsMost';\r\n \r\n // Define a custom hook to fetch the data from the API\r\n \r\n // Define a component to display the data\r\n"
+                },
+                {
+                    "date": 1708508584271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n }\r\n // Define some styles for the component\r\n const styles = StyleSheet.create({\r\n     container: {\r\n-        flex: 1,\r\n+       // flex: 1,\r\n         alignItems: \"center\",\r\n         justifyContent: \"center\",\r\n     },\r\n     loading: {\r\n"
+                },
+                {
+                    "date": 1708508854357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   const renderItem = ({ item }) => (\r\n     <ListItem bottomDivider>\r\n       <ListItem.Content>\r\n         <ListItem.Title>{item.title_fa}</ListItem.Title>\r\n-        <ListItem.Subtitle>{item.product_count}</ListItem.Subtitle>\r\n+        <ListItem.Subtitle>( count: {item.product_count} )</ListItem.Subtitle>\r\n       </ListItem.Content>\r\n     </ListItem>\r\n   );\r\n \r\n"
                 }
             ],
             "date": 1704287332387,

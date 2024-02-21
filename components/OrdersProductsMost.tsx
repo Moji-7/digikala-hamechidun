@@ -19,7 +19,7 @@ const OrdersProductsMost = () => {
     <ListItem bottomDivider>
       <ListItem.Content>
         <ListItem.Title>{item.title_fa}</ListItem.Title>
-        <ListItem.Subtitle>{item.product_count}</ListItem.Subtitle>
+        <ListItem.Subtitle>( count: {item.product_count} )</ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>
   );
@@ -51,7 +51,7 @@ const OrdersProductsMost = () => {
 // Define some styles for the component
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+       // flex: 1,
         alignItems: "center",
         justifyContent: "center",
     },

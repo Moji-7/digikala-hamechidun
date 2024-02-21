@@ -1,0 +1,110 @@
+{
+    "sourceFile": "components/reduxApi/store2.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1708259481444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708259514874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,18 @@\n-const store = configureStore({\r\n-    reducer: {\r\n-      sliceA: yourSliceAReducer,\r\n-      sliceB: yourSliceBReducer,\r\n-      [apiC.reducerPath]: apiC.reducer,\r\n-    },\r\n-    // Add middleware for API requests (if needed)\r\n-    middleware: (getDefaultMiddleware) =>\r\n-      getDefaultMiddleware().concat(apiC.middleware),\r\n-  });\r\n-  \n\\ No newline at end of file\n+import { configureStore } from '@reduxjs/toolkit';\r\n+import { setupListeners } from '@reduxjs/toolkit/query';\r\n+import { apiC } from './api';\r\n+import sliceA from './sliceA';\r\n+import sliceB from './sliceB';\r\n+\r\n+export const store = configureStore({\r\n+  reducer: {\r\n+    // Add the created reducers here:\r\n+    [apiC.reducerPath]: apiC.reducer,\r\n+    sliceA: sliceA.reducer,\r\n+    sliceB: sliceB.reducer,\r\n+  },\r\n+  middleware: (getDefaultMiddleware) =>\r\n+    getDefaultMiddleware().concat(apiC.middleware),\r\n+});\r\n+\r\n+setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708259678727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { configureStore } from '@reduxjs/toolkit';\r\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n-import { apiC } from './api';\r\n+import { apiC } from './api2';\r\n import sliceA from './sliceA';\r\n import sliceB from './sliceB';\r\n \r\n export const store = configureStore({\r\n"
+                },
+                {
+                    "date": 1708259938411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here:\r\n-    [apiC.reducerPath]: apiC.reducer,\r\n+    apiC: apiC.reducer,\r\n     sliceA: sliceA.reducer,\r\n     sliceB: sliceB.reducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n"
+                },
+                {
+                    "date": 1708260238401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,11 @@\n     // Add the created reducers here:\r\n     apiC: apiC.reducer,\r\n     sliceA: sliceA.reducer,\r\n     sliceB: sliceB.reducer,\r\n+    digikalaProducts: itemsReducer,\r\n+    api: api.reducer,\r\n+    eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n     getDefaultMiddleware().concat(apiC.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708260248791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,13 @@\n import { apiC } from './api2';\r\n import sliceA from './sliceA';\r\n import sliceB from './sliceB';\r\n \r\n+import { api } from \"./api\";\r\n+\r\n+import itemsReducer from \"./digikalaProducts.reducer\";\r\n+import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n+\r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here:\r\n     apiC: apiC.reducer,\r\n"
+                },
+                {
+                    "date": 1708313776308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,8 @@\n     api: api.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n-    getDefaultMiddleware().concat(apiC.middleware),\r\n+    getDefaultMiddleware().concat(apiC.middleware,api.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708323342670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,6 @@\n import { configureStore } from '@reduxjs/toolkit';\r\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n-import { apiC } from './api2';\r\n-import sliceA from './sliceA';\r\n-import sliceB from './sliceB';\r\n \r\n import { api } from \"./api\";\r\n \r\n import itemsReducer from \"./digikalaProducts.reducer\";\r\n@@ -11,16 +8,14 @@\n \r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here:\r\n-    apiC: apiC.reducer,\r\n-    sliceA: sliceA.reducer,\r\n-    sliceB: sliceB.reducer,\r\n+   \r\n     digikalaProducts: itemsReducer,\r\n     api: api.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n-    getDefaultMiddleware().concat(apiC.middleware,api.middleware),\r\n+    getDefaultMiddleware().concat(api.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708323381861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,9 @@\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n export const store = configureStore({\r\n   reducer: {\r\n-    // Add the created reducers here:\r\n-   \r\n+    // Add the created reducers here: \r\n     digikalaProducts: itemsReducer,\r\n     api: api.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n"
+                },
+                {
+                    "date": 1708325302178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n \r\n-import itemsReducer from \"./digikalaProducts.reducer\";\r\n+import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n export const store = configureStore({\r\n   reducer: {\r\n"
+                },
+                {
+                    "date": 1708325445636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here: \r\n-    digikalaProducts: itemsReducer,\r\n+    digikalaSelectedProducts: itemsReducer,\r\n     api: api.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n"
+                },
+                {
+                    "date": 1708354762823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { configureStore } from '@reduxjs/toolkit';\r\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n+import { apiPipeline } from \"./apiPipeline\";\r\n \r\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n@@ -10,8 +11,9 @@\n   reducer: {\r\n     // Add the created reducers here: \r\n     digikalaSelectedProducts: itemsReducer,\r\n     api: api.reducer,\r\n+    api: apiPipeline.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n     getDefaultMiddleware().concat(api.middleware),\r\n"
+                },
+                {
+                    "date": 1708402988030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,12 @@\n   reducer: {\r\n     // Add the created reducers here: \r\n     digikalaSelectedProducts: itemsReducer,\r\n     api: api.reducer,\r\n-    api: apiPipeline.reducer,\r\n+    api2: apiPipeline.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n-    getDefaultMiddleware().concat(api.middleware),\r\n+    getDefaultMiddleware().concat(api.middleware,api2.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708403167924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,13 +10,13 @@\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here: \r\n     digikalaSelectedProducts: itemsReducer,\r\n-    api: api.reducer,\r\n+    api1: api.reducer,\r\n     api2: apiPipeline.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n-    getDefaultMiddleware().concat(api.middleware,api2.middleware),\r\n+    getDefaultMiddleware().concat(api.middleware,apiPipeline.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708418449139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n import { apiPipeline } from \"./apiPipeline\";\r\n+import { pipelineSlice } from \"./pipeline.reducer\";\r\n \r\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n@@ -13,8 +14,9 @@\n     digikalaSelectedProducts: itemsReducer,\r\n     api1: api.reducer,\r\n     api2: apiPipeline.reducer,\r\n     eyeProducts: eyeProductsReducer,\r\n+    pipeline: pipelineSlice,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n     getDefaultMiddleware().concat(api.middleware,apiPipeline.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708418519711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n import { apiPipeline } from \"./apiPipeline\";\r\n-import { pipelineSlice } from \"./pipeline.reducer\";\r\n+import  pipelineSlice  from \"./pipeline.reducer\";\r\n \r\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n"
+                },
+                {
+                    "date": 1708418612796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,14 @@\n \r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here: \r\n+     api1: api.reducer,\r\n     digikalaSelectedProducts: itemsReducer,\r\n-    api1: api.reducer,\r\n+   \r\n+    eyeProducts: eyeProductsReducer,\r\n+    \r\n     api2: apiPipeline.reducer,\r\n-    eyeProducts: eyeProductsReducer,\r\n     pipeline: pipelineSlice,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n     getDefaultMiddleware().concat(api.middleware,apiPipeline.middleware),\r\n"
+                },
+                {
+                    "date": 1708418691218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,24 @@\n import { configureStore } from '@reduxjs/toolkit';\r\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n+import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n+import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n+\r\n import { apiPipeline } from \"./apiPipeline\";\r\n import  pipelineSlice  from \"./pipeline.reducer\";\r\n \r\n-import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n-import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n+\r\n export const store = configureStore({\r\n   reducer: {\r\n     // Add the created reducers here: \r\n      api1: api.reducer,\r\n     digikalaSelectedProducts: itemsReducer,\r\n    \r\n     eyeProducts: eyeProductsReducer,\r\n-    \r\n+\r\n     api2: apiPipeline.reducer,\r\n     pipeline: pipelineSlice,\r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n"
+                },
+                {
+                    "date": 1708418913459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,24 +5,24 @@\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n import { apiPipeline } from \"./apiPipeline\";\r\n-import  pipelineSlice  from \"./pipeline.reducer\";\r\n+import pipelineSlice from \"./pipeline.reducer\";\r\n \r\n \r\n \r\n export const store = configureStore({\r\n-  reducer: {\r\n-    // Add the created reducers here: \r\n-     api1: api.reducer,\r\n-    digikalaSelectedProducts: itemsReducer,\r\n-   \r\n-    eyeProducts: eyeProductsReducer,\r\n+    reducer: {\r\n+        // Add the created reducers here: \r\n+        api1: api.reducer,\r\n+        digikalaSelectedProducts: itemsReducer,\r\n \r\n-    api2: apiPipeline.reducer,\r\n-    pipeline: pipelineSlice,\r\n-  },\r\n-  middleware: (getDefaultMiddleware) =>\r\n-    getDefaultMiddleware().concat(api.middleware,apiPipeline.middleware),\r\n+        eyeProducts: eyeProductsReducer,\r\n+\r\n+        api2: apiPipeline.reducer,\r\n+        pipeline: pipelineSlice,\r\n+    },\r\n+    middleware: (getDefaultMiddleware) =>\r\n+        getDefaultMiddleware().concat(api.middleware, apiPipeline.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708418926009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n         eyeProducts: eyeProductsReducer,\r\n \r\n         api2: apiPipeline.reducer,\r\n-        pipeline: pipelineSlice,\r\n+        apiPipeline: pipelineSlice,\r\n     },\r\n     middleware: (getDefaultMiddleware) =>\r\n         getDefaultMiddleware().concat(api.middleware, apiPipeline.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708419195623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n import { apiPipeline } from \"./apiPipeline\";\r\n-import pipelineSlice from \"./pipeline.reducer\";\r\n+import pipelineReducer from \"./pipeline.reducer\";\r\n \r\n \r\n \r\n export const store = configureStore({\r\n@@ -18,9 +18,9 @@\n \r\n         eyeProducts: eyeProductsReducer,\r\n \r\n         api2: apiPipeline.reducer,\r\n-        apiPipeline: pipelineSlice,\r\n+        pipeline: pipelineReducer,\r\n     },\r\n     middleware: (getDefaultMiddleware) =>\r\n         getDefaultMiddleware().concat(api.middleware, apiPipeline.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708420175794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n         eyeProducts: eyeProductsReducer,\r\n \r\n         api2: apiPipeline.reducer,\r\n-        pipeline: pipelineReducer,\r\n+        apiPipeline: pipelineReducer,\r\n     },\r\n     middleware: (getDefaultMiddleware) =>\r\n         getDefaultMiddleware().concat(api.middleware, apiPipeline.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708420744451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n         eyeProducts: eyeProductsReducer,\r\n \r\n         api2: apiPipeline.reducer,\r\n-        apiPipeline: pipelineReducer,\r\n+       // apiPipeline: pipelineReducer,\r\n     },\r\n     middleware: (getDefaultMiddleware) =>\r\n         getDefaultMiddleware().concat(api.middleware, apiPipeline.middleware),\r\n });\r\n"
+                },
+                {
+                    "date": 1708420804465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n import { apiPipeline } from \"./apiPipeline\";\r\n-import pipelineReducer from \"./pipeline.reducer\";\r\n+//import pipelineReducer from \"./pipeline.reducer\";\r\n \r\n \r\n \r\n export const store = configureStore({\r\n"
+                }
+            ],
+            "date": 1708259481444,
+            "name": "Commit-0",
+            "content": "const store = configureStore({\r\n    reducer: {\r\n      sliceA: yourSliceAReducer,\r\n      sliceB: yourSliceBReducer,\r\n      [apiC.reducerPath]: apiC.reducer,\r\n    },\r\n    // Add middleware for API requests (if needed)\r\n    middleware: (getDefaultMiddleware) =>\r\n      getDefaultMiddleware().concat(apiC.middleware),\r\n  });\r\n  "
+        }
+    ]
+}

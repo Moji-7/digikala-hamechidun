@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/reduxApi/pipeline.reducer.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1708354996912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708417824044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,27 @@\n import { createSlice } from \"@reduxjs/toolkit\";\r\n-import { api } from \"./api\";\r\n+import { apiPipeline } from \"./apiPipeline\";\r\n \r\n-const initialState = {\r\n-  pipelineRunHistory: [],\r\n-};\r\n+// const initialState = {\r\n+//   pipelineRunHistory: [],\r\n+// };\r\n \r\n-const pipelineRunHistorySlice = createSlice({\r\n-  name: \"pipelineRunHistory\",\r\n-  initialState,\r\n-  reducers: {\r\n-    pipelineRunHistory: (state, action) => {\r\n-      state.pipelineRunHistory.push(action.payload);\r\n-    },\r\n-  }\r\n+export const pipelineSlice = createSlice({\r\n+  name: 'pipeline',\r\n+  initialState: { loading: 'idle', error: null, data: null },\r\n+  reducers: {},\r\n+  extraReducers: (builder) => {\r\n+    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchPending, (state) => {\r\n+      state.loading = 'pending';\r\n+    });\r\n+    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchFulfilled, (state, action) => {\r\n+      state.loading = 'idle';\r\n+      state.data = action.payload;\r\n+    });\r\n+    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchRejected, (state, action) => {\r\n+      state.loading = 'idle';\r\n+      state.error = action.error;\r\n+    });\r\n+  },\r\n });\r\n \r\n-export const { pipelineRunHistory } = pipelineRunHistorySlice.actions;\r\n-\r\n-export default pipelineRunHistorySlice.reducer;\r\n+export default pipelineSlice.reducer;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708418484246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,5 +23,5 @@\n     });\r\n   },\r\n });\r\n \r\n-export default pipelineSlice.reducer;\n\\ No newline at end of file\n+export default pipelineSlice.reducer;\r\n"
+                },
+                {
+                    "date": 1708418913269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n //   pipelineRunHistory: [],\r\n // };\r\n \r\n export const pipelineSlice = createSlice({\r\n-  name: 'pipeline',\r\n+  name: 'apiPipeline',\r\n   initialState: { loading: 'idle', error: null, data: null },\r\n   reducers: {},\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(apiPipeline.endpoints.getPipeline.matchPending, (state) => {\r\n"
+                }
+            ],
+            "date": 1708354996912,
+            "name": "Commit-0",
+            "content": "import { createSlice } from \"@reduxjs/toolkit\";\r\nimport { api } from \"./api\";\r\n\r\nconst initialState = {\r\n  pipelineRunHistory: [],\r\n};\r\n\r\nconst pipelineRunHistorySlice = createSlice({\r\n  name: \"pipelineRunHistory\",\r\n  initialState,\r\n  reducers: {\r\n    pipelineRunHistory: (state, action) => {\r\n      state.pipelineRunHistory.push(action.payload);\r\n    },\r\n  }\r\n});\r\n\r\nexport const { pipelineRunHistory } = pipelineRunHistorySlice.actions;\r\n\r\nexport default pipelineRunHistorySlice.reducer;\r\n"
+        }
+    ]
+}

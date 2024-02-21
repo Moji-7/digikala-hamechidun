@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';
-import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
+import { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent, ScrollView } from 'react-native';
+import { Card, ListItem, Divider, useTheme, Button, Tab } from '@rneui/themed';
 import { useEyeProduct } from '../hooks/useEyeOnProduct';
 import { EyeProduct, EyeProductParams } from '../entity/Eye.dto';
 import { useQueryClient } from '@tanstack/react-query';
@@ -8,6 +8,10 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { Alert } from 'react-native';
 import ProductSearch from '../product/ProductSearch';
+import DigikalaProductSelected from './DigikalaProductSelected';
+import DigikalaSelectedProductSubmitButton from './DigikalaSelectedProductSubmitButton';
+import SimpleComponent from './SimpleComponent';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -102,7 +106,7 @@ const EyeProductAddComponent: React.FC<Props> = ({ eyeProductParam }) => {
                 error={!!validationErrors?.[key]}
                 helperText={validationErrors?.[key]}
             />
-       
+
         </View>
     );
     return (
@@ -116,11 +120,31 @@ const EyeProductAddComponent: React.FC<Props> = ({ eyeProductParam }) => {
                 disabled={Object.keys(validationErrors || {}).length > 0}
 
             /> */}
-            
-                 <ProductSearch/>
+            <>
+                {/* <ScrollView style={styles.container}>
+                 
+                </ScrollView> */}
+
+                {/* <NavigationContainer>
+                    <Tab.Naviator>
+                        <Tab.Screen name="Search" component={ProductSearch} />
+                        <Tab.Screen name="Selected" component={DigikalaProductSelected} />
+                    </Tab.Naviator>
+                </NavigationContainer> */}
+
+                <DigikalaProductSelected />
+                <DigikalaSelectedProductSubmitButton />
+                <ProductSearch />
+
+            </>
         </View>
     );
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
 
 export default EyeProductAddComponent;

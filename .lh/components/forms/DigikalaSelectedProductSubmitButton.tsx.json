@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/forms/DigikalaSelectedProductSubmitButton.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708325303109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708325386791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \r\n \r\n const DigikalaSelectedProductSubmitButton: React.FC = () => {\r\n   const dispatch = useDispatch();\r\n-  const digikalaSelectedProduct = useSelector((state) => state.digikalaProducts.digikalaProducts);\r\n+  const digikalaSelectedProduct = useSelector((state) => state.digikalaSelectedProducts.digikalaSelectedProducts);\r\n   const [submitItemsApi, { isError, error, isSuccess, data }] = useSubmitItemsMutation();\r\n   // const [addItems] = useAddItemMutation();\r\n \r\n \r\n"
+                }
+            ],
+            "date": 1708325303109,
+            "name": "Commit-0",
+            "content": "import React, { useCallback, useEffect, useState } from 'react';\r\nimport { View, Text, TextInput, StyleSheet, Linking, FlatList, GestureResponderEvent } from 'react-native';\r\nimport { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';\r\n\r\nimport { useEyeProduct } from '../hooks/useEyeOnProduct';\r\nimport { EyeProduct, EyeProductParams } from '../entity/Eye.dto';\r\nimport { useQueryClient } from '@tanstack/react-query';\r\n\r\n\r\nimport { Alert } from 'react-native';\r\nimport { useDispatch, useSelector } from 'react-redux';\r\nimport { removeItem, removeAllItem } from '../reduxApi/digikalaSelectedProducts.reducer';\r\nimport { useSubmitItemsMutation } from '../reduxApi/api';\r\nimport { useAddItemMutation } from '../reduxApi/api2';\r\n\r\n\r\n\r\n\r\nconst DigikalaSelectedProductSubmitButton: React.FC = () => {\r\n  const dispatch = useDispatch();\r\n  const digikalaSelectedProduct = useSelector((state) => state.digikalaProducts.digikalaProducts);\r\n  const [submitItemsApi, { isError, error, isSuccess, data }] = useSubmitItemsMutation();\r\n  // const [addItems] = useAddItemMutation();\r\n\r\n\r\n  // Use the useCallback hook to memoize the handleSubmit function\r\n  const handleSubmit = async (e) => {\r\n     await submitItemsApi(digikalaSelectedProduct).unwrap();\r\n    \r\n  }\r\n\r\n\r\n  return (\r\n    <>\r\n      {digikalaSelectedProduct.length > 0 && ( // Render when products exist\r\n        <>\r\n          <Button onPress={handleSubmit} title=\"😋 Submit\" />\r\n          {isError && <Text>Something went wrong! Error: {error.message}</Text>}\r\n          {isSuccess && (\r\n            <Text>{isSuccess}Items submitted successfully! Server response: </Text>\r\n          )}\r\n\r\n        </>\r\n      )}\r\n    </>\r\n  );\r\n};\r\nexport default DigikalaSelectedProductSubmitButton;"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "CustomDrawerContent.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1708516549477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1708516549477,
+            "name": "Commit-0",
+            "content": "// This is a simplified example of a custom drawer content component\r\nimport React from 'react';\r\nimport { View, Text, Button } from 'react-native';\r\nimport {\r\n  DrawerContentScrollView,\r\n  DrawerItemList,\r\n  DrawerItem,\r\n // useIsDrawerOpen,\r\n  useDrawerStatus,\r\n} from '@react-navigation/drawer';\r\nimport { useNavigation } from '@react-navigation/native';\r\n\r\nconst CustomDrawerContent = (props) => {\r\n  const navigation = useNavigation(); // Get the navigation prop\r\n // const isDrawerOpen = useIsDrawerOpen(); // Get the drawer open state\r\n  const drawerStatus = useDrawerStatus(); // Get the drawer status\r\n\r\n  const handleLogout = () => {\r\n    // Perform the logout logic here\r\n    // For simplicity, we assume the user can logout without any confirmation\r\n    // Navigate to the login screen\r\n    navigation.navigate('login');\r\n    // Reset the navigation state\r\n    navigation.reset({\r\n      index: 0,\r\n      routes: [{ name: 'login' }],\r\n    });\r\n    // Close the drawer\r\n    //navigation.closeDrawer();\r\n  };\r\n\r\n  return (\r\n    <DrawerContentScrollView {...props}>\r\n      {/* Show the user name and a logout button if the drawer is open */}\r\n      {2==2 && (\r\n        <View>\r\n          <Text>Welcome, admin</Text>\r\n          <Button title=\"Logout\" onPress={handleLogout} />\r\n        </View>\r\n      )}\r\n      {/* Show the drawer items */}\r\n      <DrawerItemList {...props} />\r\n    </DrawerContentScrollView>\r\n  );\r\n};\r\n\r\nexport default CustomDrawerContent;\r\n"
+        }
+    ]
+}

@@ -6,8 +6,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { SearchProductQuery } from '../entity/SearchQueries';
 import DigikalaProductSelected from '../forms/DigikalaProductSelected';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../reduxApi/eyeProductsSelected.reducer';
+import { addItem } from '../reduxApi/digikalaSelectedProducts.reducer';
 import EyeProductAddButton from '../forms/EyeProductAddButton';
+
+import SimpleComponent from '../forms/SimpleComponent';
+import DigikalaSelectedProductSubmitButton from '../forms/DigikalaSelectedProductSubmitButton';
 
 
 
@@ -56,10 +59,7 @@ const ProductSearch: React.FC = ({ }) => {
 
     return (
         <>
-        {/* digikalaSelectedProduct.length > 0 && */}
-            <View>
-                { <DigikalaProductSelected />}
-            </View>
+    
             <View>
 
                 <TextInput
@@ -70,8 +70,6 @@ const ProductSearch: React.FC = ({ }) => {
 
                 {isLoading && <Text>Loading...</Text>}
                 {error && <Text>Error: {error}</Text>}
-
-
                 {isLoading && <Text >Loading...</Text>}
                 {/* Show an error message if the fetch failed */}
                 {isError && <Text >Error: {error.message}</Text>}
