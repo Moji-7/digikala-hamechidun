@@ -17,11 +17,39 @@ import { QueryClient, QueryClientProvider, } from "@tanstack/react-query";
 
 import { store } from "./components/reduxApi/store2";
 import DrawerMenu from "./DrawerMenu";
+import { TokenProvider } from './auth/components/TokenProvider';
+import useTokenStorage from './auth/components/hooks/useTokenStorage';
 
 const Stack = createStackNavigator();
 
 // Create a query client
 const queryClient = new QueryClient();
+// configure the query client with default options
+queryClient.setDefaultOptions({
+  // set the default options for mutations
+  mutations: {
+    // set the default mutation function
+    mutationFn: async (data) => {
+      // get the token from the useTokenStorage hook
+      const { getToken } = useTokenStorage();
+      const token = await getToken();
+      // define the url of your API endpoint
+      const url = 'http://localhost:3222/';
+      // define the options for the fetch request
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        // set the headers with the token
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      // return the fetch request
+      return fetch(url, options).then((res) => res.json());
+    },
+  },
+});
 
 
 export default function App() {
@@ -51,14 +79,15 @@ export default function App() {
     myColors: light,
   });
 
-    // Call the ignoreLogs method to suppress the warning
-    LogBox.ignoreLogs(['export \'default\' (imported as \'Animated\') was not found in \'react-native-reanimated\'']);
+  // Call the ignoreLogs method to suppress the warning
+  LogBox.ignoreLogs(['export \'default\' (imported as \'Animated\') was not found in \'react-native-reanimated\'']);
   return (
     // Use the ThemeProvider component to wrap your app and pass the theme object
     <ThemeProvider theme={themeObj}>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          {/* <NavigationContainer>
+      <TokenProvider>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+               {/* <NavigationContainer>
            <Stack.Navigator  headerMode="none" initialRouteName="populate" screenOptions={{
             animation: 'slide_from_right',
             gestureEnabled: true,
@@ -69,14 +98,12 @@ export default function App() {
           </Stack.Navigator>
                 </NavigationContainer> 
                 */}
-
-          <NavigationContainer>
-            <DrawerMenu />
-          </NavigationContainer>
-
-
-        </Provider>
-      </QueryClientProvider>
+            <NavigationContainer>
+              <DrawerMenu />
+            </NavigationContainer>
+          </Provider>
+        </QueryClientProvider>
+      </TokenProvider>
 
     </ThemeProvider>
   );

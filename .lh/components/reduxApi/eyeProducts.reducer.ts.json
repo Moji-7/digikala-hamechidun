@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 45,
+            "activePatchIndex": 46,
             "patches": [
                 {
                     "date": 1708242798112,
@@ -188,6 +188,10 @@
                 {
                     "date": 1708352098659,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         api.endpoints.deleteItem.matchFulfilled,\r\n         (state, action) => {\r\n             debugger;\r\n             if (action.payload.success) {\r\n-                const deletedProductId = action.meta.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n+                const deletedProductId = action.meta.arg.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n                 // Remove the deleted product from the state using filtering\r\n                 state.eyeProducts = state.eyeProducts.filter(\r\n                   (product) => product.id !== deletedProductId\r\n                 );\r\n"
+                },
+                {
+                    "date": 1708768193394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,9 @@\n         api.endpoints.deleteItem.matchFulfilled,\r\n         (state, action) => {\r\n             debugger;\r\n             if (action.payload.success) {\r\n-                const deletedProductId = action.meta.arg.originalArgs; // Assuming you pass the productId as an argument to the mutation\r\n-                // Remove the deleted product from the state using filtering\r\n+                const deletedProductId = action.meta.arg.originalArgs; \r\n                 state.eyeProducts = state.eyeProducts.filter(\r\n                   (product) => product.id !== deletedProductId\r\n                 );\r\n               } else {\r\n"
                 }
             ],
             "date": 1708242798112,

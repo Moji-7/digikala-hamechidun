@@ -1,0 +1,26 @@
+{
+    "sourceFile": "auth/components/TokenProvider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1708756929566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708757360093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useTokenProvider } from \"../TokenContext\";\r\n \r\n // create a component to wrap the context provider\r\n export function TokenProvider({ children }) {\r\n     // get the context value using the custom hook\r\n"
+                },
+                {
+                    "date": 1708758897383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useTokenProvider } from \"../TokenContext\";\r\n+import { TokenContext, useTokenProvider } from \"../TokenContext\";\r\n \r\n // create a component to wrap the context provider\r\n export function TokenProvider({ children }) {\r\n     // get the context value using the custom hook\r\n"
+                }
+            ],
+            "date": 1708756929566,
+            "name": "Commit-0",
+            "content": "\r\n// create a component to wrap the context provider\r\nexport function TokenProvider({ children }) {\r\n    // get the context value using the custom hook\r\n    const value = useTokenProvider();\r\n  \r\n    // render the context provider with the value and the children\r\n    return <TokenContext.Provider value={value}>{children}</TokenContext.Provider>;\r\n  }"
+        }
+    ]
+}

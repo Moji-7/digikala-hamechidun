@@ -24,8 +24,7 @@ const eyeProductsSlice = createSlice({
         (state, action) => {
             debugger;
             if (action.payload.success) {
-                const deletedProductId = action.meta.arg.originalArgs; // Assuming you pass the productId as an argument to the mutation
-                // Remove the deleted product from the state using filtering
+                const deletedProductId = action.meta.arg.originalArgs; 
                 state.eyeProducts = state.eyeProducts.filter(
                   (product) => product.id !== deletedProductId
                 );

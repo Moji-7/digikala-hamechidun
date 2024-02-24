@@ -1,0 +1,26 @@
+{
+    "sourceFile": "config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1708756778524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708759953846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n \r\n // define the secretKey and tokenKey as constants\r\n export const secretKey = 'WheelyStrongKey';\r\n-export const tokenKey = '@token';\n\\ No newline at end of file\n+export const tokenKey = '@userToken';\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1708760528316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n \r\n // define the secretKey and tokenKey as constants\r\n export const secretKey = 'WheelyStrongKey';\r\n-export const tokenKey = '@userToken';\n\\ No newline at end of file\n+export const tokenKey = '@token';\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1708756778524,
+            "name": "Commit-0",
+            "content": "\r\n// define the secretKey and tokenKey as constants\r\nexport const secretKey = 'WheelyStrongKey';\r\nexport const tokenKey = '@token';"
+        }
+    ]
+}

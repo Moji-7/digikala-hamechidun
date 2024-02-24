@@ -1,0 +1,18 @@
+{
+    "sourceFile": "auth/components/hooks/w.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1708755415273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1708755415273,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport CryptoJS from 'crypto-js';\r\nimport AsyncStorage from '@react-native-async-storage/async-storage';\r\n\r\n// define a custom hook for storing and retrieving tokens\r\nexport default function useTokenStorage(secretKey, tokenKey) {\r\n  // define a function for storing the token\r\n  const storeData = async (value) => {\r\n    try {\r\n      // convert the value to a string\r\n      const stringValue = JSON.stringify(value);\r\n      // encrypt the value with the secret key\r\n      const encryptedValue = CryptoJS.AES.encrypt(stringValue, secretKey).toString();\r\n      // store the encrypted value with the token key\r\n      await AsyncStorage.setItem(tokenKey, encryptedValue);\r\n    } catch (e) {\r\n      // handle the error\r\n      console.error(e);\r\n    }\r\n  };\r\n\r\n  // define a function for retrieving the token\r\n  const getData = async () => {\r\n    try {\r\n      // get the encrypted value with the token key\r\n      const encryptedValue = await AsyncStorage.getItem(tokenKey);\r\n      // decrypt the value with the secret key\r\n      const decryptedValue = CryptoJS.AES.decrypt(encryptedValue, secretKey).toString(CryptoJS.enc.Utf8);\r\n      // parse the value to an object\r\n      const value = JSON.parse(decryptedValue);\r\n      // return the value\r\n      return value;\r\n    } catch (e) {\r\n      // handle the error\r\n      console.error(e);\r\n    }\r\n  };\r\n\r\n  // return the storeData and getData functions as an object\r\n  return {\r\n    setToken: storeData,\r\n    getToken: getData,\r\n  };\r\n}\r\n"
+        }
+    ]
+}

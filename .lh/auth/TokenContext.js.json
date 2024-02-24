@@ -1,0 +1,26 @@
+{
+    "sourceFile": "auth/TokenContext.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1708756822092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708756834229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \r\n // create and use a context for the secretKey and tokenKey\r\n import React, { createContext, useContext } from 'react';\r\n-import { secretKey, tokenKey } from './config';\r\n+import { secretKey, tokenKey } from '../config';\r\n \r\n // create a context object\r\n const TokenContext = createContext();\r\n \r\n"
+                },
+                {
+                    "date": 1708758886899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import React, { createContext, useContext } from 'react';\r\n import { secretKey, tokenKey } from '../config';\r\n \r\n // create a context object\r\n-const TokenContext = createContext();\r\n+export const TokenContext = createContext();\r\n \r\n // create a custom hook to provide the context value\r\n export function useTokenProvider() {\r\n   // define the context value as an object with the secretKey and tokenKey\r\n"
+                }
+            ],
+            "date": 1708756822092,
+            "name": "Commit-0",
+            "content": "\r\n// create and use a context for the secretKey and tokenKey\r\nimport React, { createContext, useContext } from 'react';\r\nimport { secretKey, tokenKey } from './config';\r\n\r\n// create a context object\r\nconst TokenContext = createContext();\r\n\r\n// create a custom hook to provide the context value\r\nexport function useTokenProvider() {\r\n  // define the context value as an object with the secretKey and tokenKey\r\n  const value = {\r\n    secretKey,\r\n    tokenKey,\r\n  };\r\n\r\n  // return the value\r\n  return value;\r\n}"
+        }
+    ]
+}

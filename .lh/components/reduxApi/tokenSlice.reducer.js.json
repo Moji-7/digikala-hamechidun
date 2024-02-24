@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/reduxApi/tokenSlice.reducer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1708781197709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708781608847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,12 @@\n   initialState: {\r\n     value: '', // Store the token value initially as an empty string\r\n   },\r\n   reducers: {\r\n-    setToken: (state, action) => {\r\n+    setTokenRedux: (state, action) => {\r\n       state.value = action.payload; // Update the token value in the state\r\n     },\r\n   },\r\n });\r\n \r\n-export const { setToken } = tokenSlice.actions; // Export the action creator\r\n+export const { setTokenRedux } = tokenSlice.actions; // Export the action creator\r\n export default tokenSlice.reducer; // Export the reducer\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1708781197709,
+            "name": "Commit-0",
+            "content": "\r\nimport { createSlice } from '@reduxjs/toolkit';\r\n\r\nconst tokenSlice = createSlice({\r\n  name: 'token',\r\n  initialState: {\r\n    value: '', // Store the token value initially as an empty string\r\n  },\r\n  reducers: {\r\n    setToken: (state, action) => {\r\n      state.value = action.payload; // Update the token value in the state\r\n    },\r\n  },\r\n});\r\n\r\nexport const { setToken } = tokenSlice.actions; // Export the action creator\r\nexport default tokenSlice.reducer; // Export the reducer"
+        }
+    ]
+}

@@ -1,29 +1,37 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import useTokenStorage from "../../auth/components/hooks/useTokenStorage";
+import { baseQueryWithAuth } from "./apiBaseQuery";
+import { useFetchWithAuth } from "./useFetchWithAuth";
 
 
-const baseQueryWithAuth: BaseQueryFn<string, unknown, unknown, unknown, { auth: AuthHeaderType | null }> = async ({ url, method, body }, { signal, dispatch, getState, extraOptions }, endpointDefinition, baseQueryApi) => {
-  const obj = {
-    auth: {
-      access_token: 'your_access_token_here'
-    }
-  };
-  const token = obj.auth?.access_token;
-  let headers = {};
-  if (token) {
-    headers = {
-      authorization: `Bearer ${token}`,
-      ...extraOptions?.headers,
-    };
-  }
+// const baseQueryWithAuth: BaseQueryFn<string, unknown, unknown, unknown, { auth: AuthHeaderType | null }> = async ({ url, method, body }, { signal, dispatch, getState, extraOptions }, endpointDefinition, baseQueryApi) => {
+//   const obj = {
+//     auth: {
+//       access_token: 'your_access_token_here'
+//     }
+//   };
+//   const token = obj.auth?.access_token;
 
-  return fetchBaseQuery({
-    baseUrl: 'http://localhost:3222/eye/',
-    prepareHeaders: (headers, { getState }) => {
-      headers.set('authorization', `Bearer ${token}`);
-      return headers;
-    },
-  })({ url, method, body, headers }, { signal, dispatch, getState, extraOptions }, endpointDefinition, baseQueryApi);
-};
+//   // const { getToken } = useTokenStorage();
+//   // const token = await getToken();
+  
+
+//   let headers = {};
+//   if (token) {
+//     headers = {
+//       authorization: `Bearer ${token}`,
+//       ...extraOptions?.headers,
+//     };
+//   }
+
+//   return fetchBaseQuery({
+//     baseUrl: 'http://localhost:3222/eye/',
+//     prepareHeaders: (headers, { getState }) => {
+//       headers.set('authorization', `Bearer ${token}`);
+//       return headers;
+//     },
+//   })({ url, method, body, headers }, { signal, dispatch, getState, extraOptions }, endpointDefinition, baseQueryApi);
+// };
 
 export const api = createApi({
   reducerPath: "api",
@@ -31,6 +39,17 @@ export const api = createApi({
   //   baseUrl: "http://localhost:3222/eye/",
   // }),
   baseQuery: baseQueryWithAuth,
+//  baseQuery: async (args, api, extraOptions) => {
+//   // get the fetch function from the custom hook
+//   const fetchWithAuth = useFetchWithAuth();
+
+//   // use the fetch function to make the API call
+//   const data = await fetchWithAuth(args.url, args.options);
+
+//   // return the data
+//   return data;
+// },
+  
   endpoints: (build) => ({
     getEye: build.query({
       query: (params) => `eye/?${stringify(params)}`, 
@@ -49,7 +68,6 @@ export const api = createApi({
         // Log the raw response
         console.log('Raw response: ', response);
         // If you want to debug, you can add a breakpoint here
-
         // Then return the response to let the mutation proceed as normal
         return response;
       },

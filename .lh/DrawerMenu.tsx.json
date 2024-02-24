@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1708511333243,
@@ -68,6 +68,22 @@
                 {
                     "date": 1708516565182,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\r\n import LoginScreen from \"./auth/components/LoginScreen\"\r\n \r\n import Ionicons from 'react-native-vector-icons/Ionicons'; // You can use any icon library you like\r\n+import CustomDrawerContent from './CustomDrawerContent';\r\n \r\n \r\n const Drawer = createDrawerNavigator();\r\n \r\n"
+                },
+                {
+                    "date": 1708763309309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n import { StyleSheet } from 'react-native';\r\n \r\n \r\n import populatetest from \"./components/populatetest\";\r\n+import populate from \"./components/populate\";\r\n \r\n-import populate from \"./components/populate\";\r\n import Orderitem from \"./components/Orderitem\";\r\n import Incredibles from \"./components/Incredibles\";\r\n import Comments from \"./components/Comments\";\r\n \r\n"
+                },
+                {
+                    "date": 1708763449672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \r\n import Orderitem from \"./components/Orderitem\";\r\n import Incredibles from \"./components/Incredibles\";\r\n import Comments from \"./components/Comments\";\r\n+import EyeProductComponent from \"./\";\r\n \r\n \r\n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\r\n import LoginScreen from \"./auth/components/LoginScreen\"\r\n"
+                },
+                {
+                    "date": 1708763505750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n import Orderitem from \"./components/Orderitem\";\r\n import Incredibles from \"./components/Incredibles\";\r\n import Comments from \"./components/Comments\";\r\n-import EyeProductComponent from \"./\";\r\n+import EyeProductComponent from \"./components/forms/EyeProduct\";\r\n \r\n \r\n import IncrediblesWithOtherSellers from \"./components/IncrediblesWithOtherSellers\";\r\n import LoginScreen from \"./auth/components/LoginScreen\"\r\n"
+                },
+                {
+                    "date": 1708763531971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,10 @@\n                     ),\r\n                 }}\r\n             />\r\n             <Drawer.Screen\r\n-                name=\"Comments\"\r\n-                component={Comments}\r\n+                name=\"EyeProductComponent\"\r\n+                component={EyeProductComponent}\r\n                 options={{\r\n                     drawerIcon: ({ focused, size, color }) => (\r\n                         <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />\r\n                     ),\r\n"
                 }
             ],
             "date": 1708511333243,

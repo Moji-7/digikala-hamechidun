@@ -5,11 +5,12 @@ import { StyleSheet } from 'react-native';
 
 
 import populatetest from "./components/populatetest";
-
 import populate from "./components/populate";
+
 import Orderitem from "./components/Orderitem";
 import Incredibles from "./components/Incredibles";
 import Comments from "./components/Comments";
+import EyeProductComponent from "./components/forms/EyeProduct";
 
 
 import IncrediblesWithOtherSellers from "./components/IncrediblesWithOtherSellers";
@@ -53,8 +54,8 @@ function DrawerMenu() {
                 }}
             />
             <Drawer.Screen
-                name="Comments"
-                component={Comments}
+                name="EyeProductComponent"
+                component={EyeProductComponent}
                 options={{
                     drawerIcon: ({ focused, size, color }) => (
                         <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />

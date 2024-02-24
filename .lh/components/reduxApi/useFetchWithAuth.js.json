@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/reduxApi/useFetchWithAuth.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1708780912535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708780918969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n \r\n+import useTokenStorage from \"../../auth/components/hooks/useTokenStorage\";\r\n // define a custom hook that returns a function to fetch data with authorization\r\n const useFetchWithAuth = () => {\r\n   // get the token from the custom hook\r\n   const { getToken } = useTokenStorage();\r\n"
+                },
+                {
+                    "date": 1708780951017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \r\n import useTokenStorage from \"../../auth/components/hooks/useTokenStorage\";\r\n // define a custom hook that returns a function to fetch data with authorization\r\n-const useFetchWithAuth = () => {\r\n+export const useFetchWithAuth = () => {\r\n   // get the token from the custom hook\r\n   const { getToken } = useTokenStorage();\r\n \r\n   // define a function that can make the API call with the token\r\n"
+                }
+            ],
+            "date": 1708780912535,
+            "name": "Commit-0",
+            "content": "\r\n// define a custom hook that returns a function to fetch data with authorization\r\nconst useFetchWithAuth = () => {\r\n  // get the token from the custom hook\r\n  const { getToken } = useTokenStorage();\r\n\r\n  // define a function that can make the API call with the token\r\n  const fetchData = async (url, options) => {\r\n    // get the token value\r\n    const token = await getToken();\r\n\r\n    // set the authorization header\r\n    let headers = {};\r\n    if (token) {\r\n      headers = { authorization: `Bearer ${token}` };\r\n    }\r\n\r\n    // make the fetch request with the headers and options\r\n    const response = await fetch(url, { ...options, headers });\r\n    const data = await response.json();\r\n\r\n    // return the data\r\n    return data;\r\n  };\r\n\r\n  // return the fetchData function\r\n  return fetchData;\r\n};"
+        }
+    ]
+}

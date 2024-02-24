@@ -24,11 +24,11 @@ const EyeProductComponent: React.FC<Props> = ({ eyeProductParam }) => {
     const { theme } = useTheme();
     return (
         <View style={styles.container}>
-            <SimpleComponent  id={1}/>
+            {/* <SimpleComponent  id={1}/> */}
             <View style={styles.gridContainer}>
-                {/* <EyeProducts eyeProductParam={eyeProductParam} />
+                <EyeProducts eyeProductParam={eyeProductParam} />
                 <Divider />
-                <EyeProductAddComponent eyeProductParam={eyeProductParam} /> */}
+                <EyeProductAddComponent eyeProductParam={eyeProductParam} />
             </View>
         </View>
     );
