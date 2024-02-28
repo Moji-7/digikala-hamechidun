@@ -1,32 +1,25 @@
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithAuth } from "./apiBaseQuery";
 
 export const apiPipeline = createApi({
-    reducerPath: "pipeline",
-    baseQuery: fetchBaseQuery({
-      baseUrl: "http://localhost:3222/pipeline/",
-    }),
+  reducerPath: "apiPipeline",
+  baseQuery: baseQueryWithAuth({ baseUrl: "http://localhost:3222/pipeline/" }),
 
-    endpoints: (build) => ({
-        getAll: build.query({
-            query: () => "pipelines", // Assuming the endpoint URL is just "pipelines"
-            providesTags: ["Pipelines"], // Invalidate "Pipelines" tag on success
-            transformResponse: (response) => response.data as Pipeline[], // Assuming data array
-          }),
-      
-          get: build.query({
-            query: (pipelineId) => `${pipelineId}`,
-            providesTags: (result, error) =>
-              error ? [] : ["Pipelines", result.id] // Invalidate both tags
-          }),
-          getPipeline: build.query({
-            query: (pipelineId) => `${pipelineId}`,
-          }),
+  endpoints: (build) => ({
+    submit: build.mutation({
+      query: (userRequest) => ({
+        url: "submit",
+        method: "POST",
+        body: userRequest,
+      }),
+      transformResponse: (response) => {
+        // Log the raw response
+        console.log("Raw response: ", response);
+        return response;
+      },
     }),
-    })
-
-    export const { useGetAllQuery, useGetQuery,useGetPipelineQuery } = apiPipeline;
-  
-  
-  
-  
+  }),
+});
+export const {
+  useSubmitMutation,
+} = apiPipeline;

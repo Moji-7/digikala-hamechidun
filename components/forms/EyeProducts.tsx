@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Linking, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Linking, FlatList, Animated } from 'react-native';
 import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
 import { useEyeProduct } from '../hooks/useEyeOnProduct';
 import { EyeProduct, EyeProductParams } from '../entity/Eye.dto';
-import { useQueryClient } from '@tanstack/react-query';
 
 import { Pagination } from 'react-native-pagination';
 import { Alert } from 'react-native';
 import AlertComponenti from '../uicomponents/AlertComponent';
 import EyeProductAddComponent from './EyeProductAdd';
-import { useSelector } from 'react-redux';
-import { useDeleteItemMutation } from '../reduxApi/api';
 
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetEyeQuery, useDeleteItemMutation } from '../reduxApi/api';
+import PipelinesComponent from './PipelinesComponent';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 
 interface Props {
     eyeProductParam: EyeProductParams;
@@ -21,63 +20,57 @@ interface Props {
 
 const EyeProducts: React.FC<Props> = ({ eyeProductParam }) => {
     const { theme } = useTheme();
-    const queryClient = useQueryClient();
 
-    const [deleteItem, { isLoading, isError, error }] = useDeleteItemMutation();
+    const { data, error } = useGetEyeQuery();
+    const eyeProducts = useSelector((state) => state.eye.eyeProducts);
+    //1- const { data, error,refetch } = useGetEyeQuery();
+    //2- const {  eyeProducts } = useGetEyeQuery(undefined, {
+    //     selectFromResult: ({ data }) => ({ eyeProducts: data })
+    // });
 
-    const eyeProductsItems = useSelector((state) => state.eyeProducts.eyeProducts)
-    
-    //delete
+
+    const [deleteItem, { isLoading, isError }] = useDeleteItemMutation();
+
     const handleDelete = async (event, productId: number) => {
         event.preventDefault()
         try {
             await deleteItem(productId);
-            // Handle success (e.g., show a notification)
+            // refetch();
         } catch (err) {
-            // Handle error (e.g., show an error message)
             console.error('Delete failed', error);
         }
-    
+
     };
+    const showSlice = () => {
+        // const eyeProducts2 = useSelector((state) => state.eye.eyeProducts);
 
+    }
     return (
-        <View style={styles.container}>
-   {JSON.stringify(useSelector((state) => state.eyeProducts), null, 2)}
 
-            {eyeProductsItems.length > 0 && ( // Render when products exist
-                <>
-                    <Text>🤑🐾 Selected Products: 🤑🐾  </Text>
+
+        <Card style={styles.container}>
+
+            {eyeProducts && ( // Render when products exist
+                <View style={styles.gridContainer}>
+                    <Text>🤑🐾 My Eys: 🤑🐾</Text>
                     {/* <EyeProductAddButton /> */}
-                    {eyeProductsItems.map((eyeProduct, index) => (
+                    {eyeProducts.map((eyeProduct, index) => (
 
-                        <ListItem key={eyeProduct.id}>
+                        <ListItem key={eyeProduct.id} style={styles.gridRow}>
                             <ListItem.Content>
-                                <ListItem.Title>{eyeProduct.titleFa}</ListItem.Title>
-                                <ListItem.Subtitle>{eyeProduct.pipelinesIds} |
-                                </ListItem.Subtitle>
-                                <ListItem.Subtitle>
-                                    <Button onPress={(e) => handleDelete(e,eyeProduct.id)} title='remove' />
+                                {/* <ListItem.Title>{eyeProduct.titleFa}</ListItem.Title> */}
+                                <ListItem.Subtitle style={styles.gridItem}>
+                                    <Button onPress={(e) => handleDelete(e, eyeProduct.id)} title='remove' color={theme.myColors.danger} />
+                                    <Divider style={{ width: '100%' }} />
+                                    <PipelinesComponent integers={eyeProduct.pipelinesIds.split(",").map(Number)} />
                                 </ListItem.Subtitle>
                             </ListItem.Content>
                         </ListItem>
-
                     ))}
-                </>
+                </View>
             )}
+        </Card>
 
-        </View>
-
-        //     {data && (
-        //         <View style={styles.gridContainer}>
-        //             {data.eyeProducts.map((eyeProduct, index) => (
-        //                 <View key={index} style={styles.gridRow}>
-        //                     {renderGridItem(eyeProduct, index)}
-        //                 </View>
-        //             ))}
-        //         </View>
-        //     )}
-        // </View>
-  
     )
 }
 

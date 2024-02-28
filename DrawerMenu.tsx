@@ -25,15 +25,23 @@ const Drawer = createDrawerNavigator();
 function DrawerMenu() {
     return (
         <Drawer.Navigator
-   
-        initialRouteName="incredibles"
-        drawerContent={(props) => <CustomDrawerContent {...props} />} // Pass the custom drawer content component
+
+            initialRouteName="incredibles"
+            drawerContent={(props) => <CustomDrawerContent {...props} />} // Pass the custom drawer content component
 
             drawerContentOptions={{
                 activeTintColor: '#e91e63', // Customize menu item colors
                 itemStyle: styles.drawerItem, // Apply custom styles
             }}>
-                
+            <Drawer.Screen
+                name="EyeProductComponent"
+                component={EyeProductComponent}
+                options={{
+                    drawerIcon: ({ focused, size, color }) => (
+                        <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />
+                    ),
+                }}
+            />
             <Drawer.Screen name="LoginScreen" component={LoginScreen} />
             <Drawer.Screen
                 name="Home"
@@ -53,15 +61,7 @@ function DrawerMenu() {
                     ),
                 }}
             />
-            <Drawer.Screen
-                name="EyeProductComponent"
-                component={EyeProductComponent}
-                options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />
-                    ),
-                }}
-            />
+
             <Drawer.Screen
                 name="populat etest"
                 component={populatetest}

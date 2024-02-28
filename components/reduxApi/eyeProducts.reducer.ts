@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const eyeProductsSlice = createSlice({
-  name: "eyeProducts",
+  name: "eye",
   initialState,
   reducers: {
     addSaveProduct: (state, action) => {
@@ -14,29 +14,31 @@ const eyeProductsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      api.endpoints.submitItems.matchFulfilled,
-      (state, action) => {
-        state.eyeProducts =  [...state.eyeProducts, ...action.payload];
-      }
-    ) .addMatcher(
-        api.endpoints.deleteItem.matchFulfilled,
-        (state, action) => {
-            debugger;
-            if (action.payload.success) {
-                const deletedProductId = action.meta.arg.originalArgs; 
-                state.eyeProducts = state.eyeProducts.filter(
-                  (product) => product.id !== deletedProductId
-                );
-              } else {
-                // Handle deletion failure, e.g., display an error message
-                console.error('Deletion failed:', action.error);
-              }
-            }
-      );
+    builder
+      .addMatcher(api.endpoints.getEye.matchFulfilled, (state, action) => {
+        //debugger;
+        state.eyeProducts = action.payload;
+      })
+      .addMatcher(api.endpoints.submitItems.matchFulfilled, (state, action) => {
+        state.eyeProducts = [...state.eyeProducts, ...action.payload];
+      })
+      .addMatcher(api.endpoints.deleteItem.matchFulfilled, (state, action) => {
+        if (action.payload.success) {
+          //debugger;
+          const deletedProductId = action.meta.arg.originalArgs;
+          state.eyeProducts = state.eyeProducts.filter(
+            (product) => product.id !== deletedProductId
+          );
+
+          
+        } else {
+          // Handle deletion failure, e.g., display an error message
+          console.error("Deletion failed:", action.error);
+        }
+      });
   },
 });
 
-export const { addSaveProduct } = eyeProductsSlice.actions;
+export const { addSaveProduct} = eyeProductsSlice.actions;
 
 export default eyeProductsSlice.reducer;
