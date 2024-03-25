@@ -19,7 +19,7 @@ const eyeProductsSlice = createSlice({
         //debugger;
         state.eyeProducts = action.payload;
       })
-      .addMatcher(api.endpoints.submitItems.matchFulfilled, (state, action) => {
+      .addMatcher(api.endpoints.SubmitEyeProducts.matchFulfilled, (state, action) => {
         state.eyeProducts = [...state.eyeProducts, ...action.payload];
       })
       .addMatcher(api.endpoints.deleteItem.matchFulfilled, (state, action) => {

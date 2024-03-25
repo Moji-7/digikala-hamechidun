@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 38,
+            "activePatchIndex": 40,
             "patches": [
                 {
                     "date": 1708259481444,
@@ -160,6 +160,14 @@
                 {
                     "date": 1708781252457,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n import { apiPipeline } from \"./apiPipeline\";\r\n+import tokenSliceReducer from './tokenSlice.reducer';\r\n \r\n \r\n export const store = configureStore({\r\n     reducer: {\r\n@@ -18,8 +19,9 @@\n \r\n         eyeProducts: eyeProductsReducer,\r\n \r\n         api2: apiPipeline.reducer,\r\n+        token: tokenSliceReducer, // Add the token reducer\r\n   \r\n     },\r\n     middleware: (getDefaultMiddleware) =>\r\n         getDefaultMiddleware().concat( api.middleware, apiPipeline.middleware),\r\n"
+                },
+                {
+                    "date": 1711270346713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,28 +3,36 @@\n import { configureStore } from '@reduxjs/toolkit';\r\n import { setupListeners } from '@reduxjs/toolkit/query';\r\n \r\n import { api } from \"./api\";\r\n-import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import eyeProductsReducer from \"./eyeProducts.reducer\";\r\n \r\n-import { apiPipeline } from \"./apiPipeline\";\r\n+import itemsReducer from \"./digikalaSelectedProducts.reducer\";\r\n import tokenSliceReducer from './tokenSlice.reducer';\r\n \r\n+import { apiPipeline } from \"./pipelineApi\";// Import your RTK Query API slice\r\n+import pipelineSliceReducer from './pipeline.reducer'; // Import your pipeline reducer\r\n \r\n+// Custom middleware for logging\r\n+const loggerMiddleware = (store) => (next) => (action) => {\r\n+  console.log('Dispatching:', action);\r\n+  return next(action);\r\n+};\r\n+\r\n+\r\n export const store = configureStore({\r\n-    reducer: {\r\n-       \r\n-        api1: api.reducer,\r\n-        digikalaSelectedProducts: itemsReducer,\r\n+  reducer: {\r\n+    api: api.reducer,\r\n+    // digikalaSelectedProducts: itemsReducer,\r\n+    eye: eyeProductsReducer,\r\n+    token: tokenSliceReducer, // Add the token reducer\r\n+    pipeline: pipelineSliceReducer,\r\n \r\n-        eyeProducts: eyeProductsReducer,\r\n-\r\n-        api2: apiPipeline.reducer,\r\n-        token: tokenSliceReducer, // Add the token reducer\r\n-  \r\n-    },\r\n-    middleware: (getDefaultMiddleware) =>\r\n-        getDefaultMiddleware().concat( api.middleware, apiPipeline.middleware),\r\n+  },\r\n+  middleware: (getDefaultMiddleware) =>\r\n+    getDefaultMiddleware().concat(\r\n+      loggerMiddleware,\r\n+      apiPipeline.middleware,\r\n+      api.middleware),\r\n });\r\n \r\n setupListeners(store.dispatch);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711283408147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n import tokenSliceReducer from './tokenSlice.reducer';\r\n \r\n import { apiPipeline } from \"./pipelineApi\";// Import your RTK Query API slice\r\n import pipelineSliceReducer from './pipeline.reducer'; // Import your pipeline reducer\r\n+import notificationsSliceReducer from './notificationsSlice.reducer';\r\n \r\n // Custom middleware for logging\r\n const loggerMiddleware = (store) => (next) => (action) => {\r\n   console.log('Dispatching:', action);\r\n@@ -25,8 +26,9 @@\n     // digikalaSelectedProducts: itemsReducer,\r\n     eye: eyeProductsReducer,\r\n     token: tokenSliceReducer, // Add the token reducer\r\n     pipeline: pipelineSliceReducer,\r\n+    notifications: notificationsSliceReducer, // Add the notifications reducer\r\n \r\n   },\r\n   middleware: (getDefaultMiddleware) =>\r\n     getDefaultMiddleware().concat(\r\n"
                 }
             ],
             "date": 1708259481444,

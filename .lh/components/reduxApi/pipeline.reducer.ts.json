@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1708354996912,
@@ -20,6 +20,54 @@
                 {
                     "date": 1708418913269,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n //   pipelineRunHistory: [],\r\n // };\r\n \r\n export const pipelineSlice = createSlice({\r\n-  name: 'pipeline',\r\n+  name: 'apiPipeline',\r\n   initialState: { loading: 'idle', error: null, data: null },\r\n   reducers: {},\r\n   extraReducers: (builder) => {\r\n     builder.addMatcher(apiPipeline.endpoints.getPipeline.matchPending, (state) => {\r\n"
+                },
+                {
+                    "date": 1711271686278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,27 @@\n import { createSlice } from \"@reduxjs/toolkit\";\r\n-import { apiPipeline } from \"./apiPipeline\";\r\n+import { apiPipeline } from \"./pipelineApi\";\r\n \r\n-// const initialState = {\r\n-//   pipelineRunHistory: [],\r\n-// };\r\n+const initialState = {\r\n+  details: [],\r\n+  pipelineStatusLast:[],\r\n+  isLoading: false, // Add loading state\r\n+  error: null, // Add error state\r\n+};\r\n \r\n export const pipelineSlice = createSlice({\r\n-  name: 'apiPipeline',\r\n-  initialState: { loading: 'idle', error: null, data: null },\r\n+  name: 'pipeline',\r\n+  initialState,//: { loading: 'idle', error: null, data: null },\r\n   reducers: {},\r\n   extraReducers: (builder) => {\r\n-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchPending, (state) => {\r\n-      state.loading = 'pending';\r\n-    });\r\n-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchFulfilled, (state, action) => {\r\n-      state.loading = 'idle';\r\n-      state.data = action.payload;\r\n-    });\r\n-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchRejected, (state, action) => {\r\n-      state.loading = 'idle';\r\n-      state.error = action.error;\r\n-    });\r\n-  },\r\n+\r\n+    builder.addMatcher(apiPipeline.endpoints.getAll.matchFulfilled, (state, action) => {\r\n+      //debugger;\r\n+      state.details = action.payload.pipelines;\r\n+      //state.history =action.payload;\r\n+    })\r\n+\r\n+   },\r\n });\r\n \r\n export default pipelineSlice.reducer;\r\n+\r\n"
+                },
+                {
+                    "date": 1711271737155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,13 @@\n \r\n     builder.addMatcher(apiPipeline.endpoints.getAll.matchFulfilled, (state, action) => {\r\n       //debugger;\r\n       state.details = action.payload.pipelines;\r\n-      //state.history =action.payload;\r\n     })\r\n+    .addMatcher(apiPipeline.endpoints.getPipelineStatusLast.matchFulfilled, (state, action) => {\r\n+      //debugger;\r\n+      state.pipelineStatusLast = action.payload;\r\n+    })\r\n \r\n    },\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1711271794421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { apiPipeline } from \"./pipelineApi\";\r\n \r\n const initialState = {\r\n   details: [],\r\n-  pipelineStatusLast:[],\r\n+  pipelineStatusLasts:[],\r\n   isLoading: false, // Add loading state\r\n   error: null, // Add error state\r\n };\r\n \r\n@@ -19,9 +19,9 @@\n       state.details = action.payload.pipelines;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusLast.matchFulfilled, (state, action) => {\r\n       //debugger;\r\n-      state.pipelineStatusLast = action.payload;\r\n+      state.pipelineStatusLasts = action.payload;\r\n     })\r\n \r\n    },\r\n });\r\n"
+                },
+                {
+                    "date": 1711272259827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       //debugger;\r\n       state.details = action.payload.pipelines;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusLast.matchFulfilled, (state, action) => {\r\n-      //debugger;\r\n+      debugger;\r\n       state.pipelineStatusLasts = action.payload;\r\n     })\r\n \r\n    },\r\n"
+                },
+                {
+                    "date": 1711274797203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       //debugger;\r\n       state.details = action.payload.pipelines;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusLast.matchFulfilled, (state, action) => {\r\n-      debugger;\r\n+      //debugger;\r\n       state.pipelineStatusLasts = action.payload;\r\n     })\r\n \r\n    },\r\n"
+                },
+                {
+                    "date": 1711357426474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n import { apiPipeline } from \"./pipelineApi\";\r\n \r\n const initialState = {\r\n   details: [],\r\n-  pipelineStatusLasts:[],\r\n+  pipelineStatusAll:[],\r\n+  pipelineStatusSummery:[],\r\n   isLoading: false, // Add loading state\r\n   error: null, // Add error state\r\n };\r\n \r\n@@ -17,12 +18,14 @@\n     builder.addMatcher(apiPipeline.endpoints.getAll.matchFulfilled, (state, action) => {\r\n       //debugger;\r\n       state.details = action.payload.pipelines;\r\n     })\r\n-    .addMatcher(apiPipeline.endpoints.getPipelineStatusLast.matchFulfilled, (state, action) => {\r\n-      //debugger;\r\n-      state.pipelineStatusLasts = action.payload;\r\n+    .addMatcher(apiPipeline.endpoints.getPipelineStatusAll.matchFulfilled, (state, action) => {\r\n+      state.pipelineStatusAll = action.payload;\r\n     })\r\n+    .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n+      state.pipelineStatusSummery = action.payload;\r\n+    })\r\n \r\n    },\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1711359165554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,10 @@\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusAll.matchFulfilled, (state, action) => {\r\n       state.pipelineStatusAll = action.payload;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n-      state.pipelineStatusSummery = action.payload;\r\n+      const eyeProductId = action.meta.arg; // Assuming the eyeProductId is available here\r\n+      state.pipelineStatusSummery[eyeProductId] = action.payload;\r\n     })\r\n \r\n    },\r\n });\r\n"
+                },
+                {
+                    "date": 1711359200921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n const initialState = {\r\n   details: [],\r\n   pipelineStatusAll:[],\r\n-  pipelineStatusSummery:[],\r\n+  pipelineStatusSummery: {},\r\n   isLoading: false, // Add loading state\r\n   error: null, // Add error state\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1711359278005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusAll.matchFulfilled, (state, action) => {\r\n       state.pipelineStatusAll = action.payload;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n+      debugger;\r\n       const eyeProductId = action.meta.arg; // Assuming the eyeProductId is available here\r\n       state.pipelineStatusSummery[eyeProductId] = action.payload;\r\n     })\r\n \r\n"
+                },
+                {
+                    "date": 1711359362493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       state.pipelineStatusAll = action.payload;\r\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n       debugger;\r\n-      const eyeProductId = action.meta.arg; // Assuming the eyeProductId is available here\r\n+      const eyeProductId:number = action.meta.arg.originalArgs; // Assuming the eyeProductId is available here\r\n       state.pipelineStatusSummery[eyeProductId] = action.payload;\r\n     })\r\n \r\n    },\r\n"
+                },
+                {
+                    "date": 1711364726283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     })\r\n     .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n       debugger;\r\n       const eyeProductId:number = action.meta.arg.originalArgs; // Assuming the eyeProductId is available here\r\n-      state.pipelineStatusSummery[eyeProductId] = action.payload;\r\n+      state.pipelineStatusSummery[(eyeProductId)] = action.payload;\r\n     })\r\n \r\n    },\r\n });\r\n"
+                },
+                {
+                    "date": 1711370935051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,35 @@\n+import { createSlice } from \"@reduxjs/toolkit\";\r\n+import { apiPipeline } from \"./pipelineApi\";\r\n+\r\n+const initialState = {\r\n+  details: [],\r\n+  pipelineStatusAll:[],\r\n+  pipelineStatusSummery: {},\r\n+  isLoading: false, // Add loading state\r\n+  error: null, // Add error state\r\n+};\r\n+\r\n+export const pipelineSlice = createSlice({\r\n+  name: 'pipeline',\r\n+  initialState,//: { loading: 'idle', error: null, data: null },\r\n+  reducers: {},\r\n+  extraReducers: (builder) => {\r\n+\r\n+    builder.addMatcher(apiPipeline.endpoints.getAll.matchFulfilled, (state, action) => {\r\n+      //debugger;\r\n+      state.details = action.payload.pipelines;\r\n+    })\r\n+    .addMatcher(apiPipeline.endpoints.getPipelineStatusAll.matchFulfilled, (state, action) => {\r\n+      state.pipelineStatusAll = action.payload;\r\n+    })\r\n+    .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {\r\n+      //debugger;\r\n+      const eyeProductId:number = action.meta.arg.originalArgs; // Assuming the eyeProductId is available here\r\n+      state.pipelineStatusSummery[(eyeProductId)] = action.payload;\r\n+    })\r\n+\r\n+   },\r\n+});\r\n+\r\n+export default pipelineSlice.reducer;\r\n+\r\n"
                 }
             ],
             "date": 1708354996912,

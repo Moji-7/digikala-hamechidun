@@ -4,15 +4,26 @@ import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
 import { useEyeProduct } from '../hooks/useEyeOnProduct';
 import { EyeProduct, EyeProductParams } from '../entity/Eye.dto';
 
-import { Pagination } from 'react-native-pagination';
+
 import { Alert } from 'react-native';
 import AlertComponenti from '../uicomponents/AlertComponent';
 import EyeProductAddComponent from './EyeProductAdd';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetEyeQuery, useDeleteItemMutation } from '../reduxApi/api';
-import PipelinesComponent from './PipelinesComponent';
+
+
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import useSocket from '../hooks/useCustomSocket';
+import { convertDateToShamsi } from '../../utils/dateUtils';
+
+import { useGetEyeQuery, useDeleteItemMutation } from '../reduxApi/api';
+
+
+import PipelinesStatusSummeryComponent from './PipelinesStatusSummeryComponent';
+
+// import { useSocket, useSocketEvent } from 'socket.io-react-hook';
+
+
 
 interface Props {
     eyeProductParam: EyeProductParams;
@@ -21,48 +32,80 @@ interface Props {
 const EyeProducts: React.FC<Props> = ({ eyeProductParam }) => {
     const { theme } = useTheme();
 
-    const { data, error } = useGetEyeQuery();
+
+    // const { socket,connected, error: socketError } = useSocket();
+    //const { lastMessage, sendMessage } = useSocketEvent(socket, 'message');
+    const { data: data1, error: error1 } = useGetEyeQuery();
     const eyeProducts = useSelector((state) => state.eye.eyeProducts);
+    
+
     //1- const { data, error,refetch } = useGetEyeQuery();
     //2- const {  eyeProducts } = useGetEyeQuery(undefined, {
     //     selectFromResult: ({ data }) => ({ eyeProducts: data })
     // });
 
 
+    // Event handler for sending a message
+
+    // Event listener for receiving messages
+    // socket.on('pong', (data) => {
+    //     console.log('Received:', data);
+    // });
     const [deleteItem, { isLoading, isError }] = useDeleteItemMutation();
 
     const handleDelete = async (event, productId: number) => {
         event.preventDefault()
         try {
             await deleteItem(productId);
-            // refetch();
+            //refetch()
+            //const handleSendMessage = (message) => {
+            //sendMessage('results.processed', 'message'); 
+
+            // socket.emit('ping', 'Hello from React!');
+            // Replace 'event-name' with your event
+            // };
         } catch (err) {
             console.error('Delete failed', error);
         }
 
     };
-    const showSlice = () => {
-        // const eyeProducts2 = useSelector((state) => state.eye.eyeProducts);
 
-    }
+
+    // const socket = useSocket('http://localhost:3222');
+    // useEffect(() => {
+    //     if (socket) {
+
+    //         socket.on('published_from_SocketToClient_pipelineStatus', (data) => {
+    //             console.log('notify_clinet_for_processed:', data);
+    //             // Handle the updated data as needed
+    //         });
+
+    //         socket.on('pong', (data) => {
+    //             console.log('Pong received:', data);
+    //         });
+
+    //     }
+    // }, [socket]);
+
+
+    // const pingPong = () => {
+    //     socket.emit('ping', 'Hello world!');
+    // }
+
     return (
-
-
         <Card style={styles.container}>
-
             {eyeProducts && ( // Render when products exist
                 <View style={styles.gridContainer}>
                     <Text>🤑🐾 My Eys: 🤑🐾</Text>
-                    {/* <EyeProductAddButton /> */}
                     {eyeProducts.map((eyeProduct, index) => (
-
                         <ListItem key={eyeProduct.id} style={styles.gridRow}>
                             <ListItem.Content>
-                                {/* <ListItem.Title>{eyeProduct.titleFa}</ListItem.Title> */}
+                                <ListItem.Title>{eyeProduct.titleFa}</ListItem.Title>
+                                <ListItem.Title>{convertDateToShamsi(eyeProduct.created_at)}</ListItem.Title>
                                 <ListItem.Subtitle style={styles.gridItem}>
                                     <Button onPress={(e) => handleDelete(e, eyeProduct.id)} title='remove' color={theme.myColors.danger} />
                                     <Divider style={{ width: '100%' }} />
-                                    <PipelinesComponent integers={eyeProduct.pipelinesIds.split(",").map(Number)} />
+                                    <PipelinesStatusSummeryComponent eyeProductId={eyeProduct.id}  />        
                                 </ListItem.Subtitle>
                             </ListItem.Content>
                         </ListItem>

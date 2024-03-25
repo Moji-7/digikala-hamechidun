@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/NotificationListComponent.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1711283450013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711371369591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import React from 'react';\r\n import { useSelector } from 'react-redux';\r\n import { View, Text } from 'react-native';\r\n+import { useTheme } from '@rneui/themed';\r\n \r\n-const NotificationList = () => {\r\n+\r\n+const NotificationListComponent = () => {\r\n+  const { theme } = useTheme();\r\n   const notifications = useSelector(state => state.notifications);\r\n \r\n   return (\r\n     <View>\r\n@@ -13,5 +16,21 @@\n     </View>\r\n   );\r\n };\r\n \r\n+const styles = StyleSheet.create({\r\n+  container: {\r\n+      flex: 1,\r\n+      padding: 6,\r\n+  },\r\n+  gridContainer: {\r\n+      flexDirection: 'row',\r\n+      flexWrap: 'wrap',\r\n+  },\r\n+  gridRow: {\r\n+      flexDirection: 'row',\r\n+      justifyContent: 'space-between',\r\n+      marginBottom: 6,\r\n+  },\r\n+});\r\n+\r\n export default NotificationListComponent;\r\n"
+                },
+                {
+                    "date": 1711371526863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,36 +1,49 @@\n import React from 'react';\r\n import { useSelector } from 'react-redux';\r\n-import { View, Text } from 'react-native';\r\n-import { useTheme } from '@rneui/themed';\r\n+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';\r\n+import { useTheme, Card, Icon } from '@rneui/themed';\r\n \r\n-\r\n const NotificationListComponent = () => {\r\n   const { theme } = useTheme();\r\n   const notifications = useSelector(state => state.notifications);\r\n+  const notificationCount = notifications.length;\r\n \r\n   return (\r\n-    <View>\r\n+    <Card containerStyle={styles.cardContainer}>\r\n+      <Card.Title>\r\n+        <Icon name=\"notifications\" size={24} color={theme.colors.primary} />\r\n+        {` Notifications (${notificationCount})`}\r\n+      </Card.Title>\r\n+      <Card.Divider />\r\n       {notifications.map((notification, index) => (\r\n-        <Text key={index}>{notification}</Text>\r\n+        <TouchableOpacity key={index} style={[styles.notificationItem, index % 2 === 0 ? styles.evenRow : styles.oddRow]}>\r\n+          <Text style={styles.textStyle}>{notification}</Text>\r\n+        </TouchableOpacity>\r\n       ))}\r\n-    </View>\r\n+    </Card>\r\n   );\r\n };\r\n \r\n const styles = StyleSheet.create({\r\n-  container: {\r\n-      flex: 1,\r\n-      padding: 6,\r\n+  cardContainer: {\r\n+    borderRadius: 8,\r\n+    padding: 10,\r\n   },\r\n-  gridContainer: {\r\n-      flexDirection: 'row',\r\n-      flexWrap: 'wrap',\r\n+  notificationItem: {\r\n+    paddingVertical: 10,\r\n+    paddingHorizontal: 15,\r\n+    justifyContent: 'center',\r\n+    alignItems: 'center',\r\n   },\r\n-  gridRow: {\r\n-      flexDirection: 'row',\r\n-      justifyContent: 'space-between',\r\n-      marginBottom: 6,\r\n+  evenRow: {\r\n+    backgroundColor: '#f7f7f7', // Light grey for even rows\r\n   },\r\n+  oddRow: {\r\n+    backgroundColor: '#ffffff', // White for odd rows\r\n+  },\r\n+  textStyle: {\r\n+    textAlign: 'center',\r\n+  },\r\n });\r\n \r\n export default NotificationListComponent;\r\n"
+                }
+            ],
+            "date": 1711283450013,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport { useSelector } from 'react-redux';\r\nimport { View, Text } from 'react-native';\r\n\r\nconst NotificationList = () => {\r\n  const notifications = useSelector(state => state.notifications);\r\n\r\n  return (\r\n    <View>\r\n      {notifications.map((notification, index) => (\r\n        <Text key={index}>{notification}</Text>\r\n      ))}\r\n    </View>\r\n  );\r\n};\r\n\r\nexport default NotificationListComponent;\r\n"
+        }
+    ]
+}

@@ -14,7 +14,6 @@ import SimpleComponent from './SimpleComponent';
 
 
 
-
 interface Props {
     eyeProductParam: EyeProductParams;
 }
@@ -22,9 +21,9 @@ interface Props {
 const EyeProductComponent: React.FC<Props> = ({ eyeProductParam }) => {
 
     const { theme } = useTheme();
+
     return (
         <View style={styles.container}>
-            {/* <PipelinesComponent  integers={[1,2]}/> */}
             <View style={styles.gridContainer}>
                 <EyeProducts eyeProductParam={eyeProductParam} />
                 <Divider />

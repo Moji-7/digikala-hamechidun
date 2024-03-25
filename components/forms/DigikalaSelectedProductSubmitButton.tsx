@@ -10,7 +10,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, removeAllItem } from '../reduxApi/digikalaSelectedProducts.reducer';
-import { useSubmitItemsMutation } from '../reduxApi/api';
+import { useSubmitEyeProductsMutation } from '../reduxApi/api';
 import { useAddItemMutation } from '../reduxApi/api2';
 
 
@@ -19,13 +19,13 @@ import { useAddItemMutation } from '../reduxApi/api2';
 const DigikalaSelectedProductSubmitButton: React.FC = () => {
   const dispatch = useDispatch();
   const digikalaSelectedProduct = useSelector((state) => state.digikalaSelectedProducts.digikalaSelectedProducts);
-  const [submitItemsApi, { isError, error, isSuccess, data }] = useSubmitItemsMutation();
+  const [SubmitEyeProductsApi, { isError, error, isSuccess, data }] = useSubmitEyeProductsMutation();
   // const [addItems] = useAddItemMutation();
 
 
   // Use the useCallback hook to memoize the handleSubmit function
   const handleSubmit = async (e) => {
-     await submitItemsApi(digikalaSelectedProduct).unwrap();
+     await SubmitEyeProductsApi(digikalaSelectedProduct).unwrap();
     
   }
 

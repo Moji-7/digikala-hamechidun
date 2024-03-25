@@ -5,3 +5,13 @@ export enum PipelineIds {
     SIMILARS = 3,
     TOROB = 4
 }
+
+
+
+export interface PipelineDetail {
+    id: string;
+    eyeProduct: string;
+    lastStatus: string;
+    runnedDate: string;
+  }
+  

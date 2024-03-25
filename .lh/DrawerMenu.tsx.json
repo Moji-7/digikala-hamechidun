@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1708511333243,
@@ -84,6 +84,10 @@
                 {
                     "date": 1708763531971,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,10 @@\n                     ),\r\n                 }}\r\n             />\r\n             <Drawer.Screen\r\n-                name=\"Comments\"\r\n-                component={Comments}\r\n+                name=\"EyeProductComponent\"\r\n+                component={EyeProductComponent}\r\n                 options={{\r\n                     drawerIcon: ({ focused, size, color }) => (\r\n                         <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />\r\n                     ),\r\n"
+                },
+                {
+                    "date": 1711281373767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,24 +17,34 @@\n import LoginScreen from \"./auth/components/LoginScreen\"\r\n \r\n import Ionicons from 'react-native-vector-icons/Ionicons'; // You can use any icon library you like\r\n import CustomDrawerContent from './CustomDrawerContent';\r\n+import NotificationComponent from './components/NotificationComponent';\r\n \r\n \r\n const Drawer = createDrawerNavigator();\r\n \r\n function DrawerMenu() {\r\n     return (\r\n         <Drawer.Navigator\r\n-   \r\n-        initialRouteName=\"incredibles\"\r\n-        drawerContent={(props) => <CustomDrawerContent {...props} />} // Pass the custom drawer content component\r\n \r\n+            initialRouteName=\"incredibles\"\r\n+            drawerContent={(props) => <CustomDrawerContent {...props} />} // Pass the custom drawer content component\r\n+\r\n             drawerContentOptions={{\r\n                 activeTintColor: '#e91e63', // Customize menu item colors\r\n                 itemStyle: styles.drawerItem, // Apply custom styles\r\n             }}>\r\n-                \r\n+            <Drawer.Screen\r\n+                name=\"EyeProductComponent\"\r\n+                component={EyeProductComponent}\r\n+                options={{\r\n+                    headerRight: () => <NotificationComponent />, \r\n+                    drawerIcon: ({ focused, size, color }) => (\r\n+                        <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />\r\n+                    ),\r\n+                }}\r\n+            />\r\n             <Drawer.Screen name=\"LoginScreen\" component={LoginScreen} />\r\n             <Drawer.Screen\r\n                 name=\"Home\"\r\n                 component={populate}\r\n@@ -52,18 +62,10 @@\n                         <Ionicons name={focused ? 'ios-star' : 'ios-star-outline'} size={size} color={color} />\r\n                     ),\r\n                 }}\r\n             />\r\n+\r\n             <Drawer.Screen\r\n-                name=\"EyeProductComponent\"\r\n-                component={EyeProductComponent}\r\n-                options={{\r\n-                    drawerIcon: ({ focused, size, color }) => (\r\n-                        <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />\r\n-                    ),\r\n-                }}\r\n-            />\r\n-            <Drawer.Screen\r\n                 name=\"populat etest\"\r\n                 component={populatetest}\r\n                 options={{\r\n                     drawerIcon: ({ focused, size, color }) => (\r\n"
                 }
             ],
             "date": 1708511333243,

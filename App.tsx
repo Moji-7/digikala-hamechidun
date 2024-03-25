@@ -19,6 +19,7 @@ import { store } from "./components/reduxApi/store2";
 import DrawerMenu from "./DrawerMenu";
 import { TokenProvider } from './auth/components/TokenProvider';
 import useTokenStorage from './auth/components/hooks/useTokenStorage';
+import { IoProvider } from 'socket.io-react-hook';
 
 const Stack = createStackNavigator();
 
@@ -82,11 +83,11 @@ export default function App() {
   // Call the ignoreLogs method to suppress the warning
   LogBox.ignoreLogs(['export \'default\' (imported as \'Animated\') was not found in \'react-native-reanimated\'']);
   return (
-    // Use the ThemeProvider component to wrap your app and pass the theme object
     <ThemeProvider theme={themeObj}>
       <TokenProvider>
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
+          {/* <IoProvider> */}
                {/* <NavigationContainer>
            <Stack.Navigator  headerMode="none" initialRouteName="populate" screenOptions={{
             animation: 'slide_from_right',
@@ -98,13 +99,14 @@ export default function App() {
           </Stack.Navigator>
                 </NavigationContainer> 
                 */}
+              
             <NavigationContainer>
               <DrawerMenu />
             </NavigationContainer>
+              {/* </IoProvider> */}
           </Provider>
         </QueryClientProvider>
       </TokenProvider>
-
     </ThemeProvider>
   );
 }

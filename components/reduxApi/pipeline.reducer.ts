@@ -1,27 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiPipeline } from "./apiPipeline";
+import { apiPipeline } from "./pipelineApi";
 
-// const initialState = {
-//   pipelineRunHistory: [],
-// };
+const initialState = {
+  details: [],
+  pipelineStatusAll:[],
+  pipelineStatusSummery: {},
+  isLoading: false, // Add loading state
+  error: null, // Add error state
+};
 
 export const pipelineSlice = createSlice({
-  name: 'apiPipeline',
-  initialState: { loading: 'idle', error: null, data: null },
+  name: 'pipeline',
+  initialState,//: { loading: 'idle', error: null, data: null },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchPending, (state) => {
-      state.loading = 'pending';
-    });
-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchFulfilled, (state, action) => {
-      state.loading = 'idle';
-      state.data = action.payload;
-    });
-    builder.addMatcher(apiPipeline.endpoints.getPipeline.matchRejected, (state, action) => {
-      state.loading = 'idle';
-      state.error = action.error;
-    });
-  },
+
+    builder.addMatcher(apiPipeline.endpoints.getAll.matchFulfilled, (state, action) => {
+      //debugger;
+      state.details = action.payload.pipelines;
+    })
+    .addMatcher(apiPipeline.endpoints.getPipelineStatusAll.matchFulfilled, (state, action) => {
+      state.pipelineStatusAll = action.payload;
+    })
+    .addMatcher(apiPipeline.endpoints.getPipelineStatusSummery.matchFulfilled, (state, action) => {
+      //debugger;
+      const eyeProductId:number = action.meta.arg.originalArgs; // Assuming the eyeProductId is available here
+      state.pipelineStatusSummery[(eyeProductId)] = action.payload;
+    })
+
+   },
 });
 
 export default pipelineSlice.reducer;
+

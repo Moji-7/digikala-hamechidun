@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/reduxApi/pipelineApi.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711271523767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711271596391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,6 +48,7 @@\n });\r\n export const {\r\n   useSubmitMutation,\r\n   useSubmitProccessMutation,\r\n-  useGetAllQuery\r\n+  useGetAllQuery,\r\n+  useGetPipelineStatusLastQuery\r\n } = apiPipeline;\r\n"
+                },
+                {
+                    "date": 1711272134778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n       getPipelineStatusLast: build.query({ \r\n-      query: () => `/`, \r\n+      query: () => `/pipelineStatus`, \r\n      // providesTags: [\"pipeline\"],\r\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n"
+                },
+                {
+                    "date": 1711277283048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,12 @@\n         return response;\r\n       },\r\n     }),\r\n     submitProccess: build.mutation({\r\n-      query: (newPipelineData) => ({\r\n+      query: (pipeLineStatus) => ({\r\n         url: \"submitProccess\", // Replace with your actual endpoint URL\r\n         method: \"POST\",\r\n-        body: newPipelineData,\r\n+        body: pipeLineStatus,\r\n       }),\r\n       transformResponse: (response) => {\r\n         console.log(\"Raw response for newSubmit: \", response);\r\n         // Handle the response as needed (e.g., return specific data)\r\n"
+                },
+                {
+                    "date": 1711277408140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       },\r\n     }),\r\n     submitProccess: build.mutation({\r\n       query: (pipeLineStatus) => ({\r\n-        url: \"submitProccess\", // Replace with your actual endpoint URL\r\n+        url: \"submitStatus\", // Replace with your actual endpoint URL\r\n         method: \"POST\",\r\n         body: pipeLineStatus,\r\n       }),\r\n       transformResponse: (response) => {\r\n"
+                },
+                {
+                    "date": 1711357474356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,20 @@\n      // providesTags: [\"pipeline\"],\r\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n-      getPipelineStatusLast: build.query({ \r\n-      query: () => `/pipelineStatus`, \r\n+      getPipelineStatusAll: build.query({ \r\n+      query: () => `/pipelineStatusAll`, \r\n      // providesTags: [\"pipeline\"],\r\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n+     getPipelineStatusSummery: build.query({ \r\n+      query: () => `/pipelineStatusSummery`, \r\n+     // providesTags: [\"pipeline\"],\r\n+      transformResponse: (response) => response,\r\n+     refetchOnMountOrArgChange: true, \r\n+    }),\r\n     submit: build.mutation({\r\n       query: (pipelineDetail) => ({\r\n         url: \"submit\",\r\n         method: \"POST\",\r\n@@ -49,6 +55,7 @@\n export const {\r\n   useSubmitMutation,\r\n   useSubmitProccessMutation,\r\n   useGetAllQuery,\r\n-  useGetPipelineStatusLastQuery\r\n+  useGetPipelineStatusAllQuery,\r\n+  useGetPipelineStatusSummeryQuery\r\n } = apiPipeline;\r\n"
+                },
+                {
+                    "date": 1711357808800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,10 @@\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n      getPipelineStatusSummery: build.query({ \r\n-      query: () => `/pipelineStatusSummery`, \r\n-     // providesTags: [\"pipeline\"],\r\n+      query: (eyeProductId) => `/pipelineStatusSummery/${eyeProductId}`,\r\n+      // providesTags: [\"pipeline\"],\r\n       transformResponse: (response) => response,\r\n      refetchOnMountOrArgChange: true, \r\n     }),\r\n     submit: build.mutation({\r\n"
+                }
+            ],
+            "date": 1711271523767,
+            "name": "Commit-0",
+            "content": "import { createApi, fetchBaseQuery } from \"@reduxjs/toolkit/query/react\";\r\nimport { baseQueryWithAuth } from \"./apiBaseQuery\";\r\n\r\nexport const apiPipeline = createApi({\r\n  reducerPath: \"apipipeline\",\r\n  baseQuery: baseQueryWithAuth({ baseUrl: \"http://localhost:3222/pipeline\" }),\r\n\r\n\r\n   \r\n  endpoints: (build) => ({\r\n    getAll: build.query({ \r\n      query: () => `/`, \r\n     // providesTags: [\"pipeline\"],\r\n      transformResponse: (response) => response,\r\n     refetchOnMountOrArgChange: true, \r\n    }),\r\n      getPipelineStatusLast: build.query({ \r\n      query: () => `/`, \r\n     // providesTags: [\"pipeline\"],\r\n      transformResponse: (response) => response,\r\n     refetchOnMountOrArgChange: true, \r\n    }),\r\n    submit: build.mutation({\r\n      query: (pipelineDetail) => ({\r\n        url: \"submit\",\r\n        method: \"POST\",\r\n        body: pipelineDetail,\r\n      }),\r\n      transformResponse: (response) => {\r\n        // Log the raw response\r\n        console.log(\"Raw response: \", response);\r\n        return response;\r\n      },\r\n    }),\r\n    submitProccess: build.mutation({\r\n      query: (newPipelineData) => ({\r\n        url: \"submitProccess\", // Replace with your actual endpoint URL\r\n        method: \"POST\",\r\n        body: newPipelineData,\r\n      }),\r\n      transformResponse: (response) => {\r\n        console.log(\"Raw response for newSubmit: \", response);\r\n        // Handle the response as needed (e.g., return specific data)\r\n        return response.data; // Assuming response.data holds relevant information\r\n      },\r\n    }),\r\n  }),\r\n});\r\nexport const {\r\n  useSubmitMutation,\r\n  useSubmitProccessMutation,\r\n  useGetAllQuery\r\n} = apiPipeline;\r\n"
+        }
+    ]
+}

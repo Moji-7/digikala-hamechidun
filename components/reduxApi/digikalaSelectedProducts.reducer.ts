@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useSubmitItemsMutation } from "./api";
+import { useSubmitEyeProductsMutation } from "./api";
 import { api} from './api';
 // Define the initial state
 const initialState = {
@@ -23,7 +23,7 @@ const digikalaSelectedProductsSlice = createSlice({
 
 
     submitItems: (state, action) => {
-      const [submitItems] = useSubmitItemsMutation();
+      const [submitItems] = useSubmitEyeProductsMutation();
       submitItems(state.digikalaSelectedProducts);
       
     },

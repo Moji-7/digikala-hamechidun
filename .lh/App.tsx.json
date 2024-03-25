@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 65,
+            "activePatchIndex": 67,
             "patches": [
                 {
                     "date": 1704275601397,
@@ -268,6 +268,14 @@
                 {
                     "date": 1708763366768,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,8 +86,19 @@\n     <ThemeProvider theme={themeObj}>\n       <TokenProvider>\n         <QueryClientProvider client={queryClient}>\n           <Provider store={store}>\n+               {/* <NavigationContainer>\n+           <Stack.Navigator  headerMode=\"none\" initialRouteName=\"populate\" screenOptions={{\n+            animation: 'slide_from_right',\n+            gestureEnabled: true,\n+            statusBarStyle: 'dark'}}>\n+            <Stack.Screen name=\"incredibles\" component={Incredibles} options={{ headerShown: false }} />\n+            <Stack.Screen name=\"populate\" component={populate} options={{ headerShown: false }} />\n+            <Stack.Screen name=\"EyeProductComponent\" component={EyeProductComponent} options={{ headerShown: false }} />\n+          </Stack.Navigator>\n+                </NavigationContainer> \n+                */}\n             <NavigationContainer>\n               <DrawerMenu />\n             </NavigationContainer>\n           </Provider>\n"
+                },
+                {
+                    "date": 1711280617630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n import { store } from \"./components/reduxApi/store2\";\n import DrawerMenu from \"./DrawerMenu\";\n import { TokenProvider } from './auth/components/TokenProvider';\n import useTokenStorage from './auth/components/hooks/useTokenStorage';\n+import { IoProvider } from 'socket.io-react-hook';\n \n const Stack = createStackNavigator();\n \n // Create a query client\n@@ -81,13 +82,13 @@\n \n   // Call the ignoreLogs method to suppress the warning\n   LogBox.ignoreLogs(['export \\'default\\' (imported as \\'Animated\\') was not found in \\'react-native-reanimated\\'']);\n   return (\n-    // Use the ThemeProvider component to wrap your app and pass the theme object\n     <ThemeProvider theme={themeObj}>\n       <TokenProvider>\n         <QueryClientProvider client={queryClient}>\n           <Provider store={store}>\n+          {/* <IoProvider> */}\n                {/* <NavigationContainer>\n            <Stack.Navigator  headerMode=\"none\" initialRouteName=\"populate\" screenOptions={{\n             animation: 'slide_from_right',\n             gestureEnabled: true,\n@@ -97,11 +98,13 @@\n             <Stack.Screen name=\"EyeProductComponent\" component={EyeProductComponent} options={{ headerShown: false }} />\n           </Stack.Navigator>\n                 </NavigationContainer> \n                 */}\n+              \n             <NavigationContainer>\n               <DrawerMenu />\n             </NavigationContainer>\n+              {/* </IoProvider> */}\n           </Provider>\n         </QueryClientProvider>\n       </TokenProvider>\n \n"
+                },
+                {
+                    "date": 1711281212975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,9 +106,8 @@\n               {/* </IoProvider> */}\n           </Provider>\n         </QueryClientProvider>\n       </TokenProvider>\n-\n     </ThemeProvider>\n   );\n }\n \n"
                 }
             ],
             "date": 1704275601396,

@@ -11,14 +11,13 @@ export const api = createApi({
     getEye: build.query({ 
       query: () => `?page=1&length=10`, 
       providesTags: ["Eye"],
-    
       transformResponse: (response) => response.eyeProducts,//.data,
       refetchOnMountOrArgChange: true, 
     }),
 
-    submitItems: build.mutation({
+    SubmitEyeProducts: build.mutation({
       query: (items) => ({
-        url: "submitItems", 
+        url: "submitProducts", 
         method: "POST", 
         body: items, 
       }),
@@ -46,7 +45,7 @@ export const api = createApi({
 
   }),
 });
-export const {  useGetEyeQuery ,useSubmitItemsMutation ,useDeleteItemMutation } = api;
+export const {  useGetEyeQuery ,useSubmitEyeProductsMutation ,useDeleteItemMutation } = api;
 
 
 

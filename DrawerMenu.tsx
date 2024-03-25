@@ -18,6 +18,7 @@ import LoginScreen from "./auth/components/LoginScreen"
 
 import Ionicons from 'react-native-vector-icons/Ionicons'; // You can use any icon library you like
 import CustomDrawerContent from './CustomDrawerContent';
+import NotificationComponent from './components/NotificationComponent';
 
 
 const Drawer = createDrawerNavigator();
@@ -37,6 +38,7 @@ function DrawerMenu() {
                 name="EyeProductComponent"
                 component={EyeProductComponent}
                 options={{
+                    headerRight: () => <NotificationComponent />, 
                     drawerIcon: ({ focused, size, color }) => (
                         <Ionicons name={focused ? 'ios-chatbubble' : 'ios-chatbubble-outline'} size={size} color={color} />
                     ),
