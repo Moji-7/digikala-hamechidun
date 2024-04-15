@@ -9,7 +9,7 @@ import populate from "./components/populate";
 
 import Orderitem from "./components/Orderitem";
 import Incredibles from "./components/Incredibles";
-import Comments from "./components/Comments";
+import CommentsDataset from "./components/CommentsDataset";
 import EyeProductComponent from "./components/forms/EyeProduct";
 
 
@@ -19,6 +19,8 @@ import LoginScreen from "./auth/components/LoginScreen"
 import Ionicons from 'react-native-vector-icons/Ionicons'; // You can use any icon library you like
 import CustomDrawerContent from './CustomDrawerContent';
 import NotificationComponent from './components/NotificationComponent';
+import Comments from './components/Comments';
+import StackNavigator from './StackNavigator';
 
 
 const Drawer = createDrawerNavigator();
@@ -82,6 +84,12 @@ function DrawerMenu() {
                     ),
                 }}
             />
+      
+            <Drawer.Screen name="otherStacks" component={StackNavigator} options={{ drawerItemStyle: { height: 0 } }} />
+
+          
+
+
         </Drawer.Navigator>
     );
 }

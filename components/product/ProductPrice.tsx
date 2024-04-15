@@ -1,22 +1,29 @@
 // Import the necessary modules
 import React, { useEffect, useLayoutEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet ,Linking} from 'react-native';
 
 import ListCategoryGrouped from '../uicomponents/ListCategoryGrouped';
 import { useProductPrice } from '../hooks/product/useProductPrice';
-import { Card, useTheme } from '@rneui/themed';
+import { Card, useTheme ,Button} from '@rneui/themed';
 import OrderItemOne from '../uicomponents/OrderItemOne';
 import { SearchParamsOrderItem, SearchParamsProductPrice } from '../entity/SearchQueries';
+import PriceDifferShow from '../uicomponents/PriceDiffer';
 
 interface SearchParamsProductPriceProps {
     searchParamsProductPrice: SearchParamsProductPrice;
+    route?: {
+        params?: {
+            searchParamsProductPrice?: SearchParamsProductPrice;
+        };
+      };
 }
-const ProductPrice: React.FC<SearchParamsProductPriceProps> = ({ searchParamsProductPrice }) => {
+const ProductPrice: React.FC<SearchParamsProductPriceProps> = ({ searchParamsProductPrice, route}) => {
     // Use the useTheme hook to get the theme object
     const { theme } = useTheme();
-    const params = searchParamsProductPrice as SearchParamsProductPrice;;
+    const params = (searchParamsProductPrice|| route?.params?.searchParamsProductPrice)  as SearchParamsProductPrice;;
     const { data, error, isLoading, isError } = useProductPrice(params);
-
+    // Extract the minimum selling price record for the incredible price
+    const increidiblePrice = data?.minPriceRecord?.selling_price;
     return (
 
         <View style={styles.container}>
@@ -35,12 +42,13 @@ const ProductPrice: React.FC<SearchParamsProductPriceProps> = ({ searchParamsPro
 
                 data && (
                     <Card>
-                        <Text style={[styles.dataTitle, { color: theme.colors.text }]}>Category 3 🦚🦚</Text>
-                        <Card.Title style={{ color: theme.colors.text }}> Order Item (details) 🛒🐾</Card.Title>
+                        <Card.Title style={{ color: theme.colors.text }}>Order Item (details) 🛒🐾</Card.Title>
                         <Card.Divider />
-                        {data.map((item, index) => (
-                            <Card key={item.id}>
-                                {item.selling_price}
+                        {data.allRecords.map((productInfo, index) => (
+                            <Card key={productInfo.id}>
+                                {productInfo.selling_price}
+                                <PriceDifferShow priceA={increidiblePrice} priceB={productInfo.selling_price} />
+                                <Button title={productInfo.seller_title} onPress={() => Linking.openURL(productInfo.seller_url)} />
                             </Card>
                         ))}
                     </Card>

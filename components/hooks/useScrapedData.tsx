@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { SearchParamsProductPrice } from "../../entity/SearchQueries";
 
-export const useProductPrice = (params:SearchParamsProductPrice ) => {
+export const useScrapedData = (productId: number) => {
     // Use the useQuery hook to fetch the data from the API
     const { data, error, isLoading, isError } = useQuery({
         // Specify the query key as the item.title
-        queryKey: ['useProductPrice', params],
+        queryKey: ['useScrapedDataComments', productId],
         // Specify the query function as an async arrow function that uses fetch to make the request
         queryFn: async () => {
+            // Try to fetch the data from the API
             try {
 
-                const searchParamsProductPrice = params as SearchParamsProductPrice;
-           
-                const url = "http://localhost:3222/products/" + `${searchParamsProductPrice.product_id}`;
+                //?productId=197421?
+                const url = "http://localhost:3222/comments?productId=" + productId;
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {
@@ -25,18 +24,9 @@ export const useProductPrice = (params:SearchParamsProductPrice ) => {
                 if (!response.ok) {
                     throw { status: response.status, message: response.statusText };
                 }
-                const products: any[] = await response.json();
-        
-                // Find the product with the minimum selling price
-                const productWithMinPrice = products.reduce((min, product) => {
-                  return (min.selling_price < product.selling_price) ? min : product;
-                }, products[0]);
-        
-                // Return the data with two properties: all records and the record with the minimum selling price
-                return {
-                  allRecords: products,
-                  minPriceRecord: productWithMinPrice
-                };
+                // Parse the response data as JSON and return it
+                const data: any = await response.json();
+                return data;
             } catch (error) {
                 // If there is an error, throw it
                 throw error;

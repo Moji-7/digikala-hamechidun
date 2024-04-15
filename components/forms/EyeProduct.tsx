@@ -11,6 +11,8 @@ import AlertComponenti from '../uicomponents/AlertComponent';
 import EyeProductAddComponent from './EyeProductAdd';
 import EyeProducts from './EyeProducts';
 import SimpleComponent from './SimpleComponent';
+import Comments from '../Comments';
+import ProductPrice from '../product/ProductPrice';
 
 
 
@@ -25,9 +27,11 @@ const EyeProductComponent: React.FC<Props> = ({ eyeProductParam }) => {
     return (
         <View style={styles.container}>
             <View style={styles.gridContainer}>
+                {/* <Comments productId={804711}/> */}
+                <ProductPrice searchParamsProductPrice={{ product_id: 471143}} />
                 <EyeProducts eyeProductParam={eyeProductParam} />
                 <Divider />
-                {/* <EyeProductAddComponent eyeProductParam={eyeProductParam} /> */}
+                <EyeProductAddComponent eyeProductParam={eyeProductParam} />
             </View>
         </View>
     );

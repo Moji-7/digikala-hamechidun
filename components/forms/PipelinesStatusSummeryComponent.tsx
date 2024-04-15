@@ -56,6 +56,7 @@ const PipelinesStatusSummeryComponent: React.FC<Props> = ({ eyeProductId }) => {
         try {
             // Set loading state for the specific button being clicked
             setLoadingStates((prevLoadingStates) => [...prevLoadingStates, pipeLineStatus.pipelineId]);
+            //debugger;
             await submitProccessApi(pipeLineStatus).unwrap();
             // refetch();
         } catch (err) {

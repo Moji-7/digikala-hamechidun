@@ -23,7 +23,7 @@ const loggerMiddleware = (store) => (next) => (action) => {
 export const store = configureStore({
   reducer: {
     api: api.reducer,
-    // digikalaSelectedProducts: itemsReducer,
+     digikalaSelectedProducts: itemsReducer,
     eye: eyeProductsReducer,
     token: tokenSliceReducer, // Add the token reducer
     pipeline: pipelineSliceReducer,

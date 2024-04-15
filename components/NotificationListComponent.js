@@ -1,13 +1,31 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { useTheme, Card, Icon } from '@rneui/themed';
+import NotificationNavigateButton from './NotificationNavigateButton';
+
 
 const NotificationListComponent = () => {
   const { theme } = useTheme();
+
+
+
   // Assuming 'notifications' is an array of objects like the JSON data you provided
   const notifications = useSelector(state => state.notifications);
   const notificationCount = notifications.length;
+
+
+  function setParamsforScreen(screenName, productId) {
+    switch (screenName) {
+      case 'Products':
+        return { searchParamsProductPrice: { product_id: productId } };
+      case 'Comments':
+        return{ productId: productId };
+      default:
+        return { productId: productId };
+    }
+  }
+
 
   return (
     <Card containerStyle={styles.cardContainer}>
@@ -16,16 +34,22 @@ const NotificationListComponent = () => {
         {` Notifications (${notificationCount})`}
       </Card.Title>
       <Card.Divider />
-      {notifications[0].map((notification, index) => (
-        <TouchableOpacity key={index} style={[styles.notificationItem, index % 2 === 0 ? styles.evenRow : styles.oddRow]}>
-          <Text style={styles.textStyle}>product: {notification.product_id}</Text> 
-          <Text style={styles.textStyle}>Likes: {notification.likes_count}</Text>
-          <Text style={styles.textStyle}>Details: </Text>
 
-          {/* <Text style={styles.textStyle}>Max Likes: {notification.data.max_likes}</Text>
-          <Text style={styles.textStyle}>Average Rate: {notification.data.rate_avg}</Text> */}
-        </TouchableOpacity>
-      ))}
+
+      {notifications.map((notification, index) => {
+        return (
+          <TouchableOpacity key={index} style={[styles.notificationItem, index % 2 === 0 ? styles.evenRow : styles.oddRow]}>
+            <View key={index}>
+              <NotificationNavigateButton title={notification.screen} screen={notification.screen} 
+              params={setParamsforScreen(notification.screen,notification.product_id)}  />
+            </View>
+          </TouchableOpacity>
+        );
+      })}
+
+
+
+      {/* ))} */}
     </Card>
   );
 };

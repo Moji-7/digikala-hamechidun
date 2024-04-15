@@ -31,7 +31,7 @@ const digikalaSelectedProductsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-      api.endpoints.submitItems.matchFulfilled,
+      api.endpoints.SubmitEyeProducts.matchFulfilled,
       (state, action) => {
         state.digikalaSelectedProducts = [];
       }
