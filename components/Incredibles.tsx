@@ -5,63 +5,77 @@ import { Card, ListItem, Divider, useTheme, Button } from '@rneui/themed';
 
 
 
-import { useIncredibles } from './hooks/useIncredibles';
 import ProductPrice from './product/ProductPrice';
 import SellerButton from './seller/SellerButton';
 import ProductPriceInfo from './product/ProductPriceInfo';
 import { useIncrediblesWithOtherSellers } from './hooks/useIncrediblesOtherSellers';
+import { useDispatch, useSelector } from 'react-redux';
+import { apiIncredibles, useGetAllQuery } from './reduxApi/incrediblesApi';
 const Incredibles = () => {
     const { theme } = useTheme();
-    const { data, error, isLoading, isError } = useIncredibles("Params");
+    const {  error, isLoading } = useGetAllQuery();
 
+    const incredibles = useSelector((state) => state.incredibles.incredibles);
+    const dispatch = useDispatch();
+
+ 
     const handleLinkPress = (url) => {
         Linking.openURL(url);
     };
 
+    const handleButtonClick = (newParam) => {
+        dispatch(apiIncredibles.endpoints.getAll.initiate(newParam));
+    };
+
+
     return (
         <View style={styles.container}>
-            {isLoading && <Text style={[styles.loading, { color: theme.colors.primary }]}>Loading...</Text>}
-            {isError && <Text style={[styles.error, { color: theme.colors.error }]}>Error: {error.message}</Text>}
-            {data && (
-                <View style={styles.dataContainer}>
-                    {data.map((item, index) => (
-                        <>
-                            <Card key={index} style={styles.card}>
+            <View style={styles.gridContainer}>
+                <Button onPress={(e) => handleButtonClick("scrap==> not scrap yet")} title='scrap==> not scrap yet' color={theme.myColors.danger} />
+                <Button onPress={(e) => handleButtonClick("mysql==> scrap already")} title='mysql==> scrap already' color={theme.myColors.danger} />
+                {isLoading && <Text style={[styles.loading, { color: theme.colors.primary }]}>Loading...</Text>}
+                {/* {isError && <Text style={[styles.error, { color: theme.colors.error }]}>Error: {error.message}</Text>} */}
+                {incredibles && (
+                    <View style={styles.dataContainer}>
+                        {incredibles.map((item, index) => (
+                            <>
+                                <Card key={index} style={styles.card}>
 
-                                <View style={{ flexDirection: 'row' }}>
-                                 
-                                    <View style={styles.imageContainer}>
-                                        <ListItem.Title>{item.title_fa} ({item.brand})</ListItem.Title>
-                                           <Text>
-                                        {/* <ProductPriceInfo productPriceInfo={{ price: item.selling_price, rrpPrice: item.rrp_price, discountPercent: item.discount_percent }} /> */}
-                                        
-                                    </Text>
-                                        <Card.Image
+                                    <View style={{ flexDirection: 'row' }}>
+
+                                        <View style={styles.imageContainer}>
+                                            <ListItem.Title>{item.title_fa} ({item.brand})</ListItem.Title>
+                                            <Text>
+                                                {/* <ProductPriceInfo productPriceInfo={{ price: item.selling_price, rrpPrice: item.rrp_price, discountPercent: item.discount_percent }} /> */}
+
+                                            </Text>
+                                            {/* <Card.Image
                                             source={{ uri: item.main_image_url }}
                                             style={{ width: '100%', aspectRatio: 1, resizeMode: 'contain' }}
-                                        />
-                                           <Text>{item.category}</Text>
-                                    </View>   
-                                       
-                                </View>
+                                        /> */}
+                                            <Text>{item.category}</Text>
+                                        </View>
 
-                           
-                                <Divider />
-                                {/* <ProductPrice searchParamsProductPrice={{ product_id: item.id }} /> */}
-                                {/* Add more UI components based on other columns */}
-
-                                <SellerButton sellerInfo={{ sellerId: item.seller_id, sellerTitle: item.seller_title }} />
+                                    </View>
 
 
-                                <Button mode="contained" onPress={() => console.log(item.url)}>Buy Now</Button>
+                                    <Divider />
+                                    {/* <ProductPrice searchParamsProductPrice={{ product_id: item.id }} /> */}
+                                    {/* Add more UI components based on other columns */}
 
-                            </Card>
-                        </>
-                    ))}
+                                    <SellerButton sellerInfo={{ sellerId: item.seller_id, sellerTitle: item.seller_title }} />
 
-                </View>
-            )}
 
+                                    <Button mode="contained" onPress={() => console.log(item.url)}>Buy Now</Button>
+
+                                </Card>
+                            </>
+                        ))}
+
+                    </View>
+                )}
+
+            </View>
         </View>
     )
 }
@@ -70,8 +84,16 @@ const Incredibles = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        padding: 6,
+    },
+    gridContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    gridRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 6,
     },
     loading: {
         fontSize: 20,

@@ -40,8 +40,8 @@ const NotificationListComponent = () => {
         return (
           <TouchableOpacity key={index} style={[styles.notificationItem, index % 2 === 0 ? styles.evenRow : styles.oddRow]}>
             <View key={index}>
-              <NotificationNavigateButton title={notification.screen} screen={notification.screen} 
-              params={setParamsforScreen(notification.screen,notification.product_id)}  />
+              <NotificationNavigateButton title={notification.screen+'('+notification.product.title+')'+'['+notification.product.product_id+']'} screen={notification.screen} 
+              params={setParamsforScreen(notification.screen,notification.product.product_id)}  />
             </View>
           </TouchableOpacity>
         );

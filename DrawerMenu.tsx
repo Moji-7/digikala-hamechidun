@@ -36,6 +36,15 @@ function DrawerMenu() {
                 activeTintColor: '#e91e63', // Customize menu item colors
                 itemStyle: styles.drawerItem, // Apply custom styles
             }}>
+                  <Drawer.Screen
+                name="Incredibles"
+                component={Incredibles}
+                options={{
+                    drawerIcon: ({ focused, size, color }) => (
+                        <Ionicons name={focused ? 'ios-star' : 'ios-star-outline'} size={size} color={color} />
+                    ),
+                }}
+            />
             <Drawer.Screen
                 name="EyeProductComponent"
                 component={EyeProductComponent}
@@ -56,15 +65,7 @@ function DrawerMenu() {
                     ),
                 }}
             />
-            <Drawer.Screen
-                name="Incredibles"
-                component={Incredibles}
-                options={{
-                    drawerIcon: ({ focused, size, color }) => (
-                        <Ionicons name={focused ? 'ios-star' : 'ios-star-outline'} size={size} color={color} />
-                    ),
-                }}
-            />
+          
 
             <Drawer.Screen
                 name="populat etest"

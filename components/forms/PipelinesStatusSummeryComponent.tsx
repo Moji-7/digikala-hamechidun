@@ -25,7 +25,6 @@ const PipelinesStatusSummeryComponent: React.FC<Props> = ({ eyeProductId }) => {
     const pipelineStatusSummery = useSelector((state) => state.pipeline.pipelineStatusSummery[eyeProductId]);
 
 
-
     const toggleExpansion = () => {
         setExpanded(!expanded);
         if (!expanded) {

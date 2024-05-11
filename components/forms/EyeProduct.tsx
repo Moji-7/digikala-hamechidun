@@ -28,7 +28,7 @@ const EyeProductComponent: React.FC<Props> = ({ eyeProductParam }) => {
         <View style={styles.container}>
             <View style={styles.gridContainer}>
                 {/* <Comments productId={804711}/> */}
-                <ProductPrice searchParamsProductPrice={{ product_id: 471143}} />
+                {/* <ProductPrice searchParamsProductPrice={{ product_id: 471143}} /> */}
                 <EyeProducts eyeProductParam={eyeProductParam} />
                 <Divider />
                 <EyeProductAddComponent eyeProductParam={eyeProductParam} />
